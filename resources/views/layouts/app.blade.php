@@ -652,7 +652,7 @@
 		              	</div>
 		            </li>
 		            <li class="">
-			            <a href="payroll.html">
+			            <a href="{{ route('payroll', Auth::user()->subdomain) }}">
 			                <div class="icon-w">
 			                  	<div class="os-icon os-icon-wallet-loaded"></div>
 			                </div>
@@ -707,8 +707,8 @@
 			                <span>Invoices</span>
 			            </a>
 		            </li>
-		            <li class="has-sub-menu">
-			            <a href="layouts_menu_top_image.html">
+					<li class="has-sub-menu">
+			            <a href="{{ route('screenshots', Auth::user()->subdomain) }}">
 			                <div class="icon-w">
 			                  	<div class="os-icon os-icon-bar-chart-stats-up"></div>
 			                </div>
@@ -724,17 +724,17 @@
 		                	<div class="sub-menu-i">
 								<ul class="sub-menu">
 									<li>
-									  	<a href="screenshots.html">Screenshots</a>
+									  	<a href="{{ route('screenshots', Auth::user()->subdomain) }}">Screenshots</a>
 									</li>
 									<li>
-									  	<a href="apps.html">Apps</a>
+									  	<a href="{{ route('apps', Auth::user()->subdomain) }}">Apps</a>
 									</li>
 									<li>
-									  	<a href="urls.html">URLs</a>
+									  	<a href="{{ route('urls', Auth::user()->subdomain) }}">URLs</a>
 									</li>
-									<li>
+									<!-- <li>
 									  	<a href="locations.html">Locations</a>
-									</li>
+									</li> -->
 								</ul>
 		                	</div>
 		              	</div>

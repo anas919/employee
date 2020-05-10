@@ -24,4 +24,8 @@ class Candidate extends Model
     {
         return $this->hasMany('App\Interview');
     }
+	public function candidateresponse()
+    {
+        return $this->hasMany('App\Candidateresponse');
+    }
 }

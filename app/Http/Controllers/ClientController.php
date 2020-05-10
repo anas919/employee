@@ -78,6 +78,6 @@ class ClientController extends Controller
 
 		session()->flash('success', 'Client updated successfully');
 
-		return redirect()->route('edit-client',['subdomain' => Auth::user()->subdomain, 'member_id' => $member->id]);
+		return redirect()->route('edit-client',['account' => Auth::user()->subdomain, 'client_id' => $client->id]);
 	}
 }

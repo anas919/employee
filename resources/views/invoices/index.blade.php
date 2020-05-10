@@ -104,7 +104,7 @@
 										</div>
 									</td>
 									<td>
-										<a href="{{ route('edit-invoice',  ['subdomain' => Auth::user()->subdomain, 'invoice_id' => $invoice->id]) }}">{{ $invoice->invoice_number }}</a>
+										<a href="{{ route('edit-invoice',  ['account' => Auth::user()->subdomain, 'invoice_id' => $invoice->id]) }}">{{ $invoice->invoice_number }}</a>
 									</td>
 									<td>
 										<div class="smaller lighter">

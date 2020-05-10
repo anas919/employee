@@ -16,11 +16,9 @@ class CardController extends Controller
 {
     public function add(Request $req){
     	$tasklist = Tasklist::find($req->tasklist_id);
-    	if($tasklist->board->organization_id != Auth::user()->organization_id)
-            abort(403, 'Unauthorized action.');
 
         $card = new Card();
-		
+
 		$card->tasklist_id = $req->tasklist_id;
         $card->title = $req->title;
         $card->priority = 'normal';
@@ -52,14 +50,14 @@ class CardController extends Controller
             }
         }
         $card->attachedFiles = $card->files;
-        
+
         return response()->json(['members'=>$members, 'card'=>$card]);
     }
     public function duplicateCard(Request $req, $org_id, $card_id) {
         $card = Card::find($card_id);
 
         $duplicatedCard = new Card();
-        
+
         $duplicatedCard = $card->replicate();
         $duplicatedCard->save();
 
@@ -69,9 +67,9 @@ class CardController extends Controller
             Storage::disk('public')->copy($file->reference, 'Cards/'.date('m-Y').'/temp/'.$file->name);
             $file_to_copy = new File('storage/Cards/'.date('m-Y').'/temp/'.$file->name);
             $reference = Storage::disk('public')->putFile('Cards/'.date('m-Y'), $file_to_copy);
-            
+
             Storage::disk('public')->delete('Cards/'.date('m-Y').'/temp/'.$file->name);
-            
+
             Cardfile::create([
                 'name'=>$file->name,
                 'reference'=>$reference,
@@ -100,8 +98,6 @@ class CardController extends Controller
         return response()->json(['members'=>$members, 'card'=>$card]);
     }
     public function update(Request $req, $org_id){
-        if($org_id != Auth::user()->organization_id)
-            abort(403, 'Unauthorized action.');
 
         $card = Card::find($req->id);
 
@@ -138,13 +134,11 @@ class CardController extends Controller
             $members = $card->members;
         else
             $members = 0;
-        
+
         return response()->json(['members'=>$members]);
     }
     public function assignMembers(Request $req) {
         $card = Card::find($req->id);
-        if($card->tasklist->board->organization_id != Auth::user()->organization_id)
-            abort(403, 'Unauthorized action.');
 
         $card->members()->detach();
         if($req->members != null) {
@@ -165,13 +159,11 @@ class CardController extends Controller
         return response()->json(['members'=>$members]);
     }
     public function dragDropUpdate(Request $req, $org_id){
-        if($org_id != Auth::user()->organization_id)
-            abort(403, 'Unauthorized action.');
 
         $card = Card::find($req->card_id);
 
         $card->tasklist_id = $req->target_tasklist;
-        
+
         //
         if($req->previous_card != '0'){
             $previous_card = Card::find($req->previous_card);
@@ -185,7 +177,7 @@ class CardController extends Controller
             $last_card = DB::table('cards')->where('tasklist_id', '=', $req->target_tasklist)->max('order');
             $card->order = $last_card + 1;
         }
-        
+
         $card->save();
 
         return response()->json(['success', 'Task updated']);
@@ -200,7 +192,7 @@ class CardController extends Controller
                 $file->_card_id = $card_id;
                 $file->_file = $req->file('attachedFile');
                 $file->_path = 'Cards';
-                
+
                 $file->_save();
             }
         }
@@ -227,7 +219,7 @@ class CardController extends Controller
         $card = Card::find($card_id);
         $card->members()->detach();
         foreach ($card->files as $file) {
-            $file->delete(); 
+            $file->delete();
         }
         $card->delete();
         return response()->json(['success'=>'deleted']);

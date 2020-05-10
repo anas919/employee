@@ -24,7 +24,7 @@ class Tenant extends Model
     {
         config([
             'database.connections.tenant.database' => $this->database,
-						'session.files' => storage_path('framework/sessions/'.$this->id),
+			'session.files' => storage_path('framework/sessions/'.$this->id),
         ]);
 
         DB::purge('tenant');

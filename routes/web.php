@@ -43,6 +43,10 @@ include 'candidates.php';
 include 'interviews.php';
 include 'timeoffs.php';
 include 'settings.php';
+include 'payroll.php';
+include 'screenshots.php';
+include 'apps.php';
+include 'urls.php';
 //
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/sendmail', function() {

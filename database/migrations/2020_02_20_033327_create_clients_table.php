@@ -26,7 +26,7 @@ class CreateClientsTable extends Migration
             $table->string('phone');
             $table->string('company_name');
             $table->enum('status', ['active', 'inactive']);
-            $table->longText('description');
+            $table->longText('description')->nullable();
             // $table->string('files');
             $table->timestamps();
         });

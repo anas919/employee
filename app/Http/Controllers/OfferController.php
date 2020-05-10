@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Offer;
+use App\Offerquestion;
 use App\Country;
 use App\Department;
 use App\Job;
 use App\User;
 use App\Candidate;
+use App\CandidateResponse;
 use App\Media;
 use App\Resume;
+use App\Organization;
+use App\Tenant;
 use Hashids\Hashids;
 
 class OfferController extends Controller
@@ -28,7 +32,6 @@ class OfferController extends Controller
 	}
 	public function add(Request $req) {
 		$offer = new Offer();
-
 		$offer->title = $req->title;
 		$offer->responsible_id = $req->responsible;
 		$offer->status = $req->status;
@@ -58,7 +61,24 @@ class OfferController extends Controller
 			$offer->desired_salary = '1';
 
 		$offer->save();
-
+		if(isset($req->opt_questions)){
+			foreach ($req->opt_questions as $question) {
+				$offerquestion = new Offerquestion();
+				$offerquestion->question = $question;
+				$offerquestion->required = '0';
+				$offerquestion->offer_id = $offer->id;
+				$offerquestion->save();
+			}
+		}
+		if(isset($req->req_questions)){
+			foreach ($req->req_questions as $question) {
+				$offerquestion = new Offerquestion();
+				$offerquestion->question = $question;
+				$offerquestion->required = '1';
+				$offerquestion->offer_id = $offer->id;
+				$offerquestion->save();
+			}
+		}
 		return redirect()->route('offers', Auth::user()->subdomain)->with('success','Offer Created Successefuly');
 	}
 	public function getShareableLink(Request $req, $account, $offer_id){
@@ -78,16 +98,17 @@ class OfferController extends Controller
 
 		if(count($offer)){
 			$countries = Country::all();
-			return view('offers/apply',['offer'=>$offer[0], 'countries'=>$countries]);
+			$company = Organization::find(1);
+			return view('offers/apply',['offer'=>$offer[0], 'countries'=>$countries, 'company'=>$company->name, 'account'=>$account]);
 		}
 		else{
 			abort(404, 'Page not Found.');
 		}
 	}
 	public function applyOffer(Request $req, $account){
+
 		$hashid = new Hashids('offers');
 		$offer_id = $hashid->decode($req->offer);
-
 		$offer = Offer::find($offer_id);
 		if(count($offer) and $offer[0]->status == 'opened'){
 			$candidate = new Candidate();
@@ -129,10 +150,19 @@ class OfferController extends Controller
 	                $candidate->resume_id = $resume->id;
 		    }
 		    $candidate->save();
-
-		    return redirect()->route('view-offer', ['subdomain'=>Auth::user()->subdomain, 'offer_id'=>$req->offer])->with('success','You\'re apply has been sent successfuly.');
+			if(isset($req->responses)){
+				foreach ($req->responses as $key => $response) {
+					$candidateresponse = new CandidateResponse();
+					$candidateresponse->offerquestion_id = $key;
+					$candidateresponse->candidate_id = $candidate->id;
+					$candidateresponse->response = $response;
+					$candidateresponse->save();
+				}
+			}
+			$company = Organization::find(1);
+		    return redirect()->route('view-offer', ['account'=>$company->name, 'offer_id'=>$req->offer])->with('success','You\'re apply has been sent successfuly.');
 		}else{
-			return redirect()->route('view-offer', ['subdomain'=>Auth::user()->subdomain, 'offer_id'=>$req->offer])->with('error','Offer expired');
+			return redirect()->route('view-offer', ['account'=>$company->name, 'offer_id'=>$req->offer])->with('error','Offer expired');
 		}
 	}
 	public function closeOffer(Request $req, $account, $offer_id) {

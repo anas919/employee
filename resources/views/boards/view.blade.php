@@ -283,8 +283,8 @@
 <script src="{{ asset('bower_components/dragula.js/dist/dragula.min.js') }}"></script>
 <link href="{{ asset('bower_components/dragula.js/dist/dragula.min.css') }}" rel="stylesheet">
 <script>
-	var uploadedFiles = { 
-    	files : {} 
+	var uploadedFiles = {
+    	files : {}
 	};
 	var uniqId=0;
 	Dropzone.autoDiscover = false;
@@ -316,7 +316,7 @@
 			// console.log(files);
 			$.ajax({
 				type:'POST',
-				url:"{{ url('/') }}/org/{{ Auth::user()->organization_id }}/cards/delete-file/",
+				url:"{{ url('/') }}/cards/delete-file/",
 				dataType: "JSON",
 				data: files,
 				success:function(data){
@@ -370,7 +370,7 @@
 		var name = $('#nameList').val();
 		$.ajax({
 			type:'POST',
-			url:'{{ url('/') }}/org/'+{{ Auth::user()->organization_id }}+'/tasklists/add',
+			url:'{{ url('/') }}/tasklists/add',
 			data:{ name: name, board_id: {{$board->id}} },
 			success:function(data){
 			  	$('#listCreate').remove();
@@ -384,7 +384,7 @@
 	function duplicateList(tasklist_id){
 		$.ajax({
 			type:'GET',
-			url:'{{ url('/') }}/org/'+{{ Auth::user()->organization_id }}+'/tasklists/duplicate/'+tasklist_id,
+			url:'{{ url('/') }}/tasklists/duplicate/'+tasklist_id,
 			success:function(data){
 				// console.log(data);
 				location.reload(true);
@@ -399,7 +399,7 @@
 	}
 	function createCard(tasklist_id){
 		if($('#card-'+tasklist_id).length){
-			
+
 		}else{
 			$('#pipeline-'+tasklist_id).prepend('<div id="card-section-'+tasklist_id+'"><button onclick="closeCard('+tasklist_id+')" class="close" type="button">×</button><input class="form-control" placeholder="Card title" type="text" id="card-'+tasklist_id+'"><button class="mr-2 mb-2 btn btn-primary btn-sm" type="button" style="width: 100%;margin-top: 10px;" onclick="addCard('+tasklist_id+')"> Create board</button></div>');
 		}
@@ -411,7 +411,7 @@
 		title = $('#card-'+tasklist_id).val();
 		$.ajax({
 			type:'POST',
-			url:'{{ url('/') }}/org/'+{{ Auth::user()->organization_id }}+'/cards/add',
+			url:'{{ url('/') }}/cards/add',
 			data:{ tasklist_id: tasklist_id, title: title},
 			success:function(data){
 			  	$('#card-section-'+tasklist_id).remove();
@@ -427,7 +427,7 @@
 		selected_edit_card_members = [];
 		$.ajax({
 			type:'GET',
-			url:'{{ url('/') }}/org/'+{{ Auth::user()->organization_id }}+'/cards/edit/'+card_id,
+			url:'{{ url('/') }}/cards/edit/'+card_id,
 			success:function(data){
 				console.log(data);
 				$('#assignedMembers').text('Assigned to: ');
@@ -479,11 +479,11 @@
 						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
 					}else{
 						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
-					} 
+					}
 				}
 				initDropzones();
 				$("#my-awesome-dropzone").dropzone({
-					url: "{{ url('/') }}/org/{{ Auth::user()->organization_id }}/cards/attach-file/"+card_id,
+					url: "{{ url('/') }}/cards/attach-file/"+card_id,
 					// acceptedFiles: 'image/jpeg,image/gif,image/png,application/pdf,.eps,.csv,.xls,.xlsx/.doc,.docx/.ppt/.pptx/text/plain,text/html,video/*,audio/*,.zip,.rar',
 					headers: {
                     	'x-csrf-token': $('meta[name="csrf-token"]').attr('content'),
@@ -505,7 +505,7 @@
 		// console.log(cardPriority);
 		$.ajax({
 			type:'POST',
-			url:'{{ route('update-card', Auth::user()->organization_id) }}',
+			url:'{{ route('update-card', Auth::user()->subdomain) }}',
 			data: {
 				id:c_edit_card_id,
 				title:cardTitle,
@@ -550,7 +550,7 @@
 	function duplicateCard(card_id){
 		$.ajax({
 			type:'GET',
-			url:'{{ url('/') }}/org/'+{{ Auth::user()->organization_id }}+'/cards/duplicate/'+card_id,
+			url:'{{ url('/') }}/cards/duplicate/'+card_id,
 			success:function(data){
 				html = '<div class="pipeline-item"><div class="pi-controls"><div class="pi-settings os-dropdown-trigger"><i class="os-icon os-icon-ui-46"></i><div class="os-dropdown"><div class="icon-w"><i class="os-icon os-icon-ui-46"></i></div><ul><li><button onclick="assignMembers('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-users"></i><span>Assign Members</span></button></li><li><button onclick="editCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-49"></i><span>Edit Card</span></button></li><li><button onclick="duplicateCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-grid-10"></i><span>Duplicate Card</span></button></li><li><button onclick="removeCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-15"></i><span>Remove Card</span></button></li><li><button onclick="archiveCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-44"></i><span>Archive Card</span></button></li></ul></div></div><div class="status status-green" data-placement="top" data-toggle="tooltip" title="Active Status"></div></div><div class="pi-body"><div class="pi-info"><div class="h6 pi-name" id="card-title-'+data.card.id+'">'+data.card.title+'</div></div></div><div class="pi-foot"><div class="tags"><button class="btn btn-outline-primary badge badge-primary-inverted">Details</button><button class="btn btn-outline-danger badge badge-danger-inverted"  id="card-due_date-'+data.card.id+'">';
 				if(data.card.due_date){
@@ -579,7 +579,7 @@
 	function removeCard(card_id){
 		$.ajax({
 			type:'GET',
-			url:'{{ url('/') }}/org/'+{{ Auth::user()->organization_id }}+'/cards/delete/'+card_id,
+			url:'{{ url('/') }}/cards/delete/'+card_id,
 			success:function(data){
 				console.log(data);
 				$('.pipeline-item[data-card="'+card_id+'"]').remove();
@@ -597,7 +597,7 @@
 		selected_card_members = [];
 		$.ajax({
 			type:'GET',
-			url:'{{ url('/') }}/org/'+{{ Auth::user()->organization_id }}+'/cards/fetch-members/'+card_id,
+			url:'{{ url('/') }}/cards/fetch-members/'+card_id,
 			success:function(data){
 				for(let i = 0; i < data.members.length; i++){
 					selected_card_members.push(data.members[i]['id']);
@@ -620,7 +620,7 @@
 		var cardMembers = $("#cardMembers").select2("val");
 		$.ajax({
 			type:'POST',
-			url:'{{ route('assign-members', Auth::user()->organization_id) }}',
+			url:'{{ route('assign-members', Auth::user()->subdomain) }}',
 			data: {
 				id:c_card_id,
 				members:cardMembers
@@ -675,8 +675,8 @@
 				// console.log(prev_card);
 				$.ajax({
 					type:'GET',
-					url:'{{ route('drag-drop-card', Auth::user()->organization_id) }}',
-					data:{ 
+					url:'{{ route('drag-drop-card', Auth::user()->subdomain) }}',
+					data:{
 						card_id: card_id,
 						source_tasklist: source_pipeline,
 						target_tasklist: target_pipeline,
@@ -708,7 +708,7 @@
     	// INIT DRAG AND DROP FOR PIPELINE ITEMS
     	var dragulaObj1 = dragula($('#tasklists').toArray(), {
     				moves: function (el, container, handle, sibling) {
-    					return handle.classList.contains('icon-cursor-move'); 
+    					return handle.classList.contains('icon-cursor-move');
     				}
     			})
 				.on('drag', function (el, container) {
@@ -719,7 +719,7 @@
 					task_target = $(el).prev()[0].attributes['data-tasklist'].nodeValue;
 					$.ajax({
 						type:'GET',
-						url:'{{ route('drag-drop-tasklist', Auth::user()->organization_id) }}',
+						url:'{{ route('drag-drop-tasklist', Auth::user()->subdomain) }}',
 						data:{
 							source_tasklist: task_source,
 							target_tasklist: task_target,
@@ -781,7 +781,7 @@ jQuery(document).ready(function(){
                 span.innerHTML = input.value == "" ? "&nbsp;" : input.value;
                 $.ajax({
 					type:'POST',
-					url:'{{ route('update-tasklist', Auth::user()->organization_id) }}',
+					url:'{{ route('update-tasklist', Auth::user()->subdomain) }}',
 					data: {
 						id:tasklistId,
 						title:input.value

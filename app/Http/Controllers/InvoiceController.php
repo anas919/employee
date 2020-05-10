@@ -7,29 +7,23 @@ use Illuminate\Http\Request;
 use App\Invoice;
 use App\Invoicedetail;
 use App\Client;
-use App\Organization;
 
 class InvoiceController extends Controller
 {
     public function index() {
-    	$invoices = Invoice::where('organization_id', '=', Auth::user()->organization_id)->get();
-    	$clients = Client::where('organization_id', '=', Auth::user()->organization_id)->get();
+    	$invoices = Invoice::all();
+    	$clients = Client::all();
 
         return view('invoices/index', ['invoices'=>$invoices, 'clients'=>$clients]);
     }
     public function create() {
-    	$clients = Client::where('organization_id', '=', Auth::user()->organization_id)->get();
+    	$clients = Client::all();
 
     	return view('invoices/create', ['clients'=>$clients]);
     }
     public function add(Request $req){
         $invoice = new Invoice();
-        $organization = Organization::find($req->organization);
 
-        if($organization->id != Auth::user()->organization_id)
-            abort(403, 'Unauthorized action.');
-
-        $invoice->organization_id = $req->organization;
         $invoice->client_id = $req->client;
         $invoice->status = $req->status;
         $invoice->issue_date = date('Y-m-d',strtotime($req->issue_date));
@@ -69,21 +63,20 @@ class InvoiceController extends Controller
                 }
             }
         }
-        
 
-        return redirect()->route('invoices', Auth::user()->organization_id);
+
+        return redirect()->route('invoices', Auth::user()->subdomain);
     }
     public function editInvoice(Request $req, $id,$invoice_id){
         $invoice = Invoice::find($invoice_id);
-        $clients = Client::where('organization_id', '=', Auth::user()->organization_id)->get();
-        
+        $clients = Client::all();
+
         return view('invoices/edit', ['clients'=>$clients, 'invoice'=>$invoice]);
     }
     public function update(Request $req){
         // dd($req);
         $invoice = Invoice::find($req->id);
 
-        $invoice->organization_id = Auth::user()->organization_id;
         $invoice->client_id = $req->client;
         $invoice->status = $req->status;
         $invoice->issue_date = date('Y-m-d',strtotime($req->issue_date));
@@ -146,7 +139,7 @@ class InvoiceController extends Controller
                             }
                         }
                         $invoiceDetail->save();
-                    } 
+                    }
                 }
             }
         }
@@ -156,8 +149,8 @@ class InvoiceController extends Controller
                 $invoiceDetail->delete();
             }
         }
-        
+
         session()->flash('success', 'Informations updated successfully');
-        return redirect()->route('edit-invoice',['org_id' => Auth::user()->organization_id, 'invoice_id' => $invoice->id]);
+        return redirect()->route('edit-invoice',['account' => Auth::user()->subdomain, 'invoice_id' => $invoice->id]);
     }
 }

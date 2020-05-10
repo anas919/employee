@@ -486,7 +486,7 @@
 		templateSelection: function (d) { return $(d.text); },
 	});
 	function addQuestion(){
-		if($('question_required').is(':checked'))
+		if($('#question_required').is(':checked'))
 			$('#add-question').after('<div class="col-sm-12"><div class="form-group"><label> Question</label><input class="form-control" placeholder="Enter question" type="text" name="req_questions[]" value="'+$('#question').val()+'"></div></div>');
 		else
 			$('#add-question').after('<div class="col-sm-12"><div class="form-group"><label> Question</label><input class="form-control" placeholder="Enter question" type="text" name="opt_questions[]" value="'+$('#question').val()+'"></div></div>');
@@ -497,7 +497,7 @@
 			type:'GET',
 			url:'{{ url('/') }}/offers/getlink/'+offer_id,
 			success:function(data){
-				$('#link').val('{{ url('/') }}/org/'+{{ Auth::user()->subdomain }}+'/offers/view/'+data.url);
+				$('#link').val('{{ url('/') }}/offers/view/'+data.url);
 				$('#linkModal').modal('show');
 			},
 			error:function(error){

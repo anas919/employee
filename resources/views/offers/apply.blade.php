@@ -56,7 +56,7 @@
                         <ul class="list-details">
                             <li>
                                 <span>Company: </span>
-                                <h3>{{ $offer->organization->name }}</h3>
+                                <h3>{{ $company }}</h3>
                             </li>
                             <li>
                                 <span>Position Type: </span>
@@ -100,7 +100,7 @@
             <div class="row gap-y">
                 <div class="col-sm-12">
                     <div class="element-box">
-                        <form action="{{ route('apply-offer', Auth::user()->organization_id) }}" enctype="multipart/form-data" method="POST">
+                        <form action="{{ route('apply-offer', $account) }}" enctype="multipart/form-data" method="POST">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="offer" value="{{ $offer->link }}">
                             <div class="form-desc">
@@ -195,6 +195,21 @@
                                     @endif
                                 </div>
                             </fieldset>
+							@if($offer->offerquestions)
+							<fieldset class="form-group">
+                                <legend><span>Questions</span></legend>
+                                <div class="row">
+									@forelse($offer->offerquestions->sortBy('required') as $question)
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for=""> <strong>{{$question->question}}</strong> @if($question->required=='0') (optional) @else (required) @endif</label><input class="form-control" placeholder="Answer Here" type="text" name="responses[{{$question->id}}]" @if($question->required=='1') required @endif>
+                                        </div>
+                                    </div>
+									@empty
+									@endforelse
+								</div>
+                            </fieldset>
+							@endif
                             <div class="form-check" style="margin-top: auto;">
                                 <label>
                                     <input type="checkbox" name="check"> <span class="label-text">I agree to terms and conditions</span>
@@ -216,7 +231,7 @@
         background-repeat: no-repeat;
         background-size: 100% 100%;
         content: '';
-        height: 0%; 
+        height: 0%;
         left: 0;
         position: absolute;
         right: 0;

@@ -393,9 +393,17 @@
 
 		$.ajax({
 			type:'GET',
-			url:'/org/'+{{ Auth::user()->subdomain }}+'/projects/edit/'+projectId,
+			url:'{{ url('/') }}/projects/edit/'+projectId,
 			success:function(data){
-				$('#projectName').val(data.project.name)
+				$('#projectName').val(data.project.name);
+				if(data.project.end_date){
+					var end_date = data.project.end_date.split("-");
+					$('#projectEndDate').val(end_date[1]+'/'+end_date[2]+'/'+end_date[0])
+				}
+				if(data.project.start_date){
+					var start_date = data.project.start_date.split("-");
+					$('#projectStartDate').val(start_date[1]+'/'+start_date[2]+'/'+start_date[0])
+				}
 				// $('.projectCkeditor1').val(data.project.description)
 				CKEDITOR.instances['ckeditor2'].setData(data.project.description);
 				// CKEDITOR.instances.projectCkeditor1.insertText(data.project.description);

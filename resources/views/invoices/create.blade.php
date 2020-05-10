@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
- Invoices
+ Create invoice
 @endsection
 @section('content')
 <div class="content-box">

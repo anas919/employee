@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
- Invoices
+ Edit Invoice {{ $invoice->invoice_number }}
 @endsection
 @section('content')
 <div class="content-box">

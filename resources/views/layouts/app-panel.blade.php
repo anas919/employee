@@ -626,7 +626,7 @@
 			            </a>
 		            </li>
 		            <li class="has-sub-menu">
-			            <a href="offers.html">
+			            <a href="{{ route('offers', Auth::user()->subdomain) }}">
 			                <div class="icon-w">
 			                  	<div class="os-icon os-icon-bar-chart-stats-up"></div>
 			                </div>
@@ -642,17 +642,17 @@
 		                	<div class="sub-menu-i">
 								<ul class="sub-menu">
 									<li>
-									  	<a href="offers.html">Offers</a>
+									  	<a href="{{ route('offers', Auth::user()->subdomain) }}">Offers</a>
 									</li>
 									<li>
-									  	<a href="candidates.html">Condidates</a>
+									  	<a href="{{ route('candidates', Auth::user()->subdomain) }}">Condidates</a>
 									</li>
 								</ul>
 		                	</div>
 		              	</div>
 		            </li>
 		            <li class="">
-			            <a href="payroll.html">
+			            <a href="{{ route('payroll', Auth::user()->subdomain) }}">
 			                <div class="icon-w">
 			                  	<div class="os-icon os-icon-wallet-loaded"></div>
 			                </div>
@@ -708,7 +708,7 @@
 			            </a>
 		            </li>
 		            <li class="has-sub-menu">
-			            <a href="layouts_menu_top_image.html">
+			            <a href="{{ route('screenshots', Auth::user()->subdomain) }}">
 			                <div class="icon-w">
 			                  	<div class="os-icon os-icon-bar-chart-stats-up"></div>
 			                </div>
@@ -724,17 +724,17 @@
 		                	<div class="sub-menu-i">
 								<ul class="sub-menu">
 									<li>
-									  	<a href="screenshots.html">Screenshots</a>
+									  	<a href="{{ route('screenshots', Auth::user()->subdomain) }}">Screenshots</a>
 									</li>
 									<li>
-									  	<a href="apps.html">Apps</a>
+									  	<a href="{{ route('apps', Auth::user()->subdomain) }}">Apps</a>
 									</li>
 									<li>
-									  	<a href="urls.html">URLs</a>
+									  	<a href="{{ route('urls', Auth::user()->subdomain) }}">URLs</a>
 									</li>
-									<li>
+									<!-- <li>
 									  	<a href="locations.html">Locations</a>
-									</li>
+									</li> -->
 								</ul>
 		                	</div>
 		              	</div>
