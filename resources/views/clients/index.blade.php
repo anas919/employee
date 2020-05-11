@@ -60,7 +60,7 @@
 	                </div>
 	            </div>
 				<div class="element-box">
-						<div class="table-responsive">
+					<div class="table-responsive">
     					<table id="dataTable1" width="100%" class="table table-striped table-lightfont">
 							<thead>
 								<tr>

@@ -47,6 +47,8 @@ include 'payroll.php';
 include 'screenshots.php';
 include 'apps.php';
 include 'urls.php';
+include 'permissions.php';
+include 'whitelist.php';
 //
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/sendmail', function() {

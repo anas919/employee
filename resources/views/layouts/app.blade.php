@@ -747,6 +747,22 @@
 			                <span>Clients</span>
 			            </a>
 		            </li>
+					<li class="">
+			            <a href="{{ route('permissions', Auth::user()->subdomain) }}">
+			                <div class="icon-w">
+			                  	<div class="os-icon os-icon-users"></div>
+			                </div>
+			                <span>Roles & Permissions</span>
+			            </a>
+		            </li>
+					<li class="">
+			            <a href="{{ route('whitelist', Auth::user()->subdomain) }}">
+			                <div class="icon-w">
+			                  	<div class="os-icon os-icon-users"></div>
+			                </div>
+			                <span>Whitlist</span>
+			            </a>
+		            </li>
 		            <li class="">
 			            <a href="{{ route('settings', Auth::user()->subdomain) }}">
 			                <div class="icon-w">
