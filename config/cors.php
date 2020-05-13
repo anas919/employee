@@ -1,3 +1,4 @@
+
 <?php
 
 return [
@@ -15,7 +16,7 @@ return [
     |
     */
 
-    'paths' => ['api/*'],
+    'paths' => ['*'],
 
     'allowed_methods' => ['*'],
 
