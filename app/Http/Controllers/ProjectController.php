@@ -9,6 +9,7 @@ use App\User;
 use App\Project;
 use App\Client;
 use App\Team;
+use App\Tenant;
 
 class ProjectController extends Controller
 {
@@ -66,5 +67,25 @@ class ProjectController extends Controller
 		$project->save();
 
         return response()->json(['result'=>'Tou passe bien']);
+    }
+    //Api routes
+    public function projects(Request $request){
+        // $user = User::find($request->user()->id);
+        $tenant = Tenant::where('database',$request->user()->subdomain)->first();
+        if($tenant)
+            $tenant->configure()->use();
+        $user = User::where('subdomain',$request->user()->subdomain)->first();
+        $unique_ids = array();
+        $projects = array();
+        foreach ($user->memberteams as $team) {
+            foreach($team->projects as $project){
+                if(!in_array($project->id, $unique_ids))
+                    array_push($projects, $project);
+                array_push($unique_ids, $project->id);
+            }
+        }
+
+        return response()
+            ->json(['projects' => $projects,'name' => $user->first_name]);
     }
 }

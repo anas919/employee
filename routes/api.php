@@ -13,10 +13,15 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::group(['middleware' => [\Fruitcake\Cors\HandleCors::class,'auth:api']], function () {
+	Route::get('projects', 'ProjectController@projects');
+});
+
+
 Route::group(['middleware' => \Fruitcake\Cors\HandleCors::class,'prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login');
-
     Route::group(['middleware' => 'auth:api'], function() {
+        
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
     });
