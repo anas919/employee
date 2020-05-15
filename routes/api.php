@@ -15,13 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware' => [\Fruitcake\Cors\HandleCors::class,'auth:api']], function () {
 	Route::get('projects', 'ProjectController@projects');
+	Route::get('project/tasks/{projectId}', 'ProjectController@tasks');
+	Route::get('tasks', 'UserController@tasks');
 });
 
 
 Route::group(['middleware' => \Fruitcake\Cors\HandleCors::class,'prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login');
     Route::group(['middleware' => 'auth:api'], function() {
-        
+
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
     });

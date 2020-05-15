@@ -20,6 +20,7 @@ use App\Paymentmethod;
 use App\Invite;
 use App\Mail\WelcomeMail;
 use App\Mail\InvitationMail;
+use App\Tenant;
 
 class UserController extends Controller
 {
@@ -235,4 +236,15 @@ class UserController extends Controller
 				return redirect()->back()->withInput();
 		}
 	}
+	//Api
+	public function tasks(Request $request){
+        // $user = User::find($request->user()->id);
+        $tenant = Tenant::where('database',$request->user()->subdomain)->first();
+        if($tenant)
+            $tenant->configure()->use();
+        $user = User::where('subdomain',$request->user()->subdomain)->first();
+
+        return response()
+            ->json(['tasks' => $user->membercards,'name' => $user->first_name]);
+    }
 }

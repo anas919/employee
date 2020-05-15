@@ -88,4 +88,21 @@ class ProjectController extends Controller
         return response()
             ->json(['projects' => $projects,'name' => $user->first_name]);
     }
+	public function tasks(Request $request, $projectId)
+	{
+		$tenant = Tenant::where('database',$request->user()->subdomain)->first();
+        if($tenant)
+            $tenant->configure()->use();
+        $user = User::where('subdomain',$request->user()->subdomain)->first();
+		$project = Project::find($projectId);
+		$boards = $project->boards;
+		foreach ($boards as $board) {
+			$board->tasklists = $board->tasklists;
+			foreach ($board->tasklists as $tasklist) {
+				$tasklist->cards = $tasklist->cards;
+			}
+		}
+		return response()
+			->json(['tasks'=>$boards]);
+	}
 }
