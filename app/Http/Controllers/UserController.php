@@ -247,4 +247,20 @@ class UserController extends Controller
         return response()
             ->json(['tasks' => $user->membercards,'name' => $user->first_name]);
     }
+	//Api Routes
+	public function members(Request $request)
+	{
+		// $user = User::find($request->user()->id);
+        $tenant = Tenant::where('database',$request->user()->subdomain)->first();
+        if($tenant)
+            $tenant->configure()->use();
+        $user = User::where('subdomain',$request->user()->subdomain)->first();
+		if($user->hasRole('Admin')){
+			$users = User::all();
+			return response()
+	            ->json(['members' => $users]);
+		}
+		return response()
+			->json(['denied' => '$users']);
+	}
 }

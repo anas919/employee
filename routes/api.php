@@ -15,8 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware' => [\Fruitcake\Cors\HandleCors::class,'auth:api']], function () {
 	Route::get('projects', 'ProjectController@projects');
-	Route::get('project/tasks/{projectId}', 'ProjectController@tasks');
+	Route::get('project/boards/{projectId}', 'ProjectController@boards');
 	Route::get('tasks', 'UserController@tasks');
+	//cards
+	Route::post('tasks/add', 'CardController@addCard');
+	Route::post('tasks/update', 'CardController@updateCard');
+	Route::get('tasks/{card_id}', 'CardController@getCard');
+	//schedules
+	Route::get('schedules', 'ScheduleController@schedules');
+	Route::post('schedules/add', 'ScheduleController@addSchedule');
+	//Members
+	Route::get('members', 'UserController@members');
 });
 
 

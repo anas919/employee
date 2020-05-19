@@ -88,7 +88,7 @@ class ProjectController extends Controller
         return response()
             ->json(['projects' => $projects,'name' => $user->first_name]);
     }
-	public function tasks(Request $request, $projectId)
+	public function boards(Request $request, $projectId)
 	{
 		$tenant = Tenant::where('database',$request->user()->subdomain)->first();
         if($tenant)
@@ -103,6 +103,6 @@ class ProjectController extends Controller
 			}
 		}
 		return response()
-			->json(['tasks'=>$boards]);
+			->json(['boards'=>$boards]);
 	}
 }

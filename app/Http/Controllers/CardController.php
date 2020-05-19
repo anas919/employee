@@ -11,6 +11,7 @@ use Illuminate\Http\File;
 use App\Tasklist;
 use App\Card;
 use App\Cardfile;
+use App\Tenant;
 
 class CardController extends Controller
 {
@@ -224,4 +225,49 @@ class CardController extends Controller
         $card->delete();
         return response()->json(['success'=>'deleted']);
     }
+
+	//Api Routes
+	public function getCard(Request $request, $card_id)
+	{
+		$tenant = Tenant::where('database',$request->user()->subdomain)->first();
+        if($tenant)
+            $tenant->configure()->use();
+		$card = Card::find($card_id);
+		return response()->json(['task'=>$card]);
+	}
+	public function addCard(Request $request) {
+		$tenant = Tenant::where('database',$request->user()->subdomain)->first();
+        if($tenant)
+            $tenant->configure()->use();
+		$tasklist = Tasklist::find($request->tasklist_id);
+
+        $card = new Card();
+
+		$card->tasklist_id = $request->tasklist_id;
+        $card->title = $request->title;
+        $card->description = $request->description;
+        $card->priority = 'normal';
+
+        $order = DB::table('cards')->where('tasklist_id', '=', $request->tasklist_id)->max('order');
+        if($order)
+        	$card->order = $order + 1;
+        else
+        	$card->order = 1;
+
+        $card->save();
+        return response()->json(['card' => $card]);
+	}
+	public function updateCard(Request $request) {
+		$tenant = Tenant::where('database',$request->user()->subdomain)->first();
+        if($tenant)
+            $tenant->configure()->use();
+		$card = Card::find($request->id);
+
+        $card->title = $request->title;
+        $card->description = $request->description;
+        $card->priority = $card->priority;
+
+        $card->save();
+        return response()->json(['card' => $card]);
+	}
 }

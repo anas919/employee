@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Schedule;
 use App\User;
+use App\Tenant;
 use Datetime;
 
 class ScheduleController extends Controller
@@ -41,4 +42,23 @@ class ScheduleController extends Controller
 
 		return redirect()->route('schedules', Auth::user()->subdomain);
     }
+	//Api Routes
+	public function schedules(Request $request)
+	{
+		$tenant = Tenant::where('database',$request->user()->subdomain)->first();
+        if($tenant)
+            $tenant->configure()->use();
+		$user = User::where('subdomain',$request->user()->subdomain)->first();
+		$schedules = Schedule::where('member_id',$user->id)->with('member')->get();
+
+		return response()->json(['schedules'=>$schedules]);
+	}
+	public function addSchedule(Request $request)
+	{
+		$tenant = Tenant::where('database',$request->user()->subdomain)->first();
+        if($tenant)
+            $tenant->configure()->use();
+		$user = User::where('subdomain',$request->user()->subdomain)->first();
+		return response()->json(['user'=>$user]);
+	}
 }
