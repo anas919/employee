@@ -53,12 +53,33 @@ class ScheduleController extends Controller
 
 		return response()->json(['schedules'=>$schedules]);
 	}
-	public function addSchedule(Request $request)
+	public function addSchedule(Request $req)
 	{
-		$tenant = Tenant::where('database',$request->user()->subdomain)->first();
+		$tenant = Tenant::where('database',$req->user()->subdomain)->first();
         if($tenant)
             $tenant->configure()->use();
-		$user = User::where('subdomain',$request->user()->subdomain)->first();
-		return response()->json(['user'=>$user]);
+		$user = User::where('subdomain',$req->user()->subdomain)->first();
+		foreach ($req->members as $member) {
+	    	$start_date = new DateTime(date('Y-m-d',strtotime($req->start_date)));
+			$end_date = new DateTime(date('Y-m-d',strtotime($req->end_date)));
+			$numberDays = $end_date->diff($start_date)->format("%a");
+			// dd($numberDays);
+			for ($i=0; $i <= $numberDays; $i++) {
+				$schedule = new Schedule();
+		    	$schedule->start_time = $req->start_time;
+				$schedule->end_time = $req->end_time;
+				$schedule->start_date = $start_date->format('Y-m-d');
+				$schedule->end_date = $start_date->format('Y-m-d');
+				$schedule->min_hours = $req->min_hours;
+				$schedule->member_id = $member;
+				if(date("Y-m-d") < $start_date->format('Y-m-d'))
+					$schedule->attendance = 'coming';
+				if(date("Y-m-d") > $start_date->format('Y-m-d'))
+					$schedule->attendance = 'missed';
+				$schedule->save();
+				$start_date->modify('+1 day');
+			}
+		}
+		return response()->json(['success'=>'Added successfully']);
 	}
 }

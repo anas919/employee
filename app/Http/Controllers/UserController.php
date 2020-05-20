@@ -131,9 +131,7 @@ class UserController extends Controller
 		$user->last_name = $req->last_name;
 		$user->email = $req->email;
 
-		$arr = explode('/', $req->birth_date);
-		$req->birth_date = implode("-", array_reverse($arr));
-		$user->birth_date = $req->birth_date;
+		$user->birth_date = date('Y-m-d',strtotime($req->birth_date));
 
 		$user->gender = $req->gender;
 		$user->marital_status = $req->marital_status;
@@ -146,9 +144,7 @@ class UserController extends Controller
 		$user->paymentrate_id = $req->paymentrate;
 		$user->paymentmethod_id = $req->paymentmethod;
 
-		$arr = explode('/', $req->hire_date);
-		$req->hire_date = implode("-", array_reverse($arr));
-		$user->hire_date = $req->hire_date;
+		$user->hire_date = date('Y-m-d',strtotime($req->hire_date));
 
 		$user->status = $req->status;
 		$user->self_service_access = $req->self_service_access;
@@ -230,10 +226,10 @@ class UserController extends Controller
 		$user = User::whereEmail($req->email)->first();
 
 		if($user){
-				return redirect('http://'.$user->subdomain.'.localhost:8000/login')->with('email', $user->email);
+			return redirect('http://'.$user->subdomain.'.localhost:8000/login')->with('email', $user->email);
 		}
 		else {
-				return redirect()->back()->withInput();
+			return redirect()->back()->withInput();
 		}
 	}
 	//Api
@@ -256,7 +252,7 @@ class UserController extends Controller
             $tenant->configure()->use();
         $user = User::where('subdomain',$request->user()->subdomain)->first();
 		if($user->hasRole('Admin')){
-			$users = User::all();
+			$users = User::with('media')->get();
 			return response()
 	            ->json(['members' => $users]);
 		}

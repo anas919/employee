@@ -22,12 +22,34 @@ Route::get('/users', function () {
     ];
 });
 Auth::routes(['verify' => true]);
-
+//Home
+Route::domain('{account}.localhost')->group(function () {
+	Route::get('/', function (Request $req, $account='') {
+		return redirect()->route('members', $account);
+	});
+});
 Route::get('/', function () {
-	// return app('tenant')->id;
-   return view('home');
+	return view('home');
 });
 Route::get('accept/{token}', 'InviteController@accept')->name('accept');
+//Logout
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+//Preview for sending mail
+Route::get('/sendmail', function() {
+	Mail::to('farih.anas919@gmail.com')->send(new WelcomeMail(Auth::user()));
+});
+//Before login and redirect to subdomain
+Route::get('/sign-in', 'UserController@beforeLogin')->name('beforeLogin');
+Route::post('/redirecttoLogin', 'UserController@redirecttoLogin')->name('redirecttoLogin');
+//Home just for no subdomain
+Route::domain('{account}.localhost')->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+});
+Route::get('/home', 'HomeController@index')->name('home');//
+//Dashboard
+Route::domain('{account}.localhost')->group(function () {
+    Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
+});
 include 'members.php';
 include 'departments.php';
 include 'clients.php';
@@ -49,16 +71,3 @@ include 'apps.php';
 include 'urls.php';
 include 'permissions.php';
 include 'whitelist.php';
-//
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-Route::get('/sendmail', function() {
-
-	Mail::to('farih.anas919@gmail.com')->send(new WelcomeMail(Auth::user()));
-});
-Route::get('/before', 'UserController@beforeLogin');
-Route::post('/redirecttoLogin', 'UserController@redirecttoLogin')->name('redirecttoLogin');
-
-Route::domain('{account}.localhost')->group(function () {
-    Route::get('/home', 'HomeController@index')->name('home');
-});//
-Route::get('/home', 'HomeController@index')->name('home');//

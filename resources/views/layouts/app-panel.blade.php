@@ -610,7 +610,7 @@
 		             	<span>Dashboard</span>
 		            </li>
 		            <li class="selected">
-			            <a href="home.html">
+			            <a href="{{ route('dashboard', Auth::user()->subdomain) }}">
 			                <div class="icon-w">
 			                  	<div class="os-icon os-icon-layout"></div>
 			                </div>

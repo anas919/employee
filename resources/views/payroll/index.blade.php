@@ -14,7 +14,7 @@
 					</div>
 				</div>
 				<h6 class="element-header">
-					Employee Salary <strong style="font-weight: bolder !important;">(Month 1: Ending 31 Friday January 2020)</strong>
+					Employee Salary <strong style="font-weight: bolder !important;" id="selected-range">(Month 1: Ending 31 Friday January 2020)</strong>
 				</h6>
 				<div class="control-header">
 					<div class="row align-items-center">
@@ -69,73 +69,27 @@
 				<div class="element-box">
 					<div class="row">
 						<small>Week&nbsp;</small>
-						<div class="week-column week-width week-first week-active" onclick="week(1)"></div>
-						<div class="week-column week-width" onclick="week(2)"></div>
-						<div class="week-column week-width" onclick="week(3)"></div>
-						<div class="week-column week-width" onclick="week(4)"></div>
-						<div class="week-column week-width" onclick="week(5)"></div>
-						<div class="week-column week-width" onclick="week(6)"></div>
-						<div class="week-column week-width" onclick="week(7)"></div>
-						<div class="week-column week-width" onclick="week(8)"></div>
-						<div class="week-column week-width" onclick="week(9)"></div>
-						<div class="week-column week-width" onclick="week(10)"></div>
-						<div class="week-column week-width" onclick="week(11)"></div>
-						<div class="week-column week-width" onclick="week(12)"></div>
-						<div class="week-column week-width" onclick="week(13)"></div>
-						<div class="week-column week-width" onclick="week(14)"></div>
-						<div class="week-column week-width" onclick="week(15)"></div>
-						<div class="week-column week-width" onclick="week(16)"></div>
-						<div class="week-column week-width" onclick="week(17)"></div>
-						<div class="week-column week-width" onclick="week(18)"></div>
-						<div class="week-column week-width" onclick="week(19)"></div>
-						<div class="week-column week-width" onclick="week(20)"></div>
-						<div class="week-column week-width" onclick="week(21)"></div>
-						<div class="week-column week-width" onclick="week(22)"></div>
-						<div class="week-column week-width" onclick="week(23)"></div>
-						<div class="week-column week-width" onclick="week(24)"></div>
-						<div class="week-column week-width" onclick="week(25)"></div>
-						<div class="week-column week-width" onclick="week(26)"></div>
-						<div class="week-column week-width" onclick="week(27)"></div>
-						<div class="week-column week-width" onclick="week(28)"></div>
-						<div class="week-column week-width" onclick="week(29)"></div>
-						<div class="week-column week-width" onclick="week(30)"></div>
-						<div class="week-column week-width" onclick="week(31)"></div>
-						<div class="week-column week-width" onclick="week(32)"></div>
-						<div class="week-column week-width" onclick="week(33"></div>
-						<div class="week-column week-width" onclick="week(34)"></div>
-						<div class="week-column week-width" onclick="week(35)"></div>
-						<div class="week-column week-width" onclick="week(36)"></div>
-						<div class="week-column week-width" onclick="week(37)"></div>
-						<div class="week-column week-width" onclick="week(38)"></div>
-						<div class="week-column week-width" onclick="week(39)"></div>
-						<div class="week-column week-width" onclick="week(40)"></div>
-						<div class="week-column week-width" onclick="week(41)"></div>
-						<div class="week-column week-width" onclick="week(42)"></div>
-						<div class="week-column week-width" onclick="week(43)"></div>
-						<div class="week-column week-width" onclick="week(44)"></div>
-						<div class="week-column week-width" onclick="week(45)"></div>
-						<div class="week-column week-width" onclick="week(46)"></div>
-						<div class="week-column week-width" onclick="week(47)"></div>
-						<div class="week-column week-width" onclick="week(48)"></div>
-						<div class="week-column week-width" onclick="week(49)"></div>
-						<div class="week-column week-width" onclick="week(50)"></div>
-						<div class="week-column week-width" onclick="week(51)"></div>
-						<div class="week-column week-width week-last" onclick="week(52)"></div>
+						@for ($i = 1; $i <= $weekNumber; $i++)
+							@if($i==1)
+								<div class="week-column week-width week-first" onclick="week({{$i}})"></div>
+							@elseif($i==$weekNumber)
+								<div class="week-column week-width week-last" onclick="week({{$i}})"></div>
+							@else
+								<div class="week-column week-width" onclick="week({{$i}})"></div>
+							@endif
+						@endfor
 					</div>
 					<div class="row">
 						<small>Month&nbsp;</small>
-						<div class="month-column month-width month-first month-active" onclick="month(1)"></div>
-						<div class="month-column month-width" onclick="month(2)"></div>
-						<div class="month-column month-width"  onclick="month(3)"></div>
-						<div class="month-column month-width"  onclick="month(4)"></div>
-						<div class="month-column month-width"  onclick="month(5)"></div>
-						<div class="month-column month-width"  onclick="month(6)"></div>
-						<div class="month-column month-width"  onclick="month(7)"></div>
-						<div class="month-column month-width"  onclick="month(8)"></div>
-						<div class="month-column month-width"  onclick="month(9)"></div>
-						<div class="month-column month-width"  onclick="month(10)"></div>
-						<div class="month-column month-width"  onclick="month(11)"></div>
-						<div class="month-column month-width month-last"  onclick="month(12)"></div>
+						@for ($i = 1; $i <= 12; $i++)
+							@if($i==1)
+								<div class="month-column month-width month-first month-active" onclick="getmonth({{$i}})"></div>
+							@elseif($i==12)
+								<div class="month-column month-width month-last" onclick="getmonth({{$i}})"></div>
+							@else
+								<div class="month-column month-width" onclick="getmonth({{$i}})"></div>
+							@endif
+						@endfor
 					</div>
 					<div class="table-responsive">
 						<table id="dataTable1" width="100%" class="table table-striped table-lightfont">
@@ -259,19 +213,47 @@
 	}
 </style>
 <script>
+
 	function week(weekNumber) {
 		var currentDate = new Date();
-		var currentYear = currentDate.getFullYear();
-
-		var date = new Date("Jan 01, " + currentYear + " 01:00:00");
-		var week = date.getTime() + 604800000 * (weekNumber - 1);
-		var weekFirstDay = new Date(week);
-		var weekLastDay = new Date(week + 518400000);
+		var year = currentDate.getFullYear();
+		var firstDay = new Date(getDateOfISOWeek(weekNumber,year));
+		var lastDay = firstDay.addDays(6);
+		$('#selected-range').text(firstDay+','+lastDay);
+		$('.week-column').removeClass('week-active');
+		$('.month-column').removeClass('month-active');
+		$('#selected-range').text('(Week '+weekNumber+': Starting '+firstDay.toLocaleString('default', { weekday: 'long' })+', '+firstDay.getDate()+' '+firstDay.toLocaleString('default', { month: 'long' })+', '+year+' | Ending '+lastDay.toLocaleString('default', { weekday: 'long' })+', '+lastDay.getDate()+' '+lastDay.toLocaleString('default', { month: 'long' })+', '+year+')');
 	}
-	function month(monthNumber) {
+	//Return start week based on yeat and number of week in year
+	function getDateOfISOWeek(week, year) {
+		var simple = new Date(year, 0, 1 + (week - 1) * 7);
+		var dow = simple.getDay();
+		var ISOweekStart = simple;
+		if (dow <= 4)
+		    ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
+		else
+		    ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay());
+		return ISOweekStart;
+	}
+	Date.prototype.addDays = function(days) {
+	    var date = new Date(this.valueOf());
+	    date.setDate(date.getDate() + days);
+	    return date;
+	}
+	function getmonth(monthNumber) {
 		var currentDate = new Date();
-		var monthFirstDay = new Date(currentDate.getFullYear(), monthNumber - 1, 1);
-		var monthLastDay = new Date(currentDate.getFullYear(), monthNumber, 0);
+		var year = currentDate.getFullYear();
+		var date = new Date(year,monthNumber,0);
+		// $('#month').text(new Date(year,monthNumber,0).getDate());
+		$('#selected-range').text('(Month '+monthNumber+': Ending '+date.toLocaleString('default', { weekday: 'long' })+', '+date.getDate()+' '+date.toLocaleString('default', { month: 'long' })+', '+year+')');
+		$('.month-column').removeClass('month-active');
+		$('.week-column').removeClass('week-active');
 	}
+	$('.month-column').on('click', function(){
+		$(this).addClass('month-active');
+	});
+	$('.week-column').on('click', function(){
+		$(this).addClass('week-active');
+	})
 </script>
 @endsection

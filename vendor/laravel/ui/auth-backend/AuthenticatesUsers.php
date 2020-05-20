@@ -16,9 +16,14 @@ trait AuthenticatesUsers
      *
      * @return \Illuminate\View\View
      */
-    public function showLoginForm()
+    public function showLoginForm(Request $req)
     {
-        return view('auth.login');
+		if(count(explode('.',parse_url($req->url())["host"]))>1){
+			return view('auth.login');
+		}
+		else
+			return redirect()->route('beforeLogin');
+		// return view('auth.login');
     }
 
     /**
