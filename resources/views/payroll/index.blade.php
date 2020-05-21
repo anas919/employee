@@ -14,7 +14,7 @@
 					</div>
 				</div>
 				<h6 class="element-header">
-					Employee Salary <strong style="font-weight: bolder !important;" id="selected-range">(Month 1: Ending 31 Friday January 2020)</strong>
+					Employee Salary <strong style="font-weight: bolder !important;" id="selected-range"></strong>
 				</h6>
 				<div class="control-header">
 					<div class="row align-items-center">
@@ -71,11 +71,11 @@
 						<small>Week&nbsp;</small>
 						@for ($i = 1; $i <= $weekNumber; $i++)
 							@if($i==1)
-								<div class="week-column week-width week-first" onclick="week({{$i}})"></div>
+								<div class="week-column week-width week-first" week="{{$i}}"></div>
 							@elseif($i==$weekNumber)
-								<div class="week-column week-width week-last" onclick="week({{$i}})"></div>
+								<div class="week-column week-width week-last" week="{{$i}}"></div>
 							@else
-								<div class="week-column week-width" onclick="week({{$i}})"></div>
+								<div class="week-column week-width" week="{{$i}}"></div>
 							@endif
 						@endfor
 					</div>
@@ -83,11 +83,11 @@
 						<small>Month&nbsp;</small>
 						@for ($i = 1; $i <= 12; $i++)
 							@if($i==1)
-								<div class="month-column month-width month-first month-active" onclick="getmonth({{$i}})"></div>
+								<div class="month-column month-width month-first" month="{{$i}}"></div>
 							@elseif($i==12)
-								<div class="month-column month-width month-last" onclick="getmonth({{$i}})"></div>
+								<div class="month-column month-width month-last" month="{{$i}}"></div>
 							@else
-								<div class="month-column month-width" onclick="getmonth({{$i}})"></div>
+								<div class="month-column month-width" month="{{$i}}"></div>
 							@endif
 						@endfor
 					</div>
@@ -95,9 +95,15 @@
 						<table id="dataTable1" width="100%" class="table table-striped table-lightfont">
 							<thead>
 								<tr>
-									<th></th>
 									<th>
-										Employee
+										<div class="form-check" style="margin-top: auto;">
+											<label>
+												<input type="checkbox" name="check"> <span class="label-text"></span>
+											</label>
+										</div>
+									</th>
+									<th>
+										Member
 									</th>
 									<th>
 										Gross Pay
@@ -123,14 +129,29 @@
 								</tr>
 							</thead>
 							<tbody>
+								@forelse($members as $member)
 								<tr>
-									<td class="text-center">
-										<input class="form-control" type="checkbox">
+									<td class="text-center" style="display: inline-flex;">
+										<div class="form-check" style="margin-top: auto;">
+											<label>
+												<input type="checkbox" name="check"> <span class="label-text"></span>
+											</label>
+										</div>
+										<div class="user-with-avatar">
+											@if($member->media_id)
+										  		<img alt="" src="{{ asset('storage/'.$member->media->reference) }}">
+										  	@else
+										  		<div class="avatar" style="border-radius: 50%;">{{ substr($member->first_name, 0, 1).substr($member->last_name, 0, 1)}}</div>
+										  	@endif
+										</div>
 									</td>
 									<td>
-										<div class="user-with-avatar">
-										  <img alt="" src="img/avatar1.jpg"><span>John Mayers</span>
-										</div>
+									  	<div>
+									  		<span>{{ $member->first_name }} {{$member->last_name }}</span><span class="smaller"><strong>&nbsp;(User)</strong></span><a class="danger small-edit" href="{{ route('edit',  ['account' => Auth::user()->subdomain, 'member_id' => $member->id]) }}"><i class="os-icon os-icon-pencil-2"></i></a>
+									  	</div>
+									  	<div class="smaller">
+									  		{{ $member->email }}
+									  	</div>
 									</td>
 									<td>
 										<span>300$</span>
@@ -157,8 +178,26 @@
 										</div>
 									</td>
 									<td class="row-actions">
-										<a href="#"><i class="os-icon os-icon-grid-10"></i></a><a href="#"><i class="os-icon os-icon-ui-44"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a>
+										<div class="btn-group mr-1 mb-1">
+											<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton1" type="button">Actions</button>
+											<div aria-labelledby="dropdownMenuButton1" class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
+												<a class="dropdown-item" href="#"><i class="os-icon os-icon-ui-15"></i> Action</a><a class="dropdown-item" href="#"><i class="os-icon os-icon-ui-15"></i> Another action</a><a class="dropdown-item" href="#"><i class="os-icon os-icon-ui-15"></i> Delete</a>
+											</div>
+										</div>
 									</td>
+								</tr>
+								@empty
+								@endforelse
+								<tr>
+									<td colspan="4">Click here to schedule payment</td>
+									<td style="display: none;"></td>
+									<td style="display: none;"></td>
+									<td style="display: none;"></td>
+									<td style="display: none;"></td>
+									<td style="display: none;"></td>
+									<td style="display: none;"></td>
+									<td style="display: none;"></td>
+									<td style="display: none;"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -213,17 +252,9 @@
 	}
 </style>
 <script>
-
-	function week(weekNumber) {
-		var currentDate = new Date();
-		var year = currentDate.getFullYear();
-		var firstDay = new Date(getDateOfISOWeek(weekNumber,year));
-		var lastDay = firstDay.addDays(6);
-		$('#selected-range').text(firstDay+','+lastDay);
-		$('.week-column').removeClass('week-active');
-		$('.month-column').removeClass('month-active');
-		$('#selected-range').text('(Week '+weekNumber+': Starting '+firstDay.toLocaleString('default', { weekday: 'long' })+', '+firstDay.getDate()+' '+firstDay.toLocaleString('default', { month: 'long' })+', '+year+' | Ending '+lastDay.toLocaleString('default', { weekday: 'long' })+', '+lastDay.getDate()+' '+lastDay.toLocaleString('default', { month: 'long' })+', '+year+')');
-	}
+	$(document).ready(function(){
+		$('.month-first').trigger('click');
+	});
 	//Return start week based on yeat and number of week in year
 	function getDateOfISOWeek(week, year) {
 		var simple = new Date(year, 0, 1 + (week - 1) * 7);
@@ -240,7 +271,8 @@
 	    date.setDate(date.getDate() + days);
 	    return date;
 	}
-	function getmonth(monthNumber) {
+	$('.month-column').on('click', function(){
+		var monthNumber = $(this).attr('month');
 		var currentDate = new Date();
 		var year = currentDate.getFullYear();
 		var date = new Date(year,monthNumber,0);
@@ -248,11 +280,18 @@
 		$('#selected-range').text('(Month '+monthNumber+': Ending '+date.toLocaleString('default', { weekday: 'long' })+', '+date.getDate()+' '+date.toLocaleString('default', { month: 'long' })+', '+year+')');
 		$('.month-column').removeClass('month-active');
 		$('.week-column').removeClass('week-active');
-	}
-	$('.month-column').on('click', function(){
 		$(this).addClass('month-active');
 	});
 	$('.week-column').on('click', function(){
+		var weekNumber = $(this).attr('week');
+		var currentDate = new Date();
+		var year = currentDate.getFullYear();
+		var firstDay = new Date(getDateOfISOWeek(weekNumber,year));
+		var lastDay = firstDay.addDays(6);
+		$('#selected-range').text(firstDay+','+lastDay);
+		$('.week-column').removeClass('week-active');
+		$('.month-column').removeClass('month-active');
+		$('#selected-range').text('(Week '+weekNumber+': Starting '+firstDay.toLocaleString('default', { weekday: 'long' })+', '+firstDay.getDate()+' '+firstDay.toLocaleString('default', { month: 'long' })+', '+year+' | Ending '+lastDay.toLocaleString('default', { weekday: 'long' })+', '+lastDay.getDate()+' '+lastDay.toLocaleString('default', { month: 'long' })+', '+year+')');
 		$(this).addClass('week-active');
 	})
 </script>
