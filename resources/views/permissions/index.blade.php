@@ -11,6 +11,9 @@
 .table td {
     border-top: none;
 }
+.module {
+	text-transform: capitalize;
+}
 </style>
 <div class="content-box">
 	<div class="row pt-4">
@@ -112,6 +115,25 @@
 	}
 </style>
 <script type="text/javascript">
+	function selectRole(role_id){
+		$('#loading').css('display','block');
+		$.ajax({
+			type:'GET',
+			url:'{{ url('/') }}/permissions/select-role/'+role_id,
+			success:function(data){
+				$('#loading').css('display','none');
+				console.log(data)
+			},
+			error:function(error){
+				console.log(error);
+			}
+		});
+		var roleName = 'Owner';
+		$('#role-'+role_id).html(roleName+' <span class="float-right"><i class="os-icon os-icon-arrow-right2"></i></span>');
+	}
+	function selectModule(module){
+		$('#'+module).html(module+' <span class="float-right"><i class="os-icon os-icon-arrow-right2"></i></span>');
+	}
 	$('#role-save').on('click', function(){
 		$('#loading').css('display','block');
 		var roleName = $('#role').val();
@@ -131,24 +153,5 @@
 			}
 		});
 	});
-	function selectRole(role_id){
-		$('#loading').css('display','block');
-		$.ajax({
-			type:'GET',
-			url:'{{ url('/') }}/permissions/select-role/'+role_id,
-			success:function(data){
-				$('#loading').css('display','none');
-				// console.log(data)
-			},
-			error:function(error){
-				console.log(error);
-			}
-		});
-		var roleName = 'Owner';
-		$('#role-'+role_id).html(roleName+' <span class="float-right"><i class="os-icon os-icon-arrow-right2"></i></span>');
-	}
-	function selectModule(module){
-		$('#'+module).html(module+' <span class="float-right"><i class="os-icon os-icon-arrow-right2"></i></span>');
-	}
 </script>
 @endsection

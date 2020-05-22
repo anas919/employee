@@ -17,7 +17,7 @@ class PermissionController extends Controller
 	public function selectRole(Request $req, $account, $role_id)
 	{
 		$role = Role::find($role_id);
-		dd($role->permissions);
+		dd($role->members_permissions);
 
 		return response()->json(['']);
 	}

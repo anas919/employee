@@ -109,6 +109,7 @@ class RegisterController extends Controller
 			File::makeDirectory(base_path().'/storage/framework/sessions/'.$tenant->id);
 			Artisan::call('db:create '.$data['subdomain']);
 			Artisan::call('tenants:migrate');
+			Artisan::call('db:seed --class=PermissionSeeder');
 			Artisan::call('db:seed --class=RoleSeeder');
 			Artisan::call('db:seed --class=CountrySeeder');
 			Artisan::call('db:seed --class=PaymentrateSeeder');
