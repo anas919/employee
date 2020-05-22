@@ -16,13 +16,11 @@ use App\Cardfile;
 class TasklistController extends Controller
 {
     public function add(Request $req){
-     $board = Board::find($req->board_id);
-     if($board->organization_id != Auth::user()->organization_id)
-            abort(403, 'Unauthorized action.');
+     	$board = Board::find($req->board_id);
 
         $tasklist = new Tasklist();
-  
-  $tasklist->board_id = $board->id;
+
+  		$tasklist->board_id = $board->id;
         $tasklist->title = $req->name;
         $tasklist->status = 'opened';
 
@@ -36,9 +34,7 @@ class TasklistController extends Controller
         return response()->json(['tasklist' => $tasklist]);
     }
 
-    public function update(Request $req, $org_id){
-        if($org_id != Auth::user()->organization_id)
-            abort(403, 'Unauthorized action.');
+    public function update(Request $req, $account){
 
 
         $tasklist = Tasklist::find($req->id);
@@ -47,22 +43,28 @@ class TasklistController extends Controller
 
         return response()->json(['success'=>'Updated']);
     }
-    public function dragDropUpdate(Request $req, $org_id){
-        if($org_id != Auth::user()->organization_id)
-            abort(403, 'Unauthorized action.');
+    public function dragDropUpdate(Request $req, $account){
+		if($req->target_tasklist == 'no_previous'){
+			$source_tasklist = Tasklist::find($req->source_tasklist);
+			$source_tasklist->order = 1;
+			$source_tasklist->save();
+			DB::select(DB::raw(
+	            "UPDATE tasklists SET `order` = `order` + 1 WHERE `id` <> ".$source_tasklist->id." AND `order` >= ".$source_tasklist->order
+	        ));
+		}else{
+			$source_tasklist = Tasklist::find($req->source_tasklist);
+	        $target_tasklist = Tasklist::find($req->target_tasklist);
 
-        $source_tasklist = Tasklist::find($req->source_tasklist);
-        $target_tasklist = Tasklist::find($req->target_tasklist);
-        
-        $source_tasklist->order = $target_tasklist->order + 1;
-        $source_tasklist->save();
-        DB::select(DB::raw(
-            "UPDATE tasklists SET `order` = `order` + 1 WHERE `id` <> ".$source_tasklist->id." AND `order` >= ".$source_tasklist->order
-        ));
+	        $source_tasklist->order = $target_tasklist->order + 1;
+	        $source_tasklist->save();
+	        DB::select(DB::raw(
+	            "UPDATE tasklists SET `order` = `order` + 1 WHERE `id` <> ".$source_tasklist->id." AND `order` >= ".$source_tasklist->order
+	        ));
+		}
 
         return response()->json(['success', 'Task updated']);
     }
-    public function duplicateTasklist(Request $req, $org_id, $tasklist_id){
+    public function duplicateTasklist(Request $req, $account, $tasklist_id){
         $tasklist = Tasklist::find($tasklist_id);
 
         $duplicatedList = new Tasklist();
@@ -78,7 +80,7 @@ class TasklistController extends Controller
             $card = Card::find($card->id);
 
             $duplicatedCard = new Card();
-            
+
             $duplicatedCard = $card->replicate();
             $duplicatedCard->tasklist_id = $duplicatedList->id;
             $duplicatedCard->save();
@@ -89,9 +91,9 @@ class TasklistController extends Controller
                 Storage::disk('public')->copy($file->reference, 'Cards/'.date('m-Y').'/temp/'.$file->name);
                 $file_to_copy = new File('storage/Cards/'.date('m-Y').'/temp/'.$file->name);
                 $reference = Storage::disk('public')->putFile('Cards/'.date('m-Y'), $file_to_copy);
-                
+
                 Storage::disk('public')->delete('Cards/'.date('m-Y').'/temp/'.$file->name);
-                
+
                 Cardfile::create([
                     'name'=>$file->name,
                     'reference'=>$reference,
@@ -115,7 +117,7 @@ class TasklistController extends Controller
                 }
             }
         }
-        
+
         return response()->json(['tasklist'=>$tasklist]);
     }
 }

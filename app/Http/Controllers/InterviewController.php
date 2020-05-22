@@ -10,8 +10,8 @@ use Hashids\Hashids;
 
 class InterviewController extends Controller
 {
-    
-	public function add(Request $req, $org_id) {
+
+	public function add(Request $req, $account) {
 		$interview = new Interview();
 		$candidate = Candidate::find($req->candidate);
 		if($candidate){
@@ -30,7 +30,7 @@ class InterviewController extends Controller
 			return redirect()->route('candidates', Auth::user()->organization_id)->with('error','Error occured.');
 		}
 	}
-	public function historyInterview(Request $req, $org_id, $candidate_id) {
+	public function historyInterview(Request $req, $account, $candidate_id) {
 		$candidate = Candidate::find($candidate_id);
 
 		$interviews = $candidate->interviews;

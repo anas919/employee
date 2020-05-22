@@ -7,11 +7,11 @@ Route::group(['middleware' => 'web'], function () {
 	        Route::get('', 'PermissionController@index')
 	            ->name('permissions');
 
-			Route::get('/{permission_id}', 'PermissionController@details')
-	            ->name('view-permission');
+			Route::get('select-role/{role_id}', 'PermissionController@selectRole')
+	            ->name('select-role');
 
-	        Route::post('/add', 'PermissionController@add')
-	            ->name('add-permission');
+	        Route::post('/add-role', 'PermissionController@addRole')
+	            ->name('add-role');
 
 	        Route::get('/edit/{permission_id}', 'PermissionController@editPermission')
 	            ->name('edit-permission');

@@ -309,18 +309,17 @@
 			alert("There was an error during uploading file, Maybe the file is too big");
 		},
 		removedfile: function(file) {
-			// console.log(file);
+			$('#loading').css('display','block');
 			var Id = file['UniqueIID'];
 			uploadedFiles.files['fileToRemove'] = Id;
 			var files = JSON.stringify(uploadedFiles.files);
-			// console.log(files);
 			$.ajax({
 				type:'POST',
 				url:"{{ url('/') }}/cards/delete-file/",
 				dataType: "JSON",
 				data: files,
 				success:function(data){
-					console.log(data);
+					$('#loading').css('display','none');
 					// uploadedFiles.files.pop();
 					var k = Object.keys(uploadedFiles.files);
 					delete uploadedFiles.files[k[k.length-1]];
@@ -367,12 +366,14 @@
 		$('#listCreate').remove();
 	}
 	function addList() {
+		$('#loading').css('display','block');
 		var name = $('#nameList').val();
 		$.ajax({
 			type:'POST',
 			url:'{{ url('/') }}/tasklists/add',
 			data:{ name: name, board_id: {{$board->id}} },
 			success:function(data){
+				$('#loading').css('display','none');
 			  	$('#listCreate').remove();
 				$('#addListBtn').before('<div class="col-lg-4 col-xxl-3"><div class="pipeline white lined-primary"><div class="pipeline-header"><h5>'+data.tasklist.title+'</h5><div class="pipeline-header-numbers"><div class="pipeline-value"></div><div class="pipeline-count">0 members</div></div><div class="pipeline-settings os-dropdown-trigger"><i class="os-icon os-icon-hamburger-menu-1"></i><div class="os-dropdown"><div class="icon-w"><i class="os-icon os-icon-ui-46"></i></div><ul><li><button onclick="createCard('+data.tasklist.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-22"></i><span>Add Card</span></button></li><li><button onclick="duplicateList('+data.tasklist.id+')" class="small-edit" type="button"><i class="os-icon os-icon-grid-10"></i><span>Duplicate List</span></button></li><li><button onclick="archiveList('+data.tasklist.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-44"></i><span>Archive List</span></button></li></ul></div></div></div><div class="pipeline-body" id="pipeline-'+data.tasklist.id+'"></div></div></div>');
 			},
@@ -382,11 +383,12 @@
 		});
 	}
 	function duplicateList(tasklist_id){
+		$('#loading').css('display','block');
 		$.ajax({
 			type:'GET',
 			url:'{{ url('/') }}/tasklists/duplicate/'+tasklist_id,
 			success:function(data){
-				// console.log(data);
+				$('#loading').css('display','none');
 				location.reload(true);
 			},
 			error:function(error){
@@ -409,11 +411,13 @@
 	}
 	function addCard(tasklist_id) {
 		title = $('#card-'+tasklist_id).val();
+		$('#loading').css('display','block');
 		$.ajax({
 			type:'POST',
 			url:'{{ url('/') }}/cards/add',
 			data:{ tasklist_id: tasklist_id, title: title},
 			success:function(data){
+				$('#loading').css('display','none');
 			  	$('#card-section-'+tasklist_id).remove();
 			  	$('#pipeline-'+tasklist_id).prepend('<div class="pipeline-item"  data-tasklist="'+tasklist_id+'" data-card="'+data.card.id+'"><div class="pi-controls"><div class="pi-settings os-dropdown-trigger"><i class="os-icon os-icon-ui-46"></i><div class="os-dropdown"><div class="icon-w"><i class="os-icon os-icon-ui-46"></i></div><ul><li><button onclick="assignMembers('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-users"></i><span>Assign Members</span></button></li><li><button onclick="editCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-49"></i><span>Edit Card</span></button></li><li><button onclick="duplicateCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-grid-10"></i><span>Duplicate Card</span></button></li><li><button onclick="removeCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-15"></i><span>Remove Card</span></button></li><li><button onclick="archiveCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-44"></i><span>Archive Card</span></button></li></ul></div></div><div class="status status-green" data-placement="top" data-toggle="tooltip" title="Active Status"></div></div><div class="pi-body"><div class="pi-info"><div class="h6 pi-name" id="card-title-'+data.card.id+'">'+data.card.title+'</div></div></div><div class="pi-foot"><div class="tags"><button class="btn btn-outline-primary badge badge-primary-inverted">Details</button><button class="btn btn-outline-danger badge badge-danger-inverted"  id="card-due_date-'+data.card.id+'"></button></div><div class="cell-image-list" id="card-members-'+data.card.id+'"><small>No Members</small></div></div></div>');
 			},
@@ -423,13 +427,14 @@
 		});
 	}
 	function editCard(card_id){
+		$('#loading').css('display','block');
 		c_edit_card_id = card_id;
 		selected_edit_card_members = [];
 		$.ajax({
 			type:'GET',
 			url:'{{ url('/') }}/cards/edit/'+card_id,
 			success:function(data){
-				console.log(data);
+				$('#loading').css('display','none');
 				$('#assignedMembers').text('Assigned to: ');
 				$('#cardTitle').val(data.card.title);
 				$('#cardPriority').val(data.card.priority);
@@ -497,6 +502,7 @@
 		});
 	}
 	$("#edit-members-save").click(function(){
+		$('#loading').css('display','block');
 		var cardTitle = $("#cardTitle").val();
 		var cardDueDate = $("#cardDueDate").val();
 		var editcardMembers = $("#editcardMembers").select2("val");
@@ -515,6 +521,7 @@
 				members:editcardMembers
 			},
 			success:function(data){
+				$('#loading').css('display','none');
 				$('#card-members-'+c_edit_card_id).empty();
 				$('#card-title-'+c_edit_card_id).empty();
 				$('#card-due_date-'+c_edit_card_id).empty();
@@ -548,10 +555,12 @@
 		$('#previewPicture').modal('show');
 	}
 	function duplicateCard(card_id){
+		$('#loading').css('display','block');
 		$.ajax({
 			type:'GET',
 			url:'{{ url('/') }}/cards/duplicate/'+card_id,
 			success:function(data){
+				$('#loading').css('display','none');
 				html = '<div class="pipeline-item"><div class="pi-controls"><div class="pi-settings os-dropdown-trigger"><i class="os-icon os-icon-ui-46"></i><div class="os-dropdown"><div class="icon-w"><i class="os-icon os-icon-ui-46"></i></div><ul><li><button onclick="assignMembers('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-users"></i><span>Assign Members</span></button></li><li><button onclick="editCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-49"></i><span>Edit Card</span></button></li><li><button onclick="duplicateCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-grid-10"></i><span>Duplicate Card</span></button></li><li><button onclick="removeCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-15"></i><span>Remove Card</span></button></li><li><button onclick="archiveCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-44"></i><span>Archive Card</span></button></li></ul></div></div><div class="status status-green" data-placement="top" data-toggle="tooltip" title="Active Status"></div></div><div class="pi-body"><div class="pi-info"><div class="h6 pi-name" id="card-title-'+data.card.id+'">'+data.card.title+'</div></div></div><div class="pi-foot"><div class="tags"><button class="btn btn-outline-primary badge badge-primary-inverted">Details</button><button class="btn btn-outline-danger badge badge-danger-inverted"  id="card-due_date-'+data.card.id+'">';
 				if(data.card.due_date){
 					var d = new Date(data.card.due_date);
@@ -577,11 +586,12 @@
 		});
 	}
 	function removeCard(card_id){
+		$('#loading').css('display','block');
 		$.ajax({
 			type:'GET',
 			url:'{{ url('/') }}/cards/delete/'+card_id,
 			success:function(data){
-				console.log(data);
+				$('#loading').css('display','none');
 				$('.pipeline-item[data-card="'+card_id+'"]').remove();
 			},
 			error:function(error){
@@ -593,12 +603,14 @@
 
 	}
 	function assignMembers(card_id){
+		$('#loading').css('display','block');
 		c_card_id = card_id;
 		selected_card_members = [];
 		$.ajax({
 			type:'GET',
 			url:'{{ url('/') }}/cards/fetch-members/'+card_id,
 			success:function(data){
+				$('#loading').css('display','none');
 				for(let i = 0; i < data.members.length; i++){
 					selected_card_members.push(data.members[i]['id']);
 				}
@@ -617,6 +629,7 @@
 		});
 	}
 	$("#assign-members-save").click(function(){
+		$('#loading').css('display','block');
 		var cardMembers = $("#cardMembers").select2("val");
 		$.ajax({
 			type:'POST',
@@ -626,6 +639,7 @@
 				members:cardMembers
 			},
 			success:function(data){
+				$('#loading').css('display','none');
 				$('#card-members-'+c_card_id).empty();
 				for(let i = 0; i < data.members.length; i++){
 					if(data.members[i]['reference']){
@@ -716,7 +730,11 @@
 					//console.log(container);
 				})
 				.on('drop', function (el, container) {
-					task_target = $(el).prev()[0].attributes['data-tasklist'].nodeValue;
+					if(typeof $(el).prev()[0] == 'undefined')
+						task_target = 'no_previous';
+					else {
+						task_target = $(el).prev()[0].attributes['data-tasklist'].nodeValue;
+					}
 					$.ajax({
 						type:'GET',
 						url:'{{ route('drag-drop-tasklist', Auth::user()->subdomain) }}',

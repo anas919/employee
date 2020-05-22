@@ -33,7 +33,7 @@ class CardController extends Controller
         $card->save();
         return response()->json(['card' => $card]);
     }
-    public function editCard(Request $req, $org_id, $card_id){
+    public function editCard(Request $req, $account, $card_id){
         $card = Card::find($card_id);
 
         if(count($card->members))
@@ -54,7 +54,7 @@ class CardController extends Controller
 
         return response()->json(['members'=>$members, 'card'=>$card]);
     }
-    public function duplicateCard(Request $req, $org_id, $card_id) {
+    public function duplicateCard(Request $req, $account, $card_id) {
         $card = Card::find($card_id);
 
         $duplicatedCard = new Card();
@@ -98,7 +98,7 @@ class CardController extends Controller
         }
         return response()->json(['members'=>$members, 'card'=>$card]);
     }
-    public function update(Request $req, $org_id){
+    public function update(Request $req, $account){
 
         $card = Card::find($req->id);
 
@@ -129,7 +129,7 @@ class CardController extends Controller
         }
         return response()->json(['members'=>$members, 'card'=>$card]);
     }
-    public function fetchMembers(Request $req, $org_id, $card_id){
+    public function fetchMembers(Request $req, $account, $card_id){
         $card = Card::find($card_id);
         if(count($card->members))
             $members = $card->members;
@@ -159,7 +159,7 @@ class CardController extends Controller
         }
         return response()->json(['members'=>$members]);
     }
-    public function dragDropUpdate(Request $req, $org_id){
+    public function dragDropUpdate(Request $req, $account){
 
         $card = Card::find($req->card_id);
 
@@ -184,7 +184,7 @@ class CardController extends Controller
         return response()->json(['success', 'Task updated']);
     }
 
-    public function attachFile(Request $req, $org_id, $card_id){
+    public function attachFile(Request $req, $account, $card_id){
 
         if($req->hasFile('attachedFile')){
             if($req->attachedFile->isValid()){
@@ -203,7 +203,7 @@ class CardController extends Controller
              abort(500, 'cannot upload file');
     }
 
-    public function deleteFile(Request $req, $org_id){
+    public function deleteFile(Request $req, $account){
         $uploadedFiles = (json_decode(file_get_contents("php://input"), true));
         // var_dump(json_decode($req->files));
 
@@ -216,7 +216,7 @@ class CardController extends Controller
         }
         return response()->json(['uploadedFiles'=>$uploadedFiles]);
     }
-    public function deleteCard(Request $req, $org_id, $card_id){
+    public function deleteCard(Request $req, $account, $card_id){
         $card = Card::find($card_id);
         $card->members()->detach();
         foreach ($card->files as $file) {

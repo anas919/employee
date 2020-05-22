@@ -28,7 +28,7 @@ class UsersController extends Controller
    	}
     public function index(){
     	$user = new User();
-    	$members = User::where('organization_id', '=', Auth::user()->organization_id)->get();
+    	$members = User::all();
     	$roles = Role::all();
     	$countries = Country::all();
     	$departments = Department::all();
@@ -36,7 +36,7 @@ class UsersController extends Controller
     	$paymentschedules = Paymentschedule::all();
     	$paymentrates = Paymentrate::all();
     	$paymentmethods = Paymentmethod::all();
-    	$projects = Project::where('organization_id', '=', Auth::user()->organization_id)->get();
+    	$projects = Project::();
 
         return view('members/index', ['user'=>$user,'members'=>$members,'roles'=>$roles,'countries'=>$countries,'departments'=>$departments,'jobs'=>$jobs,'paymentschedules'=>$paymentschedules,'paymentrates'=>$paymentrates,'paymentmethods'=>$paymentmethods,'projects'=>$projects]);
     }
@@ -58,7 +58,7 @@ class UsersController extends Controller
 		$user->province = $req->province;
 		$user->postal_code = $req->postal_code;
 		$user->phone = $req->phone;
-		$user->organization_id = Auth::user()->organization_id;
+		$user->subdomain = Auth::user()->subdomain;
 		$user->paymentschedule_id = $req->paymentschedule;
 		$user->paymentrate_id = $req->paymentrate;
 		$user->paymentmethod_id = $req->paymentmethod;
@@ -104,7 +104,7 @@ class UsersController extends Controller
 		$user->save();
 
 		$user = new User();
-		$members = User::where('organization_id', '=', Auth::user()->organization_id)->get();
+		$members = User::all();
 		$roles = Role::all();
     	$countries = Country::all();
     	$departments = Department::all();
@@ -112,12 +112,12 @@ class UsersController extends Controller
     	$paymentschedules = Paymentschedule::all();
     	$paymentrates = Paymentrate::all();
     	$paymentmethods = Paymentmethod::all();
-    	
-		return redirect()->route('members',Auth::user()->organization_id);
+
+		return redirect()->route('members',Auth::user()->subdomain);
     }
     public function invite(Request $req) {
     	$emails = preg_split('/\r\n|[\r\n]/', $req->email);
-    	
+
     	foreach ($emails as $email) {
     		do {
 		        $token = Str::random();
@@ -135,7 +135,7 @@ class UsersController extends Controller
 		    Mail::to($email)->send(new InvitationMail($invite));
     	}
 	    // redirect back where we came from
-	    return redirect()->route('members',Auth::user()->organization_id);
+	    return redirect()->route('members',Auth::user()->subdomain);
     }
     public function update(Request $req) {
 		$user = User::find($req->id);
@@ -155,7 +155,7 @@ class UsersController extends Controller
 		$user->province = $req->province;
 		$user->postal_code = $req->postal_code;
 		$user->phone = $req->phone;
-		$user->organization_id = Auth::user()->organization_id;
+		$user->subdomain = Auth::user()->subdomain;
 		$user->paymentschedule_id = $req->paymentschedule;
 		$user->paymentrate_id = $req->paymentrate;
 		$user->paymentmethod_id = $req->paymentmethod;
@@ -199,11 +199,9 @@ class UsersController extends Controller
 			$user->password = bcrypt($req->password);
 
 		$member = User::find($user->id);
-		if($member->organization_id != Auth::user()->organization_id)
-			abort(403, 'Unauthorized action.');
 
 		$user->save();
-		
+
 		$countries = Country::all();
     	$departments = Department::all();
         $jobs = Job::all();
@@ -212,14 +210,14 @@ class UsersController extends Controller
     	$paymentmethods = Paymentmethod::all();
 		session()->flash('success', 'Informations updated successfully');
 
-		return redirect()->route('edit',['org_id' => Auth::user()->organization_id, 'member_id' => $member->id]);
+		return redirect()->route('edit',['account' => Auth::user()->subdomain, 'member_id' => $member->id]);
 	}
 
 	public function search(Request $req) {
-		
+
 		$name = $req->name;
 		$members = User::where(function ($query) {
-		    				$query->where('organization_id', '=', Auth::user()->organization_id);
+		    				$query->where('subdomain', '=', Auth::user()->subdomain);
 						})->where(function ($query) use ($name) {
 						    $query->whereRaw('LOWER(`first_name`) LIKE ? ',[trim(strtolower($name)).'%'])
 						    	->orwhereRaw('LOWER(`last_name`) LIKE ? ',[trim(strtolower($name)).'%'])
@@ -230,22 +228,17 @@ class UsersController extends Controller
 	}
 	public function editMember(Request $req, $id,$member_id) {
 		$member = User::find($member_id);
-		if($member->organization_id != Auth::user()->organization_id)
-			abort(403, 'Unauthorized action.');
-		
+
 		$countries = Country::all();
     	$departments = Department::all();
         $jobs = Job::all();
     	$paymentschedules = Paymentschedule::all();
     	$paymentrates = Paymentrate::all();
     	$paymentmethods = Paymentmethod::all();
-    	
+
 		return view('members/edit',['member'=>$member,'countries'=>$countries,'departments'=>$departments,'jobs'=>$jobs,'paymentschedules'=>$paymentschedules,'paymentrates'=>$paymentrates,'paymentmethods'=>$paymentmethods]);
 	}
-	public function setTheme(Request $req, $org_id) {
-		if($org_id != Auth::user()->organization_id)
-			abort(403, 'Unauthorized action.');
-
+	public function setTheme(Request $req, $account) {
 		$user = User::find(Auth::user()->id);
 		if($req->pref_theme == '1')
 			$user->pref_theme = '0';

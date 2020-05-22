@@ -1,4 +1,4 @@
-/* 
+/*
 TABLE OF CONTENTS
 
 
@@ -16,7 +16,7 @@ TABLE OF CONTENTS
   3h. Override bootstrap modal styles
   3i. Override bootstrap alerts styles
 4. Overrides for various plugins that are included with this template
-5. Handy Animations 
+5. Handy Animations
 6. User Profiles
 7. Layout styles
 8. Menu styles
@@ -12319,6 +12319,25 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:las
           animation-fill-mode: both;
 }
 
+.loading {
+	width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: block;
+    opacity: 0.7;
+    z-index: 99;
+    text-align: center;
+}
+
+#loading-img {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+}
+
 .element-box, .invoice-w, .big-error-w {
   -webkit-animation-name: fadeUp;
           animation-name: fadeUp;
@@ -12865,14 +12884,14 @@ body.menu-side-right .layout-w {
 /* 8. Menu styles */
 /*
   STYLE NAVIGATION
-  
+
 #1. Logged User Box
 #2. Shared styles between Top Bar & Main Menu
 #3. Desktop Menu
 #4. Mobile Menu
 
 */
-/* 
+/*
 #1. Logged User Box
 */
 .logged-user-w {
@@ -15792,7 +15811,7 @@ body.menu-side-right .layout-w {
 }
 
 /* 9. Styles for all element blocks */
-/* 
+/*
 
   # -- STYLES NAVIGATION:
 
@@ -17630,7 +17649,7 @@ a.el-tablo:hover .label {
   line-height: 1;
 }
 
-/* 
+/*
 #16. Call to action box
 */
 .cta-w {
@@ -17799,7 +17818,7 @@ a.el-tablo:hover .label {
   vertical-align: middle;
 }
 
-/* 
+/*
 #18. Todo List Widget
 */
 .todo-list .todo-item {
@@ -17846,7 +17865,7 @@ a.el-tablo:hover .label {
   color: #1b850f;
 }
 
-/* 
+/*
 #19. Fancy Progress With Label
 */
 .fancy-progress-with-label {
@@ -19665,9 +19684,9 @@ a.with-avatar span {
 }
 
 /* 12. Chat */
-/* 
+/*
 
-Chat Styles 
+Chat Styles
 
 #1. Popup chat on a side
 
@@ -19937,12 +19956,12 @@ Chat Styles
 }
 
 /* 13. App - Email */
-/* Email App styles 
-#1. EMAIL APP WRAPPER 
-#2. LEFT MENU 
-#3. MESSAGES LIST 
-#4. CONTENT BOX 
-#5. MESSAGE BOX 
+/* Email App styles
+#1. EMAIL APP WRAPPER
+#2. LEFT MENU
+#3. MESSAGES LIST
+#4. CONTENT BOX
+#5. MESSAGE BOX
 #6. REPLY
 #7. FOLDED STYLES
 #8. DARK SCHEME
@@ -21363,16 +21382,16 @@ Chat Styles
 }
 
 /* 16. Pricing Plans */
-/* 
+/*
 
 Pricing Plans Styles
 
-#1. 
-#2. 
-#3. 
-#4. 
-#5. 
-#6. 
+#1.
+#2.
+#3.
+#4.
+#5.
+#6.
 
 
 */
@@ -22226,7 +22245,7 @@ Pricing Plans Styles
 }
 
 /* 19. App - TODO */
-/* 
+/*
 
 TODO Application
 
@@ -28032,9 +28051,9 @@ body.color-scheme-dark .page-item.disabled .page-link, .content-panel.color-sche
 }
 
 /* ##. Responsive Styles */
-/* 
+/*
 
-Contents: 
+Contents:
 
 #1.  Screen size <= 1650px
 #2.  Screen size <= 1550px

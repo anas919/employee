@@ -990,6 +990,12 @@
 				END - Top Bar
 				-------------------->
           		<div class="content-i">
+					<div id="loading" style="display: none;">
+						<div class="modal-backdrop fade show"></div>
+						<div class="fade show loading">
+							<img id="loading-img" src="{{asset('img/loading.gif')}}" alt="Loading">
+						</div>
+					</div>
         			@yield('content')
         			<!--------------------
 					START - Color Scheme Toggler
@@ -1009,7 +1015,7 @@
 					START - Chat Popup Box
 					-------------------->
 					<div class="floated-chat-btn">
-						<i class="os-icon os-icon-mail-07"></i><span>Demo Chat</span>
+						<i class="os-icon os-icon-mail-07"></i><span>Live Chat</span>
 					</div>
 					<div class="floated-chat-w">
 						<div class="floated-chat-i">

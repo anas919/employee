@@ -189,7 +189,7 @@
 								@empty
 								@endforelse
 								<tr>
-									<td colspan="4">Click here to schedule payment</td>
+									<td class="schedule-payment" colspan="9">Click here to schedule payment</td>
 									<td style="display: none;"></td>
 									<td style="display: none;"></td>
 									<td style="display: none;"></td>
@@ -210,6 +210,10 @@
 @endsection
 @section('scripts')
 <style>
+	.schedule-payment{
+		background-color: #EEF5FF;
+		cursor: pointer;
+	}
 	.week-column {
 		padding: 8px 7px;
 		background: #EEF5FF;

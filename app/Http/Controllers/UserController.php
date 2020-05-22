@@ -208,7 +208,7 @@ class UserController extends Controller
 
 		return view('members/edit',['member'=>$member,'countries'=>$countries,'departments'=>$departments,'jobs'=>$jobs,'paymentschedules'=>$paymentschedules,'paymentrates'=>$paymentrates,'paymentmethods'=>$paymentmethods]);
 	}
-	public function setTheme(Request $req, $org_id) {
+	public function setTheme(Request $req, $account) {
 		$user = User::find(Auth::user()->id);
 		if($req->pref_theme == '1')
 			$user->pref_theme = '0';
