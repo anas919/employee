@@ -7,17 +7,14 @@ Route::group(['middleware' => 'web'], function () {
 	        Route::get('', 'PermissionController@index')
 	            ->name('permissions');
 
-			Route::get('select-role/{role_id}', 'PermissionController@selectRole')
+			Route::get('select-role/{role_id}/{module}', 'PermissionController@selectRole')
 	            ->name('select-role');
 
 	        Route::post('/add-role', 'PermissionController@addRole')
 	            ->name('add-role');
 
-	        Route::get('/edit/{permission_id}', 'PermissionController@editPermission')
-	            ->name('edit-permission');
-
-	        Route::post('/update', 'PermissionController@update')
-	        	->name('update-permission');
+			Route::post('/assign-permissions', 'PermissionController@assignPermissions')
+		            ->name('assign-permissions');
 	    });
 	});
 });

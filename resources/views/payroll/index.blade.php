@@ -10,7 +10,7 @@
 			<div class="element-wrapper">
 				<div class="element-actions">
 					<div class="form-inline justify-content-sm-end">
-						<a class="btn btn-sm btn-primary btn-upper" href="#"><i class="os-icon os-icon-ui-22"></i><span>Add Salary</span></a>
+						<button class="btn btn-sm btn-primary btn-upper" data-target="#schedulePaymentModal" data-toggle="modal" type="button"><i class="os-icon os-icon-ui-22"></i><span>Schedule Payment</span></button>
 					</div>
 				</div>
 				<h6 class="element-header">
@@ -207,6 +207,81 @@
 		</div>
 	</div>
 </div>
+<div aria-hidden="true" aria-labelledby="schedulePaymentModal" class="modal fade" id="schedulePaymentModal" role="dialog" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">
+				  	Schedule payment
+				</h5>
+				<button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"> &times;</span></button>
+			</div>
+			<div class="modal-body">
+				<form action="{{ route('add-project', Auth::user()->subdomain) }}" enctype="multipart/form-data" method="POST">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					<div class="row">
+						<div class="col-sm-6">
+						  	<div class="form-group">
+						    	<label for=""> Project Name</label>
+						    	<input class="form-control" placeholder="Project Name" type="text" name="name">
+						  	</div>
+						</div>
+						<div class="col-sm-6">
+						  	<div class="form-group">
+						    	<label for=""> Client</label>
+              					<select class="form-control clients-select" name="client"></select>
+						  	</div>
+						</div>
+						<div class="col-sm-6">
+            				<div class="form-group">
+			                  <label for="">Start Date</label>
+			                  <div class="date-input">
+			                    <input class="single-daterange form-control" placeholder="dd/mm/yyy" type="text" name="start_date" value="">
+			                  </div>
+			                </div>
+          				</div>
+						<div class="col-sm-6">
+            				<div class="form-group">
+			                  <label for="">End Date</label>
+			                  <div class="date-input">
+			                    <input class="single-daterange form-control" placeholder="dd/mm/yyy" type="text" name="end_date" value="">
+			                  </div>
+			                </div>
+          				</div>
+						<style>
+							.select2 {
+								width: 100% !important;
+							}
+						</style>
+						<div class="col-sm-6">
+				         	<div class="form-group">
+				                <label for=""> Teams</label>
+				                <select class="form-control teams-select" multiple="true" name="teams[]"></select>
+				            </div>
+				        </div>
+				        {{-- <div class="col-sm-6">
+				         	<div class="form-group">
+				                <label for=""> Team Members</label>
+				                <select class="form-control team-members-select" multiple="true" name="team_members[]"></select>
+				            </div>
+				        </div> --}}
+						<div class="col-sm-12">
+							<div class="form-group">
+						        <label for=""> Description</label>
+								<textarea cols="80" id="ckeditor1" name="ckeditor1" rows="10"></textarea>
+						    </div>
+						</div>
+					</div>
+					<div class="modal-footer">
+				      	<button class="btn btn-secondary" data-dismiss="modal" type="button"> Close</button>
+				      	<button class="btn btn-primary" type="submit"> Save</button>
+				    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
 @endsection
 @section('scripts')
 <style>
