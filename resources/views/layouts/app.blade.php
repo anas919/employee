@@ -416,9 +416,6 @@
 					</div>
 				</div>
           		<div class="menu-actions">
-					<!--------------------
-					START - Messages Link in secondary top menu
-					-------------------->
 		            <div class="messages-notifications os-dropdown-trigger os-dropdown-position-right">
 		             	<i class="os-icon os-icon-bell"></i>
 						<div class="new-messages-count">
@@ -493,12 +490,6 @@
 							</ul>
 						</div>
 		            </div>
-		            <!--------------------
-		            END - Messages Link in secondary top menu
-		            -------------------->
-		            <!--------------------
-		            START - Settings Link in secondary top menu
-		            -------------------->
 		            <div class="top-icon top-settings os-dropdown-trigger os-dropdown-position-right">
 						<i class="os-icon os-icon-ui-46"></i>
 						<div class="os-dropdown">
@@ -512,12 +503,6 @@
 							</ul>
 						</div>
 		            </div>
-		            <!--------------------
-		            END - Settings Link in secondary top menu
-		            -------------------->
-		            <!--------------------
-		            START - Messages Link in secondary top menu
-		            -------------------->
 		            <div class="messages-notifications os-dropdown-trigger os-dropdown-position-right">
 		              	<i class="os-icon os-icon-zap"></i>
 		              	<div class="new-messages-count">
@@ -595,9 +580,6 @@
 			                </ul>
 		              </div>
 		            </div>
-		            <!--------------------
-		            END - Messages Link in secondary top menu
-		            -------------------->
           		</div>
 	          	<div class="element-search autosuggest-search-activator">
 	            	<input placeholder="Start typing to search..." type="text">
@@ -835,16 +817,10 @@
 	                		</div>
 	              		</div>
 	            	</div>
-		            <!--------------------
-		            START - Top Menu Controls
-		            -------------------->
             		<div class="top-menu-controls">
 		              	<div class="element-search autosuggest-search-activator">
 		                	<input placeholder="Start typing to search..." type="text">
 		              	</div>
-						<!--------------------
-						START - Messages Link in secondary top menu
-						-------------------->
 						<div class="messages-notifications os-dropdown-trigger os-dropdown-position-left">
 							<i class="os-icon os-icon-bell"></i>
 							<div class="new-messages-count">
@@ -919,12 +895,6 @@
 								</ul>
 							</div>
 						</div>
-						<!--------------------
-						END - Messages Link in secondary top menu
-						-------------------->
-						<!--------------------
-						START - Settings Link in secondary top menu
-						-------------------->
 						<div class="top-icon top-settings os-dropdown-trigger os-dropdown-position-left">
 							<i class="os-icon os-icon-ui-46"></i>
 							<div class="os-dropdown">
@@ -938,12 +908,6 @@
 								</ul>
 							</div>
 						</div>
-						<!--------------------
-						END - Settings Link in secondary top menu
-						-------------------->
-						<!--------------------
-						START - User avatar and menu in secondary top menu
-						-------------------->
 						<div class="logged-user-w">
 							<div class="logged-user-i">
 								<div class="avatar-w">
@@ -994,17 +958,8 @@
 								</div>
 							</div>
 						</div>
-						<!--------------------
-						END - User avatar and menu in secondary top menu
-						-------------------->
             		</div>
-					<!--------------------
-					END - Top Menu Controls
-					-------------------->
           		</div>
-				<!--------------------
-				END - Top Bar
-				-------------------->
           		<div class="content-i">
 					<div id="loading" style="display: none;">
 						<div class="modal-backdrop fade show"></div>
@@ -1013,9 +968,6 @@
 						</div>
 					</div>
         			@yield('content')
-        			<!--------------------
-					START - Color Scheme Toggler
-					-------------------->
 					<div class="floated-colors-btn second-floated-btn" onclick="switchMode({{ Auth::user()->pref_theme }})">
 						<div @if(Auth::user()->pref_theme == 0) class="os-toggler-w" @else class="os-toggler-w on" @endif>
 				  			<div class="os-toggler-i">
@@ -1024,12 +976,6 @@
 						</div>
 						@if(Auth::user()->pref_theme == 0) <span>Dark Mode</span> @else <span>Light Mode</span> @endif
 					</div>
-					<!--------------------
-					END - Color Scheme Toggler
-					-------------------->
-					<!--------------------
-					START - Chat Popup Box
-					-------------------->
 					<div class="floated-chat-btn">
 						<i class="os-icon os-icon-mail-07"></i><span>Live Chat</span>
 					</div>
@@ -1088,9 +1034,6 @@
 							</div>
 						</div>
 					</div>
-					<!--------------------
-					END - Chat Popup Box
-					-------------------->
         		</div>
       		</div>
       	<div class="display-type"></div>

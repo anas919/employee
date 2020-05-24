@@ -20,4 +20,8 @@ class Country extends Model
     {
         return $this->hasMany('App\Offer');
     }
+	public function organizations()
+    {
+        return $this->hasMany('App\Organization');
+    }
 }

@@ -22,4 +22,8 @@ class Organization extends Model
     {
         return $this->hasMany('App\Offer');
     }
+	public function country()
+    {
+        return $this->belongsTo('App\Country');
+    }
 }

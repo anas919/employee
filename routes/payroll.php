@@ -11,10 +11,10 @@ Route::group(['middleware' => 'web'], function () {
 	            ->name('view-payroll');
 
 	        Route::post('/add', 'PayrollController@add')
-	            ->name('add-payroll');
+	            ->name('add-payment');
 
-	        Route::get('/edit/{payroll_id}', 'PayrollController@editPayroll')
-	            ->name('edit-payroll');
+	        Route::get('/edit/{payslip_id}', 'PayrollController@editPayroll')
+	            ->name('edit-payslip');
 
 	        Route::post('/update', 'PayrollController@update')
 	        	->name('update-payroll');

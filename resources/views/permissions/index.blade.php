@@ -7,9 +7,8 @@
 <style>
 .table td {
     vertical-align: top;
-}
-.table td {
-    border-top: none;
+	border-top: none;
+	padding:0;
 }
 .module {
 	text-transform: capitalize;
@@ -230,5 +229,8 @@
 			}
 		});
 	}
+	$(document).ready(function(){
+		selectRole(1,'dashboard');
+	});
 </script>
 @endsection
