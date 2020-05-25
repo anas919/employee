@@ -66,7 +66,7 @@
 								  </tr>
 								</thead>
 								<tbody>
-									@foreach($payslip->$earnings as $earning)
+									@foreach($payslip->earnings as $earning)
 									<tr>
 										<td>
 											{{$earning->description}}
@@ -133,7 +133,7 @@
 								Total Earnings: ${{ $payslip->earnings->sum('amount') }} <br> Total Deductions: ${{ $payslip->deductions->sum('amount') }}
 							</div>
 							<div class="">
-								Net Salary ${{ $payslip->amount - ($payslip->earnings->sum('amount')+$payslip->deductions->sum('amount')) }}
+								Net Salary ${{ $payslip->amount + ($payslip->earnings->sum('amount')-$payslip->deductions->sum('amount')) }}
 							</div>
 						</div>
 					</div>

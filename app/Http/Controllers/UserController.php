@@ -182,7 +182,7 @@ class UserController extends Controller
     	$paymentrates = Paymentrate::all();
     	$paymentmethods = Paymentmethod::all();
 		session()->flash('success', 'Informations updated successfully');
-		return redirect()->route('edit',['member_id' => $member->id]);
+		return redirect()->route('edit',['account'=>Auth::user()->subdomain, 'member_id' => $member->id]);
 	}
 	public function search(Request $req) {
 		// $name = $req->name;

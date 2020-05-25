@@ -25,10 +25,7 @@ class CreateCandidatesTable extends Migration
                     ->on('medias')
                     ->onDelete('set null');
             $table->integer('resume_id')->unsigned();
-            $table->foreign('resume_id')
-                    ->references('id')
-                    ->on('resumes')
-                    ->onDelete('set null');
+            $table->foreign('resume_id')->references('id')->on('resumes');
             $table->longText('address');
             $table->string('city');
             $table->integer('country_id')->unsigned();

@@ -107,15 +107,19 @@ class RegisterController extends Controller
 	        ]);
 			//Create sessions folder for subdomain
 			File::makeDirectory(base_path().'/storage/framework/sessions/'.$tenant->id);
+
 			Artisan::call('db:create '.$data['subdomain']);
 			Artisan::call('tenants:migrate');
-			Artisan::call('db:seed --class=PermissionSeeder');
+        //disable foreign key check for this connection before running seeders
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 			Artisan::call('db:seed --class=RoleSeeder');
+            Artisan::call('db:seed --class=PermissionSeeder');
 			Artisan::call('db:seed --class=CountrySeeder');
 			Artisan::call('db:seed --class=PaymentrateSeeder');
 			Artisan::call('db:seed --class=PaymentscheduleSeeder');
 			Artisan::call('db:seed --class=PaymentmethodSeeder');
 			Artisan::call('db:seed --class=RelationshipSeeder');
+                    DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 			//Create user in subdomain database
 			$query = "INSERT INTO ".$data['subdomain'].".users (first_name, last_name, email, subdomain, password) VALUES ('".$user->first_name."','".$user->last_name."','".$user->email."','".$user->subdomain."','".$user->password."');";
 			DB::statement($query);

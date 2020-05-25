@@ -173,7 +173,7 @@
 										<span>{{ $payslip->deductions->sum('amount') }}$</span>
 									</td>
 									<td>
-										<span>{{ $payslip->amount - ($payslip->earnings->sum('amount')+$payslip->deductions->sum('amount')) }}$</span>
+										<span>{{ $payslip->amount + ($payslip->earnings->sum('amount')-$payslip->deductions->sum('amount')) }}$</span>
 									</td>
 									<td class="row-actions">
 										<div class="btn-group mr-1 mb-1">

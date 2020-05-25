@@ -115,12 +115,22 @@
                     				<div class="form-group">
                       					<label for="">Gender</label>
                       					<select class="form-control" name="gender">
-				                            <option value="m" @if($member->gender and $member->gender == 'm') selected="" @endif>
+                      						@if($member->gender)
+				                            <option value="m" @if($member->gender == 'm') selected="" @endif>
 				                              	Male
 				                            </option>
-				                            <option value="f" @if($member->gender and $member->gender == 'f') selected="" @endif>
+				                            <option value="f" @if($member->gender == 'f') selected="" @endif>
 				                              	Female
 				                            </option>
+				                            @else
+				                            <option value="">--Select Gender--</option>
+				                            <option value="m">
+				                            	Male
+				                            </option>
+				                            <option value="f">
+				                            	Female
+				                            </option>
+				                            @endif
                       					</select>
                     				</div>
                   				</div>
@@ -128,12 +138,22 @@
                     				<div class="form-group">
                       					<label for="">Marital Status</label>
                       					<select class="form-control" name="marital_status">
-				                            <option value="single" @if($member->marital_status and $member->marital_status == 'single') selected="" @endif>
+                      						@if($member->marital_status)
+				                            <option value="single" @if($member->marital_status == 'single') selected="" @endif>
 				                              	Single
 				                            </option>
-				                            <option value="married" @if($member->marital_status and $member->marital_status == 'married') selected="" @endif>
+				                            <option value="married" @if($member->marital_status == 'married') selected="" @endif>
 				                              	Married
 				                            </option>
+				                            @else
+				                            <option value="">--Select Status--</option>
+				                            <option value="single">
+				                            	Single
+				                            </option>
+				                            <option value="married">
+				                            	Married
+				                            </option>
+				                            @endif
                       					</select>
                     				</div>
                   				</div>
@@ -175,6 +195,7 @@
 								                <option value="{{ $country->id }}" @if($member->country->id == $country->id)selected="selected"@endif>{{ ucfirst($country->country) }} ({{ strtoupper($country->code) }})</option>
 								                @endforeach
 								            @elseif($countries)
+								            	<option value="">--Country--</option>
 								                @foreach($countries as $country)
 								                <option value="{{ $country->id }}">{{ ucfirst($country->country) }} ({{ strtoupper($country->code) }})</option>
 								                @endforeach
@@ -202,6 +223,7 @@
 								                <option value="{{ $paymentschedule->id }}" @if($member->paymentschedule->id == $paymentschedule->id)selected="selected"@endif>{{ ucfirst($paymentschedule->pay_schedule) }}</option>
 								                @endforeach
 								            @elseif($paymentschedules)
+								            	<option value="">--Payment schedule--</option>
 								                @foreach($paymentschedules as $paymentschedule)
 								                <option value="{{ $paymentschedule->id }}">{{ ucfirst($paymentschedule->pay_schedule) }}</option>
 								                @endforeach
@@ -218,6 +240,7 @@
 								                <option value="{{ $paymentrate->id }}" @if($member->paymentrate->id == $paymentrate->id)selected="selected"@endif>{{ ucfirst($paymentrate->pay_rate) }}</option>
 								                @endforeach
 								            @elseif($paymentrates)
+								            	<option value="">--Payment rate--</option>
 								                @foreach($paymentrates as $paymentrate)
 								                <option value="{{ $paymentrate->id }}">{{ ucfirst($paymentrate->pay_rate) }}</option>
 								                @endforeach
@@ -263,6 +286,7 @@
 								                <option value="{{ $paymentmethod->id }}" @if($member->paymentmethod->id == $paymentmethod->id)selected="selected"@endif>{{ ucfirst($paymentmethod->pay_method) }}</option>
 								                @endforeach
 								            @elseif($paymentmethods)
+								            	<option value="">--Payment method--</option>
 								                @foreach($paymentmethods as $paymentmethod)
 								                <option value="{{ $paymentmethod->id }}">{{ ucfirst($paymentmethod->pay_method) }}</option>
 								                @endforeach
