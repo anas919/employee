@@ -26,7 +26,7 @@
 						</div>
 						<div class="form-group">
 							<label for=""> Clients</label>
-							<select class="form-control clients-select" name="client"></select>
+							<select class="form-control clients-select" name="client" required></select>
 						</div>
 					</div>
 				</div>
@@ -48,7 +48,7 @@
 								<div class="form-group">
 									<label for=""> Date Issue</label>
 									<div class="date-input">
-										<input class="single-daterange form-control" placeholder="Date Issue" type="text" value="" name="issue_date">
+										<input class="issue-date form-control" placeholder="Date Issue" type="text" value="" name="issue_date" required>
 									</div>
 								</div>
 							</div>
@@ -56,7 +56,7 @@
 								<div class="form-group">
 									<label for=""> Date Due</label>
 									<div class="date-input">
-										<input class="single-daterange form-control" placeholder="Date Due" type="text" value="" name="due_date">
+										<input class="due-date form-control" placeholder="Date Due" type="text" value="" name="due_date" required>
 									</div>
 								</div>
 							</div>
@@ -65,7 +65,7 @@
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for=""> Invoice Number</label>
-									<input class="form-control" placeholder="Invoice Number" type="text" name="invoice_number">
+									<input class="form-control" placeholder="Invoice Number" type="text" name="invoice_number" required>
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -335,5 +335,37 @@
 			calc(0);
 			calcGrandTotal();
 		});
+		$("input.issue-date").daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: parseInt(moment().subtract(10, 'years').format('YYYY'),10),
+            maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
+            autoUpdateInput: false,
+            singleClasses: "",
+        });
+
+        $('input.issue-date').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('L'));
+        });
+
+        $('input.issue-date').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
+        $("input.due-date").daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: parseInt(moment().subtract(10, 'years').format('YYYY'),10),
+            maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
+            autoUpdateInput: false,
+            singleClasses: "",
+        });
+
+        $('input.due-date').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('L'));
+        });
+
+        $('input.due-date').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
 	</script>
 @endsection

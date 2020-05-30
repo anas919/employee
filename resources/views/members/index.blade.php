@@ -19,39 +19,34 @@
                   	Members
                 </h6>
                 <div class="control-header">
-	                <form action="{{ route('search',Auth::user()->subdomain) }}" method="GET" class="row align-items-center">
+	                <form action="{{ route('search',Auth::user()->subdomain) }}" method="GET" class="row align-items-center" id="searchForm">
 	                	<!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
 	                  	<div class="col-8 col-lg-7">
 	                    	<div class="form-inline">
-	                    		<div class="form-group mr-4">
-						          	<div class="input-search-w">
-					                    <input id="name" class="form-control rounded bright" name="name" placeholder="Search team members..." type="search">
-					                </div>
-						        </div>
 	                      		<div class="form-group mr-4">
-							        <select class="form-control-sm" name="role">
-										<option disabled="" selected="">
+							        <select class="form-control-sm" name="role" id="role">
+										<option selected="" value="">
 											Search by Role
 										</option>
 										@foreach($roles as $role)
-											<option value="{{ $role->id }}">
+											<option @if(isset($roleFilter) && $roleFilter==$role->id) selected="" @endif value="{{ $role->id }}">
 								            	{{ $role->name }}
 											</option>
 										@endforeach
 							        </select>
 	                      		</div>
 	                      		<div class="form-group d-none d-md-flex">
-	                        		<select class="form-control-sm" name="status">
-	                        			<option disabled="" selected="">
+	                        		<select class="form-control-sm" name="status" id="status">
+	                        			<option selected="" value="">
 											Search by Status
 										</option>
-	                          			<option value="full_time">
+	                          			<option @if(isset($statusFilter) && $statusFilter=='full_time') selected="" @endif value="full_time">
 	                            			Full Time
 	                          			</option>
-	                          			<option value="part_time">
+	                          			<option @if(isset($statusFilter) && $statusFilter=='part_time') selected="" @endif value="part_time">
 	                          				Part Time
 	                          			</option>
-	                          			<option value="contractor">
+	                          			<option @if(isset($statusFilter) && $statusFilter=='contractor') selected="" @endif value="contractor">
 	                          				Contractor
 	                          			</option>
 	                        		</select>
@@ -59,13 +54,13 @@
 	                    	</div>
 	                  	</div>
 	                  	<div class="col-4 col-lg-5 text-right">
-	                    	<button class="btn btn-sm btn-primary btn-upper"><i class="os-icon os-icon-ui-37"></i><span>Filter</span></button>
+	                    	<button type="submit" class="btn btn-sm btn-primary btn-upper"><i class="os-icon os-icon-ui-37"></i><span>Filter</span></button>
 	                  	</div>
 	                </form>
 	            </div>
 				<div class="element-box">
 					<div class="table-responsive">
-    					<table id="dataTable1" width="100%" class="table table-striped table-lightfont">
+    					<table id="members" width="100%" class="table table-striped table-lightfont">
 							<thead>
 								<tr>
 									<th>
@@ -118,13 +113,34 @@
 									  	</div>
 									</td>
 									<td>
+										@if(count($member->memberteams))
 										<div class="cell-image-list">
-										  	<div class="cell-img" style="background-image: url(img/portfolio9.jpg);border-radius: 50%;"></div>
-										  	<div class="cell-img" style="background-image: url(img/portfolio2.jpg);border-radius: 50%;"></div>
-										  	<div class="cell-img-more">
-												<a class="danger" href="#"><i class="os-icon os-icon-pencil-2"></i></a>
+											@foreach($member->memberteams as $team)
+											<div class="cell-img avatar" style=";border-radius: 50%;">
+												{{ substr($team->name, 0, 3) }}
 											</div>
+											@endforeach
+											{{-- <div class="cell-img-more">
+											+ 5 more
+											<a class="danger" href="#"><i class="os-icon os-icon-pencil-2"></i></a>
+											</div> --}}
 										</div>
+										@else
+										No Teams
+										@endif
+										@if(count($member->leaderteams))
+										<div class="cell-image-list">
+											@foreach($member->leaderteams as $team)
+											<div class="cell-img avatar" style=";border-radius: 50%;">
+												{{ substr($team->name, 0, 3) }}
+											</div>
+											@endforeach
+											{{-- <div class="cell-img-more">
+											+ 5 more
+											<a class="danger" href="#"><i class="os-icon os-icon-pencil-2"></i></a>
+											</div> --}}
+										</div>
+										@endif
 									</td>
 									<td class="text-center">
 										<a class="badge badge-success-inverted" href="">Enabled</a>
@@ -136,7 +152,7 @@
 										<div class="btn-group mr-1 mb-1">
 											<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton1" type="button">Actions</button>
 											<div aria-labelledby="dropdownMenuButton1" class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
-												<a class="dropdown-item" href="#"><i class="os-icon os-icon-ui-15"></i> Action</a><a class="dropdown-item" href="#"><i class="os-icon os-icon-ui-15"></i> Another action</a><a class="dropdown-item" href="#"><i class="os-icon os-icon-ui-15"></i> Delete</a>
+												<a class="dropdown-item" href="{{route('view-activities',['account'=>Auth::user()->subdomain,'member_id'=>$member->id])}}"><i class="os-icon os-icon-documents-03"></i> View Activities</a><a class="dropdown-item" href="#"><i class="os-icon os-icon-ui-15"></i> Another action</a><a class="dropdown-item" href="#"><i class="os-icon os-icon-ui-15"></i> Delete</a>
 											</div>
 										</div>
 									</td>
@@ -517,7 +533,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="form-group">
-						        <label for=""> Email (Separate emails by ,)</label>
+						        <label for=""> Email (Each mail in separate line)</label>
 								<textarea class="form-control" name="email" id="emails"></textarea>
 						    </div>
 						</div>
@@ -614,24 +630,6 @@ jQuery(document).ready(function(){
 		templateResult: function (d) { return $(d.text); },
 		templateSelection: function (d) { return $(d.text); },
 	});
-    $('#name').keyup(function(event) {
-    	var name = $(this).val();
-    	var text = "";
-    	$.ajax({
-			type:'GET',
-			url:"{{ url('/') }}/members/search",
-			data:{name:name},
-			success:function(data){
-				data.members.forEach(function(member) {
-					text += "<tr><td class=\"text-center\"><input class=\"form-control\" type=\"checkbox\"></td><td><div class=\"user-with-avatar\"><div class=\"avatar\" style=\"border-radius: 50%;\">"+member.first_name.substr(0, 1)+member.last_name.substr(0, 1)+"</div><div style=\"display: inline-block;margin-bottom: 6px;\"><span>"+member.first_name+" "+member.last_name+"</span><span class=\"smaller\"><strong>&nbsp;(User)</strong></span><a class=\"danger\" style=\"font-size: 0.63rem;\" href=\"#\"><i class=\"os-icon os-icon-pencil-2\"></i></a></div></div></td><td><div class=\"cell-image-list\"><div class=\"cell-img\" style=\"background-image: url(img/portfolio9.jpg);border-radius: 50%;\"></div><div class=\"cell-img\" style=\"background-image: url(img/portfolio2.jpg);border-radius: 50%;\"></div><div class=\"cell-img-more\"><a class=\"danger\" href=\"#\"><i class=\"os-icon os-icon-pencil-2\"></i></a></div></div></td><td><div class=\"smaller\"><strong>Updating employees and thier details...</strong></div></td><td><span>Today</span><span class=\"smaller lighter\">1:52am</span></td><td class=\"text-center\"><a class=\"badge badge-success-inverted\" href=\"\">Enabled</a></td><td class=\"nowrap\"><span class=\"status-pill smaller green\"></span><span>Active</span></td><td class=\"row-actions\"><div class=\"btn-group mr-1 mb-1\"><button aria-expanded=\"false\" aria-haspopup=\"true\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\" id=\"dropdownMenuButton1\" type=\"button\">Actions</button><div aria-labelledby=\"dropdownMenuButton1\" class=\"dropdown-menu\" x-placement=\"bottom-start\" style=\"position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;\"><a class=\"dropdown-item\" href=\"#\"><i class=\"os-icon os-icon-ui-15\"></i> Action</a><a class=\"dropdown-item\" href=\"#\"><i class=\"os-icon os-icon-ui-15\"></i> Another action</a><a class=\"dropdown-item\" href=\"#\"><i class=\"os-icon os-icon-ui-15\"></i> Delete</a></div></div></td></tr>";
-				});
-			  	$('#body-members').html(text);
-			},
-			error:function(error){
-				console.log(error);
-			}
-		});
-    });
     $('#inviteForm').submit(function () {
 		// Check if user enter valid emails.
 	    var lines = $('#emails').val().split('\n');
@@ -645,6 +643,16 @@ jQuery(document).ready(function(){
 	function validateEmail($email) {
 	  	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 	  	return emailReg.test( $email );
+	}
+	if ($('#members').length) {
+		$('#members').DataTable({
+			'columnDefs':[
+                { 
+                    'searchable'    : false, 
+                    'targets'       : [0,5] 
+                },
+            ]
+		});
 	}
 </script>
 @endsection

@@ -676,6 +676,14 @@
 		            <li class="">
 			            <a href="{{ route('boards',Auth::user()->subdomain) }}">
 			                <div class="icon-w">
+			                  	<div class="os-icon os-icon-clipboard"></div>
+			                </div>
+			                <span>Boards</span>
+			            </a>
+		            </li>
+		            <li class="">
+			            <a href="{{ route('tasks',Auth::user()->subdomain) }}">
+			                <div class="icon-w">
 			                  	<div class="os-icon os-icon-tasks-checked"></div>
 			                </div>
 			                <span>Tasks</span>
@@ -968,6 +976,8 @@
 						</div>
 					</div>
         			@yield('content')
+        			
+				@include('layouts.alert')
 					<div class="floated-colors-btn second-floated-btn" onclick="switchMode({{ Auth::user()->pref_theme }})">
 						<div @if(Auth::user()->pref_theme == 0) class="os-toggler-w" @else class="os-toggler-w on" @endif>
 				  			<div class="os-toggler-i">

@@ -739,11 +739,11 @@ $(function () {
   });
 
   // #16. OUR OWN CUSTOM DROPDOWNS
-  $('.os-dropdown-trigger').on('mouseenter', function () {
-    $(this).addClass('over shake');
+  $('.os-dropdown-trigger').on('click', function () {
+    $(this).addClass('over');
   });
   $('.os-dropdown-trigger').on('mouseleave', function () {
-    $(this).removeClass('over');
+    $('.os-dropdown-trigger').removeClass('over');
   });
 
   // #17. BOOTSTRAP RELATED JS ACTIVATIONS

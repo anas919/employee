@@ -10,6 +10,15 @@ Route::group(['middleware' => 'web'], function () {
 			Route::post('/add', 'UserController@add')
 	            ->name('add');
 
+	        Route::post('/add-education', 'UserController@addEducation')
+	            ->name('add-education');
+
+	        Route::post('/add-contact', 'UserController@addContact')
+	            ->name('add-contact');
+
+	        Route::post('/add-visa', 'UserController@addVisa')
+	            ->name('add-visa');
+
 	        Route::post('/invite', 'UserController@invite')
 	            ->name('invite');
 

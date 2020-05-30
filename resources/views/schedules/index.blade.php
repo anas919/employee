@@ -90,7 +90,7 @@
 										</div>
 									</div>
 								</div>
-								<select class="form-control members-select" multiple="true" name="members[]"></select>
+								<select class="form-control members-select" multiple="true" name="members[]" required></select>
 							</div>
 						</div>
 						<div class="col-sm-6">

@@ -160,7 +160,9 @@
 										@endif
 									</td>
 									<td>
-										{{ $project->client->name }}
+										@if($project->client)
+											{{ $project->client->name }}
+										@endif
 									</td>
 									<td>
 										$01.00
@@ -220,7 +222,7 @@
 					<div class="row">
 						<div class="col-sm-6">
 						  	<div class="form-group">
-						    	<label for=""> Project Name</label>
+						    	<label for=""> Project Name *</label>
 						    	<input class="form-control" placeholder="Project Name" type="text" name="name">
 						  	</div>
 						</div>
@@ -257,12 +259,6 @@
 				                <select class="form-control teams-select" multiple="true" name="teams[]"></select>
 				            </div>
 				        </div>
-				        {{-- <div class="col-sm-6">
-				         	<div class="form-group">
-				                <label for=""> Team Members</label>
-				                <select class="form-control team-members-select" multiple="true" name="team_members[]"></select>
-				            </div>
-				        </div> --}}
 						<div class="col-sm-12">
 							<div class="form-group">
 						        <label for=""> Description</label>
@@ -294,7 +290,7 @@
        				<div class="row">
 				        <div class="col-sm-6">
 						  	<div class="form-group">
-						    	<label for=""> Project Name</label>
+						    	<label for=""> Project Name *</label>
 						    	<input class="form-control" placeholder="Project Name" type="text" id="projectName">
 						  	</div>
 						</div>
@@ -434,33 +430,37 @@
 	}
 	$("#edit-save").click(function(){
 		var projectName = $("#projectName").val();
-		var projectClient = $('#projectClient').select2("val");
-		var projectDescription = CKEDITOR.instances['ckeditor2'].getData();
-		var projectStartDate = $('#projectStartDate').val();
-		var projectEndDate = $('#projectEndDate').val();
-		var projectTeams = $("#projectTeams").select2("val");
+		if(projectName != ''){
+			var projectClient = $('#projectClient').select2("val");
+			var projectDescription = CKEDITOR.instances['ckeditor2'].getData();
+			var projectStartDate = $('#projectStartDate').val();
+			var projectEndDate = $('#projectEndDate').val();
+			var projectTeams = $("#projectTeams").select2("val");
 
-		$.ajax({
-			type:'POST',
-			url:'{{ route('update-project', Auth::user()->subdomain) }}',
-			data: {
-				id:c_project_id,
-				name:projectName,
-				client:projectClient,
-				description:projectDescription,
-				start_date:projectStartDate,
-				end_date:projectEndDate,
-				teams:projectTeams
-			},
-			success:function(data){
-				$('#edit-close').trigger( "click" );
-				location.reload(true);
-			},
-			error:function(error){
+			$.ajax({
+				type:'POST',
+				url:'{{ route('update-project', Auth::user()->subdomain) }}',
+				data: {
+					id:c_project_id,
+					name:projectName,
+					client:projectClient,
+					description:projectDescription,
+					start_date:projectStartDate,
+					end_date:projectEndDate,
+					teams:projectTeams
+				},
+				success:function(data){
+					$('#edit-close').trigger( "click" );
+					location.reload(true);
+				},
+				error:function(error){
 
-			}
-		});
-	})
+				}
+			});
+		}else{
+			alert('Project name information is required');
+		}
+	});
 	if ($('#ckeditor2').length) {
 	    CKEDITOR.replace('ckeditor2');
 	}

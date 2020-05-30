@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Activity' => $baseDir . '/app/Activity.php',
     'App\\Board' => $baseDir . '/app/Board.php',
     'App\\Candidate' => $baseDir . '/app/Candidate.php',
     'App\\Candidateresponse' => $baseDir . '/app/Candidateresponse.php',
@@ -24,6 +25,7 @@ return array(
     'App\\Earning' => $baseDir . '/app/Earning.php',
     'App\\Education' => $baseDir . '/app/Education.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\ActivityController' => $baseDir . '/app/Http/Controllers/ActivityController.php',
     'App\\Http\\Controllers\\AppController' => $baseDir . '/app/Http/Controllers/AppController.php',
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',

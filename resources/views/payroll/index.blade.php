@@ -211,7 +211,7 @@
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="row">
 						<div class="col-sm-12">
-							<label for=""> Dates</label>
+							<label for=""> Dates *</label>
 							<div class="input-group">
 								<div class="input-group-prepend">
 									<div class="input-group-text">
@@ -223,20 +223,20 @@
 						</div>
 						<div class="col-sm-12">
 							<div class="form-group">
-				                <label for=""> Team Members</label>
-				                <select class="form-control members-select" multiple="true" name="members[]"></select>
+				                <label for=""> Team Members *</label>
+				                <select class="form-control members-select" multiple="true" name="members[]" required></select>
 				            </div>
 						</div>
 						<div class="col-sm-12">
 				           	<div class="form-group">
-				             	<label for=""> Net Salary</label>
+				             	<label for=""> Net Salary *</label>
 				             	<input class="form-control" type="text" required="" name="amount">
 				           </div>
 				        </div>
 						<div class="col-sm-12">
 							<div class="form-group">
 						        <label for=""> Description</label>
-								<textarea cols="80" id="ckeditor1" name="ckeditor1" rows="10"></textarea>
+								<textarea cols="80" id="description" name="description" rows="10"></textarea>
 						    </div>
 						</div>
 						<div class="col-sm-6">
@@ -333,9 +333,6 @@
 @section('scripts')
 <script src="{{ asset('js/main_rentals.js?version=4.4.0') }}"></script>
 <style>
-	.modal {
-		overflow: auto !important;
-	}
 	.select2 {
 		width: 100% !important;
 	}
@@ -364,7 +361,7 @@
 		border-bottom-right-radius: 5px;
 	}
 	.month-column {
-		padding: 8px 34px;
+		padding: 8px 2.7vw;
 		background: #EEF5FF;
 		border: 1px solid #AEC8FF;
 		margin-bottom: 15px;
@@ -462,6 +459,9 @@
 		$('.month-column').removeClass('month-active');
 		$('#selected-range').text('(Week '+weekNumber+': Starting '+firstDay.toLocaleString('default', { weekday: 'long' })+', '+firstDay.getDate()+' '+firstDay.toLocaleString('default', { month: 'long' })+', '+year+' | Ending '+lastDay.toLocaleString('default', { weekday: 'long' })+', '+lastDay.getDate()+' '+lastDay.toLocaleString('default', { month: 'long' })+', '+year+')');
 		$(this).addClass('week-active');
-	})
+	});
+	if ($('#description').length) {
+    	CKEDITOR.replace('description');
+  	}
 </script>
 @endsection

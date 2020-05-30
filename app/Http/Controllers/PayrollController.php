@@ -33,8 +33,8 @@ class PayrollController extends Controller
 			$payslip = new Payslip();
 			$payslip->start_date =  date('Y-m-d',strtotime($dates[0]));
 			$payslip->end_date =  date('Y-m-d',strtotime($dates[1]));
-			if(isset($req->ckeditor1))
-				$payslip->note = $req->ckeditor1;
+			if(isset($req->description))
+				$payslip->note = $req->description;
 			$last = DB::table('payslips')->max('id');
 			$payslip->number = 'PL-'.($last+1);
 			$payslip->user_id = $member;

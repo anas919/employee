@@ -167,7 +167,7 @@
 						<div class="col-sm-12">
 						  	<div class="form-group">
 						    	<label for=""> Client Name</label>
-						    	<input class="form-control" placeholder="Project Name" type="text" name="name">
+						    	<input class="form-control" placeholder="Client Name" type="text" name="name" required>
 						  	</div>
 						</div>
 						<div class="col-sm-12">
@@ -185,7 +185,7 @@
 						<div class="col-sm-12">
 						  	<div class="form-group">
 						    	<label for=""> Company Name</label>
-						    	<input class="form-control" placeholder="" type="text" name="company_name">
+						    	<input class="form-control" placeholder="" type="text" name="company_name" required>
 						  	</div>
 						</div>
 						<div class="col-sm-12">

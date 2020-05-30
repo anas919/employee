@@ -18,7 +18,8 @@ class ClientController extends Controller
     }
     public function add(Request $req){
     	$client = new Client();
-		$client->number = $req->number;
+    	if($req->number)
+			$client->number = $req->number;
 		$client->name = $req->name;
 		$client->email = $req->email;
 		$client->phone = $req->phone;

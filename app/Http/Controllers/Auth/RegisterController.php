@@ -85,6 +85,7 @@ class RegisterController extends Controller
                 'number' => '0001',
                 'email' => $data['email'],
                 'subdomain' =>  $inviter->subdomain,
+                'phone' => $data['phone'],
                 'password' => bcrypt($data['password']),
             ]);
             Mail::to($data['email'])->send(new WelcomeMail($user));
@@ -97,6 +98,7 @@ class RegisterController extends Controller
                 'last_name' => $data['last_name'],
 	            'email' => $data['email'],
 	            'subdomain' => $data['subdomain'],
+                'phone' => $data['phone'],
 	            'password' => Hash::make($data['password']),
 	        ]);
 			//Create a tenant for user in general database
@@ -110,8 +112,7 @@ class RegisterController extends Controller
 
 			Artisan::call('db:create '.$data['subdomain']);
 			Artisan::call('tenants:migrate');
-        //disable foreign key check for this connection before running seeders
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 			Artisan::call('db:seed --class=RoleSeeder');
             Artisan::call('db:seed --class=PermissionSeeder');
 			Artisan::call('db:seed --class=CountrySeeder');
@@ -119,17 +120,26 @@ class RegisterController extends Controller
 			Artisan::call('db:seed --class=PaymentscheduleSeeder');
 			Artisan::call('db:seed --class=PaymentmethodSeeder');
 			Artisan::call('db:seed --class=RelationshipSeeder');
-                    DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-			//Create user in subdomain database
-			$query = "INSERT INTO ".$data['subdomain'].".users (first_name, last_name, email, subdomain, password) VALUES ('".$user->first_name."','".$user->last_name."','".$user->email."','".$user->subdomain."','".$user->password."');";
-			DB::statement($query);
-			//Give user admin role
-			$query = "INSERT INTO ".$data['subdomain'].".userroles (user_id, role_id) VALUES ('1','1');";
-			DB::statement($query);
-			//Create organization in subdomain db
-			$query = "INSERT INTO ".$data['subdomain'].".organizations (phone, name) VALUES ('".$data['phone']."','".$data['org']."');";
-			DB::statement($query);
-			Mail::to($user->email)->send(new WelcomeMail($user));
+            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+            $tenant = Tenant::where('database',$data['subdomain'])->first();
+            if($tenant)
+                $tenant->configure()->use();
+            
+            $us = new User();
+            $us->first_name = $user->first_name;
+            $us->last_name = $user->last_name;
+            $us->email = $user->email;
+            if($user->phone)
+                $us->phone = $user->phone;
+            $us->subdomain = $user->subdomain;
+            $us->password = $user->password;
+            $us->save();
+            $us->roles()->attach(1);
+            $org = new Organization();
+            $org->name = $data['org'];
+            $org->country_id = $data['country'];
+            $org->save();
+			Mail::to($us->email)->send(new WelcomeMail($us));
 			return $user;
 		}
     }

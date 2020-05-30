@@ -147,249 +147,259 @@
           'Pacific/Tongatapu'=>'(UTC+13:00) Nukualofa'
      );
 
-     $Option4=array('Afghanistan'=>'Afghanistan',
-          'Albania'=>'Albania',
-          'Algeria'=>'Algeria',
-          'American Samoa'=>'American Samoa',
-          'Andorra'=>'Andorra',
-          'Angola'=>'Angola',
-          'Anguilla'=>'Anguilla',
-          'Antarctica'=>'Antarctica',
-          'Antigua and Barbuda'=>'Antigua and Barbuda',
-          'Argentina'=>'Argentina',
-          'Armenia'=>'Armenia',
-          'Aruba'=>'Aruba',
-          'Australia'=>'Australia',
-          'Austria'=>'Austria',
-          'Azerbaijan'=>'Azerbaijan',
-          'Bahamas'=>'Bahamas',
-          'Bahrain'=>'Bahrain',
-          'Bangladesh'=>'Bangladesh',
-          'Barbados'=>'Barbados',
-          'Belarus'=>'Belarus',
-          'Belgium'=>'Belgium',
-          'Belize'=>'Belize',
-          'Benin'=>'Benin',
-          'Bermuda'=>'Bermuda',
-          'Bhutan'=>'Bhutan',
-          'Bolivia'=>'Bolivia',
-          'Bosnia and Herzegovina'=>'Bosnia and Herzegovina',
-          'Botswana'=>'Botswana',
-          'Bouvet Island'=>'Bouvet Island',
-          'Brazil'=>'Brazil',
-          'British Indian Ocean Territory'=>'British Indian Ocean Territory',
-          'Brunei Darussalam'=>'Brunei Darussalam',
-          'Bulgaria'=>'Bulgaria',
-          'Burkina Faso'=>'Burkina Faso',
-          'Burundi'=>'Burundi',
-          'Cambodia'=>'Cambodia',
-          'Cameroon'=>'Cameroon',
-          'Canada'=>'Canada',
-          'Cape Verde'=>'Cape Verde',
-          'Cayman Islands'=>'Cayman Islands',
-          'Central African Republic'=>'Central African Republic',
-          'Chad'=>'Chad',
-          'Chile'=>'Chile',
-          'China'=>'China',
-          'Christmas Island'=>'Christmas Island',
-          'Cocos Keeling Islands'=>'Cocos Keeling Islands',
-          'Colombia'=>'Colombia',
-          'Comoros'=>'Comoros',
-          'Congo'=>'Congo',
-          'Congo The Democratic Republic of The'=>'Congo The Democratic Republic of The',
-          'Cook Islands'=>'Cook Islands',
-          'Costa Rica'=>'Costa Rica',
-          'Croatia'=>'Croatia',
-          'Cuba'=>'Cuba',
-          'Cyprus'=>'Cyprus',
-          'Czech Republic'=>'Czech Republic',
-          'Denmark'=>'Denmark',
-          'Djibouti'=>'Djibouti',
-          'Dominica'=>'Dominica',
-          'Dominican Republic'=>'Dominican Republic',
-          'Ecuador'=>'Ecuador',
-          'Egypt'=>'Egypt',
-          'El Salvador'=>'El Salvador',
-          'Equatorial Guinea'=>'Equatorial Guinea',
-          'Eritrea'=>'Eritrea',
-          'Estonia'=>'Estonia',
-          'Ethiopia'=>'Ethiopia',
-          'Falkland Islands Malvinas'=>'Falkland Islands Malvinas',
-          'Faroe Islands'=>'Faroe Islands',
-          'Fiji'=>'Fiji',
-          'Finland'=>'Finland',
-          'France'=>'France',
-          'French Guiana'=>'French Guiana',
-          'French Polynesia'=>'French Polynesia',
-          'French Southern Territories'=>'French Southern Territories',
-          'Gabon'=>'Gabon',
-          'Gambia'=>'Gambia',
-          'Georgia'=>'Georgia',
-          'Germany'=>'Germany',
-          'Ghana'=>'Ghana',
-          'Gibraltar'=>'Gibraltar',
-          'Greece'=>'Greece',
-          'Greenland'=>'Greenland',
-          'Grenada'=>'Grenada',
-          'Guadeloupe'=>'Guadeloupe',
-          'Guam'=>'Guam',
-          'Guatemala'=>'Guatemala',
-          'Guernsey'=>'Guernsey',
-          'Guinea'=>'Guinea',
-          'Guinea-bissau'=>'Guinea-bissau',
-          'Guyana'=>'Guyana',
-          'Haiti'=>'Haiti',
-          'Heard Island and Mcdonald Islands'=>'Heard Island and Mcdonald Islands',
-          'Honduras'=>'Honduras',
-          'Hong Kong'=>'Hong Kong',
-          'Hungary'=>'Hungary',
-          'Iceland'=>'Iceland',
-          'India'=>'India',
-          'Indonesia'=>'Indonesia',
-          'Iran Islamic Republic of'=>'Iran Islamic Republic of',
-          'Iraq'=>'Iraq',
-          'Ireland'=>'Ireland',
-          'Isle of Man'=>'Isle of Man',
-          'Israel'=>'Israel',
-          'Italy'=>'Italy',
-          'Jamaica'=>'Jamaica',
-          'Japan'=>'Japan',
-          'Jersey'=>'Jersey',
-          'Jordan'=>'Jordan',
-          'Kazakhstan'=>'Kazakhstan',
-          'Kenya'=>'Kenya',
-          'Kiribati'=>'Kiribati',
-          'Korea Republic of'=>'Korea Republic of',
-          'Kuwait'=>'Kuwait',
-          'Kyrgyzstan'=>'Kyrgyzstan',
-          'Latvia'=>'Latvia',
-          'Lebanon'=>'Lebanon',
-          'Lesotho'=>'Lesotho',
-          'Liberia'=>'Liberia',
-          'Libyan Arab Jamahiriya'=>'Libyan Arab Jamahiriya',
-          'Liechtenstein'=>'Liechtenstein',
-          'Lithuania'=>'Lithuania',
-          'Luxembourg'=>'Luxembourg',
-          'Macao'=>'Macao',
-          'Macedonia The Former Yugoslav Republic of'=>'Macedonia The Former Yugoslav Republic of',
-          'Madagascar'=>'Madagascar',
-          'Malawi'=>'Malawi',
-          'Malaysia'=>'Malaysia',
-          'Maldives'=>'Maldives',
-          'Mali'=>'Mali',
-          'Malta'=>'Malta',
-          'Marshall Islands'=>'Marshall Islands',
-          'Martinique'=>'Martinique',
-          'Mauritania'=>'Mauritania',
-          'Mauritius'=>'Mauritius',
-          'Mayotte'=>'Mayotte',
-          'Mexico'=>'Mexico',
-          'Micronesi Federated States of'=>'Micronesia Federated States of',
-          'Moldova Republic of'=>'Moldova Republic of',
-          'Monaco'=>'Monaco',
-          'Mongolia'=>'Mongolia',
-          'Montenegro'=>'Montenegro',
-          'Montserrat'=>'Montserrat',
-          'Morocco'=>'Morocco',
-          'Mozambique'=>'Mozambique',
-          'Myanmar'=>'Myanmar',
-          'Namibia'=>'Namibia',
-          'Nauru'=>'Nauru',
-          'Nepal'=>'Nepal',
-          'Netherlands'=>'Netherlands',
-          'Netherlands Antilles'=>'Netherlands Antilles',
-          'New Caledonia'=>'New Caledonia',
-          'New Zealand'=>'New Zealand',
-          'Nicaragua'=>'Nicaragua',
-          'Niger'=>'Niger',
-          'Nigeria'=>'Nigeria',
-          'Niue'=>'Niue',
-          'Norfolk Island'=>'Norfolk Island',
-          'Northern Mariana Islands'=>'Northern Mariana Islands',
-          'Norway'=>'Norway',
-          'Oman'=>'Oman',
-          'Pakistan'=>'Pakistan',
-          'Palau'=>'Palau',
-          'Palestinian Territory Occupied'=>'Palestinian Territory Occupied',
-          'Panama'=>'Panama',
-          'Papua New Guinea'=>'Papua New Guinea',
-          'Paraguay'=>'Paraguay',
-          'Peru'=>'Peru',
-          'Philippines'=>'Philippines',
-          'Pitcairn'=>'Pitcairn',
-          'Poland'=>'Poland',
-          'Portugal'=>'Portugal',
-          'Puerto Rico'=>'Puerto Rico',
-          'Qatar'=>'Qatar',
-          'Reunion'=>'Reunion',
-          'Romania'=>'Romania',
-          'Russian Federation'=>'Russian Federation',
-          'Rwanda'=>'Rwanda',
-          'Saint Helena'=>'Saint Helena',
-          'Saint Kitts and Nevis'=>'Saint Kitts and Nevis',
-          'Saint Lucia'=>'Saint Lucia',
-          'Saint Pierre and Miquelon'=>'Saint Pierre and Miquelon',
-          'Saint Vincent and The Grenadines'=>'Saint Vincent and The Grenadines',
-          'Samoa'=>'Samoa',
-          'San Marino'=>'San Marino',
-          'Sao Tome and Principe'=>'Sao Tome and Principe',
-          'Saudi Arabia'=>'Saudi Arabia',
-          'Senegal'=>'Senegal',
-          'Serbia'=>'Serbia',
-          'Seychelles'=>'Seychelles',
-          'Sierra Leone'=>'Sierra Leone',
-          'Singapore'=>'Singapore',
-          'Slovakia'=>'Slovakia',
-          'Slovenia'=>'Slovenia',
-          'Solomon Islands'=>'Solomon Islands',
-          'Somalia'=>'Somalia',
-          'South Africa'=>'South Africa',
-          'South Georgia and The South Sandwich Islands'=>'South Georgia and The South Sandwich Islands',
-          'Spain'=>'Spain',
-          'Sri Lanka'=>'Sri Lanka',
-          'Sudan'=>'Sudan',
-          'Suriname'=>'Suriname',
-          'Svalbard and Jan Mayen'=>'Svalbard and Jan Mayen',
-          'Swaziland'=>'Swaziland',
-          'Sweden'=>'Sweden',
-          'Switzerland'=>'Switzerland',
-          'Syrian Arab Republic'=>'Syrian Arab Republic',
-          'Taiwan, Province of China'=>'Taiwan, Province of China',
-          'Tajikistan'=>'Tajikistan',
-          'Tanzania, United Republic of'=>'Tanzania, United Republic of',
-          'Thailand'=>'Thailand',
-          'Timor-leste'=>'Timor-leste',
-          'Togo'=>'Togo',
-          'Tokelau'=>'Tokelau',
-          'Tonga'=>'Tonga',
-          'Trinidad and Tobago'=>'Trinidad and Tobago',
-          'Tunisia'=>'Tunisia',
-          'Turkey'=>'Turkey',
-          'Turkmenistan'=>'Turkmenistan',
-          'Turks and Caicos Islands'=>'Turks and Caicos Islands',
-          'Tuvalu'=>'Tuvalu',
-          'Uganda'=>'Uganda',
-          'Ukraine'=>'Ukraine',
-          'United Arab Emirates'=>'United Arab Emirates',
-          'United Kingdom'=>'United Kingdom',
-          'United States'=>'United States',
-          'United States Minor Outlying Islands'=>'United States Minor Outlying Islands',
-          'Uruguay'=>'Uruguay',
-          'Uzbekistan'=>'Uzbekistan',
-          'Vanuatu'=>'Vanuatu',
-          'Venezuela'=>'Venezuela',
-          'Viet Nam'=>'Viet Nam',
-          'Virgin Islands - British'=>'Virgin Islands - British',
-          'Virgin Islands - U.S.'=>'Virgin Islands - U.S.',
-          'Wallis and Futuna'=>'Wallis and Futuna',
-          'Western Sahara'=>'Western Sahara',
-          'Yemen'=>'Yemen',
-          'Zambia'=>'Zambia',
-          'Zimbabwe'=>'Zimbabwe'
-     );
+$countries =array(
+1 =>'Afghanistan',
+2 =>'Åland Islands',
+3 =>'Albania',
+4 =>'Algeria',
+5 =>'American Samoa',
+6 =>'Andorra',
+7 =>'Angola',
+8 =>'Anguilla',
+9 =>'Antarctica',
+10 =>'Antigua and Barbuda',
+11 =>'Argentina',
+12 =>'Armenia',
+13 =>'Aruba',
+14 =>'Australia',
+15 =>'Austria',
+16 =>'Azerbaijan',
+17 =>'Bahamas',
+18 =>'Bahrain',
+19 =>'Bangladesh',
+20 =>'Barbados',
+21 =>'Belarus',
+22 =>'Belgium',
+23 =>'Belize',
+24 =>'Benin',
+25 =>'Bermuda',
+26 =>'Bhutan',
+27 =>'Bolivia ,Plurinational State of',
+28 =>'Bonaire ,Sint Eustatius and Saba',
+29 =>'Bosnia and Herzegovina',
+30 =>'Botswana',
+31 =>'Bouvet Island',
+32 =>'Brazil',
+33 =>'British Indian Ocean Territory',
+34 =>'Brunei Darussalam',
+35 =>'Bulgaria',
+36 =>'Burkina Faso',
+37 =>'Burundi',
+38 =>'Cambodia',
+39 =>'Cameroon',
+40 =>'Canada',
+41 =>'Cape Verde',
+42 =>'Cayman Islands',
+43 =>'Central African Republic',
+44 =>'Chad',
+45 =>'Chile',
+46 =>'China',
+47 =>'Christmas Island',
+48 =>'Cocos (Keeling) Islands',
+49 =>'Colombia',
+50 =>'Comoros',
+51 =>'Congo',
+52 =>'Congo ,the Democratic Republic of the',
+53 =>'Cook Islands',
+54 =>'Costa Rica',
+55 =>'Côte d\'Ivoire',
+56 =>'Croatia',
+57 =>'Cuba',
+58 =>'Curaçao',
+59 =>'Cyprus',
+60 =>'Czech Republic',
+61 =>'Denmark',
+62 =>'Djibouti',
+63 =>'Dominica',
+64 =>'Dominican Republic',
+65 =>'Ecuador',
+66 =>'Egypt',
+67 =>'El Salvador',
+68 =>'Equatorial Guinea',
+69 =>'Eritrea',
+70 =>'Estonia',
+71 =>'Ethiopia',
+72 =>'Falkland Islands (Malvinas)',
+73 =>'Faroe Islands',
+74 =>'Fiji',
+75 =>'Finland',
+76 =>'France',
+77 =>'French Guiana',
+78 =>'French Polynesia',
+79 =>'French Southern Territories',
+80 =>'Gabon',
+81 =>'Gambia',
+82 =>'Georgia',
+83 =>'Germany',
+84 =>'Ghana',
+85 =>'Gibraltar',
+86 =>'Greece',
+87 =>'Greenland',
+88 =>'Grenada',
+89 =>'Guadeloupe',
+90 =>'Guam',
+91 =>'Guatemala',
+92 =>'Guernsey',
+93 =>'Guinea',
+94 =>'Guinea-Bissau',
+95 =>'Guyana',
+96 =>'Haiti',
+97 =>'Heard Island and McDonald Mcdonald Islands',
+98 =>'Holy See (Vatican City State)',
+99 =>'Honduras',
+100 =>'Hong Kong',
+101 =>'Hungary',
+102 =>'Iceland',
+103 =>'India',
+104 =>'Indonesia',
+105 =>'Iran ,slamic Republic of',
+106 =>'Iraq',
+107 =>'Ireland',
+108 =>'Isle of Man',
+109 =>'Israel',
+110 =>'Italy',
+111 =>'Jamaica',
+112 =>'Japan',
+113 =>'Jersey',
+114 =>'Jordan',
+115 =>'Kazakhstan',
+116 =>'Kenya',
+117 =>'Kiribati',
+118 =>'Korea ,Democratic People\'s Republic of',
+119 =>'Korea ,Republic of',
+120 =>'Kuwait',
+121 =>'Kyrgyzstan',
+122 =>'Lao People\'s Democratic Republic',
+123 =>'Latvia',
+124 =>'Lebanon',
+125 =>'Lesotho',
+126 =>'Liberia',
+127 =>'Libya',
+128 =>'Liechtenstein',
+129 =>'Lithuania',
+130 =>'Luxembourg',
+131 =>'Macao',
+132 =>'Macedonia ,the Former Yugoslav Republic of',
+133 =>'Madagascar',
+134 =>'Malawi',
+135 =>'Malaysia',
+136 =>'Maldives',
+137 =>'Mali',
+138 =>'Malta',
+139 =>'Marshall Islands',
+140 =>'Martinique',
+141 =>'Mauritania',
+142 =>'Mauritius',
+143 =>'Mayotte',
+144 =>'Mexico',
+145 =>'Micronesia ,Federated States of',
+146 =>'Moldova ,Republic of',
+147 =>'Monaco',
+148 =>'Mongolia',
+149 =>'Montenegro',
+150 =>'Montserrat',
+151 =>'Morocco',
+152 =>'Mozambique',
+153 =>'Myanmar',
+154 =>'Namibia',
+155 =>'Nauru',
+156 =>'Nepal',
+157 =>'Netherlands',
+158 =>'New Caledonia',
+159 =>'New Zealand',
+160 =>'Nicaragua',
+161 =>'Niger',
+162 =>'Nigeria',
+163 =>'Niue',
+164 =>'Norfolk Island',
+165 =>'Northern Mariana Islands',
+166 =>'Norway',
+167 =>'Oman',
+168 =>'Pakistan',
+169 =>'Palau',
+170 =>'Palestine ,State of',
+171 =>'Panama',
+172 =>'Papua New Guinea',
+173 =>'Paraguay',
+174 =>'Peru',
+175 =>'Philippines',
+176 =>'Pitcairn',
+177 =>'Poland',
+178 =>'Portugal',
+179 =>'Puerto Rico',
+180 =>'Qatar',
+181 =>'Réunion',
+182 =>'Romania',
+183 =>'Russian Federation',
+184 =>'Rwanda',
+185 =>'Saint Barthélemy',
+186 =>'Saint Helena ,Ascension and Tristan da Cunha',
+187 =>'Saint Kitts and Nevis',
+188 =>'Saint Lucia',
+189 =>'Saint Martin (French part)',
+190 =>'Saint Pierre and Miquelon',
+191 =>'Saint Vincent and the Grenadines',
+192 =>'Samoa',
+193 =>'San Marino',
+194 =>'Sao Tome and Principe',
+195 =>'Saudi Arabia',
+196 =>'Senegal',
+197 =>'Serbia',
+198 =>'Seychelles',
+199 =>'Sierra Leone',
+200 =>'Singapore',
+201 =>'Sint Maarten (Dutch part)',
+202 =>'Slovakia',
+203 =>'Slovenia',
+204 =>'Solomon Islands',
+205 =>'Somalia',
+206 =>'South Africa',
+207 =>'South Georgia and the South Sandwich Islands',
+208 =>'South Sudan',
+209 =>'Spain',
+210 =>'Sri Lanka',
+211 =>'Sudan',
+212 =>'Suri',
+213 =>'Svalbard and Jan Mayen',
+214 =>'Swaziland',
+215 =>'Sweden',
+216 =>'Switzerland',
+217 =>'Syrian Arab Republic',
+218 =>'Taiwan',
+219 =>'Tajikistan',
+220 =>'Tanzania ,United Republic of',
+221 =>'Thailand',
+222 =>'Timor-Leste',
+223 =>'Togo',
+224 =>'Tokelau',
+225 =>'Tonga',
+226 =>'Trinidad and Tobago',
+227 =>'Tunisia',
+228 =>'Turkey',
+229 =>'Turkmenistan',
+230 =>'Turks and Caicos Islands',
+231 =>'Tuvalu',
+232 =>'Uganda',
+233 =>'Ukraine',
+234 =>'United Arab Emirates',
+235 =>'United Kingdom',
+236 =>'United States',
+237 =>'United States Minor Outlying Islands',
+238 =>'Uruguay',
+239 =>'Uzbekistan',
+240 =>'Vanuatu',
+241 =>'Venezuela ,Bolivarian Republic of',
+242 =>'Viet Nam',
+243 =>'Virgin Islands ,British',
+244 =>'Virgin Islands ,U.S.',
+245 =>'Wallis and Futuna',
+246 =>'Western Sahara',
+247 =>'Yemen',
+248 =>'Zambia',
+249 =>'Zimbabwe');
 ?>
 <div class="container-fluid">
-     <div class="row align-items-center">
+     <div class="row">
           <div class="col-md-6 col-lg-7 fullscreen-md d-flex justify-content-center align-items-center overlay gradient gradient-53 alpha-7 image-background cover" style="background-image:url(http://beta.textwik.com/assets/skin/img/login-img.png);">
                <div style="margin-top: 15%;" class="content">
                     <h2 class="display-4 display-md-3 color-1 mt-4 mt-md-0">Welcome to <span class="bold d-block">TextWik</span></h2>
@@ -420,7 +430,7 @@
 						 <input type="hidden" name="src" value="false">
                          <div class="row row-bordered">
                               <div class="col-md-6{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                                   <label class="control-label bold small text-uppercase color-2">First Name</label>
+                                   <label class="control-label bold small text-uppercase color-2">First Name *</label>
                                    <div class="form-group has-icon">
                                         <div class="input text">
                                              <input type="text" name="first_name" class="form-control form-control-rounded" placeholder="First Name" value="{{ old('first_name') }}">
@@ -434,10 +444,10 @@
                                    </div>
                               </div>
                               <div class="col-md-6{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                   <label class="control-label bold small text-uppercase color-2">Last Name</label>
+                                   <label class="control-label bold small text-uppercase color-2">Last Name *</label>
                                    <div class="form-group has-icon">
                                         <div class="input text">
-                                             <input type="text" name="last_name" class="form-control form-control-rounded" placeholder="Last Name" value="{{ old('last__name') }}">
+                                             <input type="text" name="last_name" class="form-control form-control-rounded" placeholder="Last Name" value="{{ old('last_name') }}">
                                              @if ($errors->has('last_name'))
                                                   <span class="help-block">
                                                        <strong>{{ $errors->first('last_name') }}</strong>
@@ -448,16 +458,17 @@
                                    </div>
                               </div>
                               <div class="col-md-12{{ $errors->has('email') ? ' has-error' : '' }}">
-                                   <label class="control-label bold small text-uppercase color-2">Email</label>
+                                   <label class="control-label bold small text-uppercase color-2">Email *</label>
                                    <div class="form-group has-icon">
-                                        <div class="input email">
+                                        <div class="input text">
                                              <input type="email" name="email" class="form-control form-control-rounded" placeholder="Email" value="{{ old('email') }}">
                                              @if ($errors->has('email'))
                                                   <span class="help-block">
                                                        <strong>{{ $errors->first('email') }}</strong>
                                                   </span>
                                              @endif
-                                        </div><i class="icon fas fa-envelope"></i>
+                                        </div>
+                                        <i class="icon fas fa-envelope"></i>
                                    </div>
                               </div>
                               <div class="col-md-12{{ $errors->has('phone') ? ' has-error' : '' }}">
@@ -474,7 +485,7 @@
                                    </div>
                               </div>
                               <div class="col-md-12{{ $errors->has('org') ? ' has-error' : '' }}">
-                                   <label class="control-label bold small text-uppercase color-2">Company Name</label>
+                                   <label class="control-label bold small text-uppercase color-2">Company Name *</label>
                                    <div class="form-group has-icon">
                                         <div class="input text">
                                              <input type="text" name="org" class="form-control form-control-rounded" placeholder="Company Name" value="{{ old('org') }}">
@@ -487,7 +498,7 @@
                                    </div>
                               </div>
                               <div class="col-md-12{{ $errors->has('subdomain') ? ' has-error' : '' }}">
-                                   <label class="control-label bold small text-uppercase color-2">Desired Url</label>
+                                   <label class="control-label bold small text-uppercase color-2">Desired Url *</label>
                                    <div class="form-group has-icon">
                                         <div class="input text">
                                              <input type="text" name="subdomain" class="form-control form-control-rounded" value="{{ old('subdomain') }}">
@@ -500,7 +511,7 @@
                                    </div>
                               </div>
                               <div class="col-md-12{{ $errors->has('password') ? ' has-error' : '' }}">
-                                   <label class="control-label bold small text-uppercase color-2">Password</label>
+                                   <label class="control-label bold small text-uppercase color-2">Password *</label>
                                    <div class="form-group has-icon">
                                         <div class="input password">
                                              <input type="password" name="password" class="form-control form-control-rounded" placeholder="Password">
@@ -526,11 +537,14 @@
                                    </div>
                               </div>
                               <div class="col-md-12">
-                                   <label class="control-label bold small text-uppercase color-2">Time Zone</label>
+                                   <label class="control-label bold small text-uppercase color-2">Country *</label>
                                    <div class="form-group">
                                         <div class="input select">
-                                             <select name="timezone" class="form-control placeholder-no-fix" id="user-timezone">
-                                                  <option value="Pacific/Midway">(UTC-11:00) Midway Island</option>
+                                             <select name="country" class="form-control placeholder-no-fix" id="user-country">
+                                                  <option value="">--Organization Country--</option>
+                                                  @foreach($countries as $code => $country)
+                                                       <option value="{{$code}}">{{$country}}</option>
+                                                  @endforeach
                                              </select>
                                         </div>
                                    </div>
@@ -554,6 +568,13 @@
             inputElement.form.submit();
         }
     }
+    $('#frmRegister').submit(function () {
+          // Check if empty of not
+          if($('#user-country').val() == ''){
+               alert("Please select country");
+               return false;
+          }
+     });
 </script>
 <style>
      body{
@@ -608,6 +629,7 @@
      }
      .input {
           width: -webkit-fill-available;
+          width: -moz-available;
      }
 </style>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">

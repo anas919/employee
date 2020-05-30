@@ -28,12 +28,14 @@ class HomeController extends Controller
 			//dd($account);
 			if($account == ''){
 				if(Auth::check())
-					return 'Login at : <a href="http://'.Auth::user()->subdomain.'.localhost:8000">http://'.Auth::user()->subdomain.'.localhost.</a> and login';
+                    return redirect()->route('members',['account'=>Auth::user()->subdomain]);
 				else
 					return route('login');
 			}
 			else {
-					$users = User::all();
+                if(Auth::check())
+                    return redirect()->route('members',['account'=>Auth::user()->subdomain]);
+                else
 					return view('home',['users'=>$users]);
 			}
     }

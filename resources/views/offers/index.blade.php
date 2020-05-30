@@ -149,14 +149,14 @@
 					<div class="row">
 						<div class="col-sm-12">
 						  	<div class="form-group">
-						    	<label for=""> Post Title</label>
-						    	<input class="form-control" placeholder="Enter post title" type="text" name="title">
+						    	<label for=""> Post Title *</label>
+						    	<input class="form-control" placeholder="Enter post title" type="text" name="title" required>
 						  	</div>
 						</div>
 						<div class="col-sm-12">
 				         	<div class="form-group">
-				                <label for=""> Responsible (Who is in charge of this offer)</label>
-				                <select class="form-control responsible-select" multiple="false" name="responsible"></select>
+				                <label for=""> Responsible (Who is in charge of this offer) *</label>
+				                <select class="form-control responsible-select" multiple="false" name="responsible" required=""></select>
 				            </div>
 				        </div>
 						<div class="col-sm-12">
@@ -248,8 +248,8 @@
 						</div>
 						<div class="col-sm-6">
 						  	<div class="form-group">
-						    	<label for=""> City</label>
-						    	<input class="form-control" type="text" name="city">
+						    	<label for=""> City *</label>
+						    	<input class="form-control" type="text" name="city" required>
 						  	</div>
 						</div>
 						<div class="col-sm-12">
@@ -261,13 +261,13 @@
 						<div class="col-sm-12">
 						  	<div class="form-group">
 						        <label for=""> Description *</label>
-								<textarea cols="80" id="ckeditor1" name="ckeditor1" rows="10"></textarea>
+								<textarea cols="80" id="description" name="description" rows="10" required></textarea>
 						    </div>
 						</div>
 						<div class="col-sm-12">
 						  	<div class="form-group">
 						        <label for=""> Applicant Qualifications *</label>
-								<textarea cols="80" id="ckeditor2" name="ckeditor2" rows="10"></textarea>
+								<textarea cols="80" id="qualifications" name="qualifications" rows="10" required></textarea>
 						    </div>
 						</div>
 						<div class="col-sm-6">
@@ -351,7 +351,7 @@
 				            </div>
 			          	</div>
 						<div class="col-sm-12" id="add-question">
-              				<button class="btn btn-sm btn-primary btn-upper" data-target="#addQuestionModal" data-toggle="modal" type="button"><span style=""><i class="os-icon os-icon-ui-22"></i> Add Question</span></button>
+              				<button class="btn btn-sm btn-primary btn-upper" style="margin: 15px;" data-target="#addQuestionModal" data-toggle="modal" type="button"><span style=""><i class="os-icon os-icon-ui-22"></i> Add Question</span></button>
               			</div>
 					</div>
 					<div class="modal-footer">
@@ -491,8 +491,10 @@
 		else
 			$('#add-question').after('<div class="col-sm-12"><div class="form-group"><label> Question</label><input class="form-control" placeholder="Enter question" type="text" name="opt_questions[]" value="'+$('#question').val()+'"></div></div>');
 		$('#close-question').trigger("click");
+		$('#question').val('');
 	}
 	function getShareableLink(offer_id){
+		console.log('{{ url('/') }}'+offer_id);
 		$.ajax({
 			type:'GET',
 			url:'{{ url('/') }}/offers/getlink/'+offer_id,
@@ -546,8 +548,17 @@
 			}
 		});
 	}
-	if ($('#ckeditor2').length) {
-    	CKEDITOR.replace('ckeditor2');
+	if ($('#description').length) {
+    	CKEDITOR.replace('description').on( 'required', function( evt ) {
+		    alert( 'Offer description is required.' );
+		    evt.cancel();
+		} );
+  	}
+	if ($('#qualifications').length) {
+    	CKEDITOR.replace('qualifications').on( 'required', function( evt ) {
+		    alert( 'Applicant Qualifications is required.' );
+		    evt.cancel();
+		} );
   	}
 
 	$("#link").click(function() {
@@ -560,18 +571,20 @@
 		alert('Copied to clipboard')
 	}
 	function addDepartment() {
+		$('#loading').css('display','block');
 		var name = $('#department').val();
 		$.ajax({
 			type:'POST',
 			url:'{{ url('/') }}/departments/add/',
 			data:{name:name},
 			success:function(data){
-				console.log(data);
 				var o = new Option(data.department.name, data.department.id);
 				$(o).html(data.department.name);/// jquerify the DOM object 'o'
 				$("#departments").append(o);
 				$('#departments-empty').remove();
+				$('#loading').css('display','none');
 				$('#close-department').trigger('click');
+				$('#department').val('');
 			},
 			error:function(error){
 				console.log(error);

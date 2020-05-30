@@ -18,7 +18,7 @@ class CreateOrganizationsTable extends Migration
             $table->string('name');
             $table->string('logo')->nullable();
             $table->longText('address')->nullable();
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->string('tax_id')->nullable();
             $table->string('currency')->nullable();
             $table->string('time_zone')->nullable();

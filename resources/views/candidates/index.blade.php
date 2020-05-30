@@ -173,16 +173,13 @@
 					<input type="hidden" name="candidate" value="" id="candidate">
 					<div class="row">
 						<div class="col-sm-12">
-							<div class="form-group">
-								<label for="">Start time</label>
-				                <div class='input-group date' id='datetimepicker1'>
-				                    <input type='text' class="form-control" name="date" />
-				                    <span class="input-group-addon">
-				                        <span class="glyphicon glyphicon-calendar"></span>
-				                    </span>
-				                </div>
-				            </div>
-						</div>
+            				<div class="form-group">
+			                  <label for="">Start time(If firefox: Enter time manually)</label>
+			                  <div class="date-input">
+			                    <input class="start-daterange form-control" type="text" name="date" value="">
+			                  </div>
+			                </div>
+          				</div>
 						<div class="col-sm-12">
 				         	<div class="form-group">
 				                <label for=""> Interviewer</label>
@@ -201,9 +198,9 @@
 </div>
 @endsection
 @section('scripts')
-<link href="{{ asset('bower_components/bootstrap-datetime/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+<!-- <link href="{{ asset('bower_components/bootstrap-datetime/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
 {{-- <link rel="stylesheet" href="{{ asset('http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css') }}"> --}}
-<script src="{{ asset('bower_components/bootstrap-datetime/bootstrap-datetimepicker.min.js') }}"></script>
+<script src="{{ asset('bower_components/bootstrap-datetime/bootstrap-datetimepicker.min.js') }}"></script> -->
 <style>
 	.select2 {
 		width: 100% !important;
@@ -221,9 +218,9 @@
 		templateResult: function (d) { return $(d.text); },
 		templateSelection: function (d) { return $(d.text); },
 	});
-	$(function () {
-        $('#datetimepicker1').datetimepicker();
-    });
+	// $(function () {
+ //        $('#datetimepicker1').datetimepicker();
+ //    });
 	function setupInterview(candidate_id) {
 		$.ajax({
 			type:'GET',
@@ -261,5 +258,14 @@
 		$('#candidate').val(candidate_id);
 		$('#setupInterviewModal').modal('show');
 	}
+	$('input.start-daterange').daterangepicker({ 
+		"singleDatePicker": true,
+		"timePicker": true,
+		// "startDate": moment().startOf('hour'),
+		"showDropdowns": true,
+		"locale": {
+	      format: 'DD-MM-YYYY HH:mm:ss'
+	    }
+	});
 </script>
 @endsection

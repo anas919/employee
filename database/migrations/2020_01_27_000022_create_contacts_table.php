@@ -16,12 +16,10 @@ class CreateContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('phone');
-            $table->string('email');
-            $table->longText('address');
-            $table->string('city');
-            $table->string('province');
-            $table->string('postal_code');
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->longText('address')->nullable();
+            $table->string('city')->nullable();
             $table->integer('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries');
             $table->integer('relationship_id')->unsigned();

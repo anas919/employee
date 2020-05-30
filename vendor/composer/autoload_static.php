@@ -557,6 +557,7 @@ class ComposerStaticInitdd081200fa635e3bb28311cc051d2712
     );
 
     public static $classMap = array (
+        'App\\Activity' => __DIR__ . '/../..' . '/app/Activity.php',
         'App\\Board' => __DIR__ . '/../..' . '/app/Board.php',
         'App\\Candidate' => __DIR__ . '/../..' . '/app/Candidate.php',
         'App\\Candidateresponse' => __DIR__ . '/../..' . '/app/Candidateresponse.php',
@@ -575,6 +576,7 @@ class ComposerStaticInitdd081200fa635e3bb28311cc051d2712
         'App\\Earning' => __DIR__ . '/../..' . '/app/Earning.php',
         'App\\Education' => __DIR__ . '/../..' . '/app/Education.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\ActivityController' => __DIR__ . '/../..' . '/app/Http/Controllers/ActivityController.php',
         'App\\Http\\Controllers\\AppController' => __DIR__ . '/../..' . '/app/Http/Controllers/AppController.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',

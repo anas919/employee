@@ -5106,11 +5106,14 @@ input[type="button"].btn-block {
 }
 
 .alert {
-  position: relative;
+  z-index: 9999;
+  position: fixed;
+  top: 10px;
+  right: 10px;
   padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
   border: 2px solid transparent;
   border-radius: 6px;
+  display: none;
 }
 
 .alert-heading {
@@ -10352,7 +10355,6 @@ a.text-dark:hover, a.text-dark:focus {
 .table tfoot th,
 .table thead th {
   font-size: 0.63rem;
-  text-transform: uppercase;
   border-top: none;
 }
 
@@ -11008,7 +11010,7 @@ legend:before {
   box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
   outline-color: rgba(255, 255, 255, 0);
   outline-offset: 15px;
-  text-shadow: 1px 1px 2px #427388;
+  /*text-shadow: 1px 1px 2px #427388;*/
 }
 .toggled-buttons .btn-toggled {
   border: 2px solid #047bf8;
@@ -11392,7 +11394,9 @@ legend:before {
   padding-left: 15px;
   margin-left: 15px;
 }
-
+.modal {
+  overflow: auto !important;
+}
 /* 3h. Override bootstrap popover styles */
 .popover {
   font-size: 0.99rem;
@@ -16869,15 +16873,12 @@ a.el-tablo:hover .label {
 }
 
 .activity-boxes-w .activity-role {
-  font-size: 0.63rem;
-  text-transform: uppercase;
   color: rgba(0, 0, 0, 0.4);
   margin-bottom: 0.2rem;
 }
 
 .activity-boxes-w .activity-title {
-  font-size: 0.63rem;
-  text-transform: uppercase;
+  font-size: 0.8rem;
   display: block;
 }
 
@@ -29215,4 +29216,23 @@ button.close span {
   40%, 60% {
     transform: translate3d(4px, 0, 0);
   }
+}
+.select-add {
+  border-bottom: 1px solid #047bf8;
+  color: #047bf8;
+  font-size: 0.63rem;
+border: none;
+text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+.modal-add {
+    border-bottom: 1px solid #047bf8;
+  color: #047bf8;
+border: none;
+text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
 }

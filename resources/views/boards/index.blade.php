@@ -272,7 +272,7 @@
 						<div class="col-sm-12">
 						  	<div class="form-group">
 						    	<label for=""> Board Title</label>
-						    	<input class="form-control" placeholder="Board title" type="text" name="title">
+						    	<input class="form-control" placeholder="Board title" type="text" name="title" required>
 						  	</div>
 						</div>
 						<div class="col-sm-12">

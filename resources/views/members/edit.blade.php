@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+	Edit Member
+@endsection
 @section('content')
 <div class="content-box">
     <div class="row">
@@ -107,7 +109,7 @@
                     				<div class="form-group">
 					                  <label for="">Birth Date</label>
 					                  <div class="date-input">
-					                    <input class="single-daterange form-control" placeholder="dd/mm/yyy" type="text" name="birth_date" value="@if($member->birth_date) {{ (new DateTime($member->birth_date))->format('d/m/Y') }} @endif">
+					                    <input class="birth-daterange form-control" placeholder="Birth date here" type="text" name="birth_date" value="@if($member->birth_date) {{ (new DateTime($member->birth_date))->format('d/m/Y') }} @endif">
 					                  </div>
 					                </div>
                   				</div>
@@ -189,7 +191,7 @@
                       			<div class="col-sm-6">
                         			<div class="form-group">
                       					<label for="">Country</label>
-                      					<select class="form-control countries-select" name="country">
+                      					<select class="form-control" name="country">
                       						@if($countries && $member->country)
 								                @foreach($countries as $country)
 								                <option value="{{ $country->id }}" @if($member->country->id == $country->id)selected="selected"@endif>{{ ucfirst($country->country) }} ({{ strtoupper($country->code) }})</option>
@@ -248,9 +250,9 @@
                       					</select>
                     				</div>
                       			</div>
-                    			<div class="col-sm-5">
+                    			<div class="col-sm-6">
                         			<div class="form-group">
-                          				<label for="">Pay Rate(js work)</label>
+                          				<label for="">Pay Rate</label>
                           				<div class="input-group mb-2 mr-sm-2 mb-sm-0">
 											<input class="form-control" placeholder="Enter Amount..." type="text" value="0">
 											<div class="input-group-append">
@@ -261,23 +263,7 @@
 										</div>
                         			</div>
                       			</div>
-                      			<div class="col-sm-2">
-                      				<button style="padding-bottom: 17px" class="slick-next slick-arrow" aria-label="Next" type="button"></button>
-                      			</div>
-                      			<div class="col-sm-5">
-                        			<div class="form-group">
-                          				<label for="">Annual Salary</label>
-                          				<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-											<input class="form-control" placeholder="Enter Amount..." type="text" value="0">
-											<div class="input-group-append">
-												<div class="input-group-text">
-												USD
-												</div>
-											</div>
-										</div>
-                        			</div>
-                      			</div>
-                      			<div class="col-sm-12">
+                      			<div class="col-sm-6">
                         			<div class="form-group">
                       					<label for="">Payment method </label>
                       					<select class="form-control" name="paymentmethod">
@@ -348,13 +334,23 @@
 	                  			@endif
 	                  			<div class="col-sm-6">
 	                    			<div class="form-group">
-	                  					<label for="">Department</label>
-	                  					<select class="form-control" name="department">
+		                  				<div for="">
+								        	<div class="row">
+								        		<div class="col-6">
+								        			Departments
+								        		</div>
+								        		<div class="col-6 text-right">
+								        			<button class="select-add" data-target="#addDepartmentModal" data-toggle="modal" type="button">Add department</button>
+								        		</div>
+								        	</div>
+								       	</div>
+	                  					<select class="form-control" name="department" id="departments">
 				                            @if($departments && $member->department)
 								                @foreach($departments as $department)
 								                <option value="{{ $department->id }}" @if($member->department->id == $department->id)selected="selected"@endif>{{ $department->name }}</option>
 								                @endforeach
 								            @elseif($departments)
+								            	<option value="">--Select or add department--</option>
 								                @foreach($departments as $department)
 								                <option value="{{ $department->id }}">{{ $department->name }}</option>
 								                @endforeach
@@ -362,21 +358,6 @@
 	                  					</select>
 	                				</div>
 	                  			</div>
-	                  			<div class="col-sm-12">
-	                      			<div class="form-group row">
-									    <label class="col-sm-4 col-form-label">Self Service
-									    	<button class="mr-2 mb-2 btn btn-link btn-sm btn-rounded" data-container="body" data-content="Enable access to employee self service means allow employee access to do things like request time off..." data-placement="right" data-toggle="popover" title="What self service mean" type="button"><i class="os-icon os-icon-info"></i></button>
-									    </label>
-									    <div class="col-sm-8">
-											<div class="form-check">
-												<label class="form-check-label"><input @if($member->self_service_access == 'y') checked="" @endif class="form-check-input" name="self_service_access" type="radio" value="y">On</label>
-											</div>
-											<div class="form-check">
-												<label class="form-check-label"><input @if($member->self_service_access == 'n') checked="" @endif class="form-check-input" name="self_service_access" type="radio" value="n">Off</label>
-											</div>
-	                      				</div>
-	                      			</div>
-	                      		</div>
 	                      		<div class="col-sm-6">
 	                      			@if($member->media_id)
 								  		<img alt="" height="50px" height="50px" src="{{ asset('storage/'.$member->media->reference) }}">
@@ -393,14 +374,16 @@
 	                    			</div>
 	                  			</div>
 	                  			<div class="col-sm-12 text-center">
-	                  				<a href="#"><span style="display: inline-block;vertical-align: middle;border-bottom: 1px solid #047bf8;">Add Education</span></a>
+	                  				<button class="modal-add" style="display: inline-block;vertical-align: middle;" type="button"  data-target="#addEducationModal" data-toggle="modal" >Add Education</button>
 	                  			</div>
 	                  			<div class="col-sm-12 text-center">
-	                  				<a href="#"><span style="display: inline-block;vertical-align: middle;border-bottom: 1px solid #047bf8;">Add Emergency Contact</span></a>
+	                  				<button class="modal-add" style="display: inline-block;vertical-align: middle;" type="button"  data-target="#addContactModal" data-toggle="modal" >Add Emergency Contact</button>
 	                  			</div>
+	                  			@if(!$member->visa)
 	                  			<div class="col-sm-12 text-center">
-	                  				<a href="#"><span style="display: inline-block;vertical-align: middle;border-bottom: 1px solid #047bf8;">Add Visa Information</span></a>
+	                  				<button class="modal-add" style="display: inline-block;vertical-align: middle;" type="button"  data-target="#addVisaModal" data-toggle="modal" >Add Visa Information</button>
 	                  			</div>
+	                  			@endif
 							</div>
 	            		</fieldset>
 	          			<div class="form-buttons-w">
@@ -412,4 +395,295 @@
 	  	</div>
 	</div>
 </div>
+<div aria-hidden="true" aria-labelledby="addDepartmentModal" class="modal fade" id="addDepartmentModal" role="dialog" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">
+				  	Create department
+				</h5>
+				<button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"> &times;</span></button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-12">
+					  	<div class="form-group">
+					    	<label for=""> Department Name</label>
+					    	<input class="form-control" placeholder="Deparment Name" type="text" id="department">
+					  	</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" data-dismiss="modal" type="button" id="close-department"> Close</button>
+					<button class="btn btn-primary" type="button" onclick="addDepartment()"> Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div aria-hidden="true" aria-labelledby="addEducationModal" class="modal fade" id="addEducationModal" role="dialog" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">
+				  	Add education
+				</h5>
+				<button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"> &times;</span></button>
+			</div>
+			<div class="modal-body">
+				<form action="{{ route('add-education', Auth::user()->subdomain) }}" enctype="multipart/form-data" method="POST">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					<input type="hidden" name="user" value="{{ $member->id }}">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+						        <label for=""> School *</label>
+								<input class="form-control" name="school" placeholder="Ex: Boston University" />
+						    </div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+						        <label for=""> Degree </label>
+								<input class="form-control" name="degree" placeholder="Ex: Bachelor's" />
+						    </div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+						        <label for=""> Field of study </label>
+								<input class="form-control" name="field" placeholder="Ex: Business" />
+						    </div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+						        <label for=""> Field of study </label>
+								<input class="form-control" name="field" placeholder="Ex: Business" />
+						    </div>
+						</div>
+						<div class="col-sm-6">
+            				<div class="form-group">
+			                  <label for="">Start Year</label>
+			                  <div class="date-input">
+			                    <input class="single-daterange form-control" placeholder="dd/mm/yyy" type="text" name="start_year" value="">
+			                  </div>
+			                </div>
+          				</div>
+						<div class="col-sm-6">
+            				<div class="form-group">
+			                  <label for="">End Year</label>
+			                  <div class="date-input">
+			                    <input class="single-daterange form-control" placeholder="dd/mm/yyy" type="text" name="end_year" value="">
+			                  </div>
+			                </div>
+          				</div>
+          				<div class="col-sm-12">
+            				<div class="form-group">
+			                  <label for="">Description</label>
+			                  <textarea class="form-control" name="description"></textarea>
+			                </div>
+          				</div>
+					</div>
+					<div class="modal-footer">
+				      	<button class="btn btn-secondary" data-dismiss="modal" type="button"> Close</button>
+				      	<button class="btn btn-primary" type="submit"> Save</button>
+				    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div aria-hidden="true" aria-labelledby="addContactModal" class="modal fade" id="addContactModal" role="dialog" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">
+				  	Add Emergency contact
+				</h5>
+				<button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"> &times;</span></button>
+			</div>
+			<div class="modal-body">
+				<form action="{{ route('add-contact', Auth::user()->subdomain) }}" enctype="multipart/form-data" method="POST">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					<input type="hidden" name="user" value="{{ $member->id }}">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+						        <label for=""> Name</label>
+								<input class="form-control" name="name" placeholder="Contact Name" />
+						    </div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+						        <label for=""> Phone</label>
+								<input class="form-control" name="phone" />
+						    </div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+						        <label for=""> Email</label>
+								<input class="form-control" name="email" placeholder="Email" />
+						    </div>
+						</div>
+          				<div class="col-sm-12">
+            				<div class="form-group">
+			                  <label for="">Address</label>
+			                  <textarea class="form-control" name="address"></textarea>
+			                </div>
+          				</div>
+          				<div class="col-sm-6">
+							<div class="form-group">
+						        <label for=""> City</label>
+								<input class="form-control" name="school" placeholder="Ex: Boston University" />
+						    </div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="">Country</label>
+								<select class="form-control" name="country">
+									<option value="">--Select Country--</option>
+									@foreach($countries as $country)
+									<option value="{{ $country->id }}">{{ ucfirst($country->country) }} ({{ strtoupper($country->code) }})</option>
+									@endforeach
+								</select>
+							</div>
+                      	</div>
+                      	<div class="col-sm-6">
+							<div class="form-group">
+								<label for="">Relationship</label>
+								<select class="form-control" name="relationship">
+									<option value="">--Select Relationship--</option>
+									@foreach($relationships as $relationship)
+									<option value="{{ $relationship->id }}">{{ ucfirst($relationship->name) }}</option>
+									@endforeach
+								</select>
+							</div>
+                      	</div>
+					</div>
+					<div class="modal-footer">
+				      	<button class="btn btn-secondary" data-dismiss="modal" type="button"> Close</button>
+				      	<button class="btn btn-primary" type="submit"> Save</button>
+				    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div aria-hidden="true" aria-labelledby="addVisaModal" class="modal fade" id="addVisaModal" role="dialog" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">
+				  	Add visa informations
+				</h5>
+				<button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"> &times;</span></button>
+			</div>
+			<div class="modal-body">
+				<form action="{{ route('add-visa', Auth::user()->subdomain) }}" enctype="multipart/form-data" method="POST">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					<input type="hidden" name="user" value="{{ $member->id }}">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+						        <label for=""> Visa(see bambooHR)</label>
+								<input class="form-control" name="school" />
+						    </div>
+						</div>
+						<div class="col-sm-6">
+            				<div class="form-group">
+			                  <label for="">Date</label>
+			                  <div class="date-input">
+			                    <input class="single-daterange form-control" placeholder="dd/mm/yyy" type="text" name="date" value="">
+			                  </div>
+			                </div>
+          				</div>
+          				<div class="col-sm-6">
+            				<div class="form-group">
+			                  <label for="">Issue Date</label>
+			                  <div class="date-input">
+			                    <input class="single-daterange form-control" placeholder="dd/mm/yyy" type="text" name="issue_date" value="">
+			                  </div>
+			                </div>
+          				</div>
+          				<div class="col-sm-6">
+            				<div class="form-group">
+			                  <label for="">Date Expiration</label>
+			                  <div class="date-input">
+			                    <input class="single-daterange form-control" placeholder="dd/mm/yyy" type="text" name="expiration_date" value="">
+			                  </div>
+			                </div>
+          				</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="">Country</label>
+								<select class="form-control" name="country">
+									<option value="">--Select Country--</option>
+									@foreach($countries as $country)
+									<option value="{{ $country->id }}">{{ ucfirst($country->country) }} ({{ strtoupper($country->code) }})</option>
+									@endforeach
+								</select>
+							</div>
+                      	</div>
+                      	<div class="col-sm-12">
+            				<div class="form-group">
+			                  <label for="">Note</label>
+			                  <textarea class="form-control" name="note"></textarea>
+			                </div>
+          				</div>
+					</div>
+					<div class="modal-footer">
+				      	<button class="btn btn-secondary" data-dismiss="modal" type="button"> Close</button>
+				      	<button class="btn btn-primary" type="submit"> Save</button>
+				    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+@endsection
+@section('scripts')
+	<script type="text/javascript">
+		//Date picker input
+		$("input.birth-daterange").daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,                
+            //timePicker: true,
+            //timePicker24Hour: true,
+            //timePickerSeconds: true,
+            minYear: parseInt(moment().subtract(10, 'years').format('YYYY'),10),
+            maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
+            autoUpdateInput: false,                
+            singleClasses: "",
+            locale: {
+                //format: 'DD.MM.YYYY HH:mm:ss'
+                //format: 'DD.MM.YYYY'
+            }
+        });
+
+        $('input.birth-daterange').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('L'));
+        });
+
+        $('input.birth-daterange').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
+        function addDepartment() {
+			var name = $('#department').val();
+			$.ajax({
+				type:'POST',
+				url:'{{ url('/') }}/departments/add/',
+				data:{name:name},
+				success:function(data){
+					console.log(data);
+					var o = new Option(data.department.name, data.department.id);
+					$(o).html(data.department.name);/// jquerify the DOM object 'o'
+					$("#departments").append(o);
+					$('#departments-empty').remove();
+					$('#close-department').trigger('click');
+					$('#department').val('');
+				},
+				error:function(error){
+					console.log(error);
+				}
+			});
+		}
+	</script>
 @endsection

@@ -36,10 +36,10 @@ Dashboard
 										<div class="col-sm-6">
 											<a class="element-box el-tablo centered trend-in-corner padded bold-label" href="apps_support_index.html">
 												<div class="value">
-													24
+													$24,000
 												</div>
 												<div class="label">
-													New Tickets
+													Spent this week
 												</div>
 												<div class="trending trending-up-basic">
 													<span>12%</span><i class="os-icon os-icon-arrow-up2"></i>
@@ -49,10 +49,10 @@ Dashboard
 										<div class="col-sm-6">
 											<a class="element-box el-tablo centered trend-in-corner padded bold-label" href="apps_support_index.html">
 												<div class="value">
-													12
+													$34,050
 												</div>
 												<div class="label">
-													Closed Today
+													Earned this week
 												</div>
 												<div class="trending trending-down-basic">
 													<span>12%</span><i class="os-icon os-icon-arrow-down"></i>
@@ -67,7 +67,7 @@ Dashboard
 													52
 												</div>
 												<div class="label">
-													Agent Replies
+													Tasks achived
 												</div>
 												<div class="trending trending-up-basic">
 													<span>12%</span><i class="os-icon os-icon-arrow-up2"></i>
@@ -80,7 +80,7 @@ Dashboard
 													7
 												</div>
 												<div class="label">
-													New Replies
+													Pending tasks
 												</div>
 												<div class="trending trending-down-basic">
 													<span>12%</span><i class="os-icon os-icon-arrow-down"></i>
@@ -116,7 +116,7 @@ Dashboard
 </div>
 <div class="row">
 	<div class="col-sm-7 col-xxl-6">
-		<!--START - Customers with most tickets-->
+		<!--Go to index ativities to get inspired-->
 		<div class="element-wrapper">
 			<div class="element-actions">
 				<form class="form-inline justify-content-sm-end">
@@ -134,90 +134,72 @@ Dashboard
 				</form>
 			</div>
 			<h6 class="element-header">
-				Customers with most tickets
+				Recent activities
 			</h6>
-			<div class="element-box">
-				<div class="table-responsive">
-					<table class="table table-lightborder">
-						<thead>
-							<tr>
-								<th>
-									Customer Name
-								</th>
-								<th>
-									Tickets
-								</th>
-								<th>
-									Location
-								</th>
-								<th class="text-center">
-									Status
-								</th>
-								<th class="text-right">
-									Last Reply
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<div class="user-with-avatar">
-										<img alt="" src="img/avatar1.jpg"><span class="d-none d-xl-inline-block">John Mayers</span>
-									</div>
-								</td>
-								<td class="text-center">
-									15
-								</td>
-								<td class="text-center">
-									<img alt="" src="img/flags-icons/us.png" width="25px">
-								</td>
-								<td class="text-center">
-									<div class="status-pill green" data-title="Complete" data-toggle="tooltip" data-original-title="" title=""></div>
-								</td>
-								<td class="text-right">
-									<span>Today </span><span class="smaller lighter">1:52pm</span>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="user-with-avatar">
-										<img alt="" src="img/avatar2.jpg"><span class="d-none d-xl-inline-block">Kelly Brans</span>
-									</div>
-								</td>
-								<td class="text-center">
-									12
-								</td>
-								<td class="text-center">
-									<img alt="" src="img/flags-icons/ca.png" width="25px">
-								</td>
-								<td class="text-center">
-									<div class="status-pill red" data-title="Cancelled" data-toggle="tooltip" data-original-title="" title=""></div>
-								</td>
-								<td class="text-right">
-									<span>Yesterday </span><span class="smaller lighter">5:34pm</span>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="user-with-avatar">
-										<img alt="" src="img/avatar3.jpg"><span class="d-none d-xl-inline-block">Tim Howard</span>
-									</div>
-								</td>
-								<td class="text-center">
-									8
-								</td>
-								<td class="text-center">
-									<img alt="" src="img/flags-icons/uk.png" width="25px">
-								</td>
-								<td class="text-center">
-									<div class="status-pill green" data-title="Complete" data-toggle="tooltip" data-original-title="" title=""></div>
-								</td>
-								<td class="text-right">
-									<span>Jan 15th </span><span class="smaller lighter">3:14pm</span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+			<div class="element-box-tp">
+				<div class="activity-boxes-w">
+					<div class="activity-box-w">
+						<div class="activity-time">
+							13 seconds ago
+						</div>
+						<div class="activity-box">
+							<div class="activity-avatar">
+								<div class="user-with-avatar">
+									<div class="avatar" style="border-radius: 50%;">AF</div>
+								</div>
+							</div>
+							<div class="activity-info">
+								<div class="activity-role">
+									Anas Farih
+								</div>
+								<strong class="activity-title">Create Offer under title "Software developer"</strong>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="element-box-tp">
+				<div class="activity-boxes-w">
+					<div class="activity-box-w">
+						<div class="activity-time">
+							13 seconds ago
+						</div>
+						<div class="activity-box">
+							<div class="activity-avatar">
+								<div class="user-with-avatar">
+									<div class="avatar" style="border-radius: 50%;">AF</div>
+								</div>
+							</div>
+							<div class="activity-info">
+								<div class="activity-role">
+									Anas Farih
+								</div>
+								<strong class="activity-title">Create Offer under title "Software developer"</strong>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="element-box-tp">
+				<div class="activity-boxes-w">
+					<div class="activity-box-w">
+						<div class="activity-time">
+							13 seconds ago
+						</div>
+						<div class="activity-box">
+							<div class="activity-avatar">
+								<div class="user-with-avatar">
+									<div class="avatar" style="border-radius: 50%;">AF</div>
+								</div>
+							</div>
+							<div class="activity-info">
+								<div class="activity-role">
+									Anas Farih
+								</div>
+								<strong class="activity-title">Create Offer under title "Software developer"</strong>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -248,10 +230,10 @@ Dashboard
 				<div class="os-progress-bar primary">
 					<div class="bar-labels">
 						<div class="bar-label-left">
-							<span class="bigger">MailGun</span>
+							<span class="bigger">Project 1</span>
 						</div>
 						<div class="bar-label-right">
-							<span class="info">25 Tickets / 10 Pending</span>
+							<span class="info">25 Tasks / 10 Pending</span>
 						</div>
 					</div>
 					<div class="bar-level-1" style="width: 100%">
@@ -266,7 +248,7 @@ Dashboard
 							<span class="bigger">PhotoBook</span>
 						</div>
 						<div class="bar-label-right">
-							<span class="info">18 Tickets / 7 Pending</span>
+							<span class="info">18 Tasks / 7 Pending</span>
 						</div>
 					</div>
 					<div class="bar-level-1" style="width: 100%">
@@ -281,7 +263,7 @@ Dashboard
 							<span class="bigger">Transferra</span>
 						</div>
 						<div class="bar-label-right">
-							<span class="info">15 Tickets / 12 Pending</span>
+							<span class="info">15 Tasks / 12 Pending</span>
 						</div>
 					</div>
 					<div class="bar-level-1" style="width: 100%">
@@ -296,7 +278,7 @@ Dashboard
 							<span class="bigger">Versioner</span>
 						</div>
 						<div class="bar-label-right">
-							<span class="info">12 Tickets / 4 Pending</span>
+							<span class="info">12 Tasks / 4 Pending</span>
 						</div>
 					</div>
 					<div class="bar-level-1" style="width: 100%">

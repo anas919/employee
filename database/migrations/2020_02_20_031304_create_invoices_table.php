@@ -21,7 +21,7 @@ class CreateInvoicesTable extends Migration
             $table->date('issue_date');
             $table->date('due_date');
             $table->string('invoice_number');
-            $table->string('po_number');
+            $table->string('po_number')->nullable();
             $table->string('notes')->nullable();
             $table->double('tax')->default(0);
             $table->double('discount')->default(0);

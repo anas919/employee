@@ -10,6 +10,9 @@ class Role extends Model
 	{
 		return $this->belongsToMany('App\User', 'userroles');
 	}
+	public function membersByStatus($status){
+		return $this->members()->where('status','=',$status)->get();
+	}
 	public function permissions()
 	{
 		return $this->belongsToMany('App\Permission', 'rolepermissions');

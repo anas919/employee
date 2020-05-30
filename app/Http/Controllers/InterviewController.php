@@ -18,16 +18,15 @@ class InterviewController extends Controller
 			$interview->candidate_id = $candidate->id;
 			$interview->offer_id = $candidate->offer->id;
 			$interview->interviewer_id = $req->interviewer;
-			$interview->date = $req->date;
-
+			$interview->date = date('Y-m-d H:i:s',strtotime($req->date));
 			$interview->save();
 			$hashid = new Hashids('interviews');
 			$interview->room = $hashid->encode($interview->id);
 
 			$interview->save();
-			return redirect()->route('candidates', Auth::user()->organization_id)->with('success','Interview setup successfuly.');
+			return redirect()->route('candidates', Auth::user()->subdomain)->with('success','Interview setup successfuly.');
 		}else{
-			return redirect()->route('candidates', Auth::user()->organization_id)->with('error','Error occured.');
+			return redirect()->route('candidates', Auth::user()->subdomain)->with('error','Error occured.');
 		}
 	}
 	public function historyInterview(Request $req, $account, $candidate_id) {

@@ -17,8 +17,8 @@ class CreateOffersTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->enum('status', ['draft', 'opened', 'closed']);
-            $table->enum('type', ['contractor', 'full_time', 'intern', 'part_time']);
-            $table->enum('experience', ['executive', 'supervisor', 'senior', 'junior', 'mid_level']);
+            $table->enum('type', ['contractor', 'full_time', 'intern', 'part_time'])->nullable();
+            $table->enum('experience', ['executive', 'supervisor', 'senior', 'junior', 'mid_level'])->nullable();
             $table->integer('department_id')->unsigned()->nullable();
             $table->foreign('department_id')->references('id')->on('departments');
             $table->integer('country_id')->unsigned()->nullable();

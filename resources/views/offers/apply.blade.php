@@ -111,24 +111,24 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for=""> First Name</label><input class="form-control" placeholder="" required="required" type="text" name="first_name">
+                                            <label for=""> First Name *</label><input class="form-control" placeholder="" required="required" type="text" name="first_name">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for=""> Last Name</label><input class="form-control" placeholder="" required="required" type="text" name="last_name">
+                                            <label for=""> Last Name *</label><input class="form-control" placeholder="" required="required" type="text" name="last_name">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for=""> Email address</label><input class="form-control" placeholder="Enter email" required="required" type="email" name="email">
+                                            <label for=""> Email address *</label><input class="form-control" placeholder="Enter email" required="required" type="email" name="email">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for=""> Phone Number</label><input class="form-control" placeholder="" required="required" type="text" name="phone">
+                                            <label for=""> Phone Number *</label><input class="form-control" placeholder="" required="required" type="text" name="phone">
                                         </div>
                                     </div>
                                 </div>
@@ -147,12 +147,12 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for=""> City</label><input class="form-control" placeholder="" required="required" type="text" name="city">
+                                            <label for=""> City *</label><input class="form-control" placeholder="" required="required" type="text" name="city">
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label for=""> Address</label><textarea class="form-control" name="address" id="address"></textarea>
+                                            <label for=""> Address *</label><textarea class="form-control" name="address" id="address"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -167,7 +167,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for=""> Resume</label><input class="form-control" placeholder="Browse resume" required="required" type="file" name="resume">
+                                            <label for=""> Resume *</label><input class="form-control" placeholder="Browse resume" required="required" type="file" name="resume">
                                         </div>
                                     </div>
                                     @if($offer->cover_letter != 0)

@@ -15,16 +15,16 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('number');
+            $table->string('number')->nullable();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->integer('media_id')->nullable()->unsigned();
             $table->foreign('media_id')
                     ->references('id')
                     ->on('medias')
                     ->onDelete('set null');
-            $table->string('phone');
-            $table->string('company_name');
+            $table->string('phone')->nullable();
+            $table->string('company_name')->nullable();
             $table->enum('status', ['active', 'inactive']);
             $table->longText('description')->nullable();
             // $table->string('files');

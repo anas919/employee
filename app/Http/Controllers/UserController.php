@@ -18,6 +18,10 @@ use App\Paymentschedule;
 use App\Paymentrate;
 use App\Paymentmethod;
 use App\Invite;
+use App\Education;
+use App\Contact;
+use App\Visa;
+use App\Relationship;
 use App\Mail\WelcomeMail;
 use App\Mail\InvitationMail;
 use App\Tenant;
@@ -35,8 +39,9 @@ class UserController extends Controller
     	$paymentrates = Paymentrate::all();
     	$paymentmethods = Paymentmethod::all();
     	$projects = Project::all();
+    	$relationships = Relationship::all();
 
-        return view('members/index', ['user'=>$user,'members'=>$members,'roles'=>$roles,'countries'=>$countries,'departments'=>$departments,'jobs'=>$jobs,'paymentschedules'=>$paymentschedules,'paymentrates'=>$paymentrates,'paymentmethods'=>$paymentmethods,'projects'=>$projects]);
+        return view('members/index', ['user'=>$user,'members'=>$members,'roles'=>$roles,'countries'=>$countries,'departments'=>$departments,'jobs'=>$jobs,'paymentschedules'=>$paymentschedules,'paymentrates'=>$paymentrates,'paymentmethods'=>$paymentmethods,'projects'=>$projects,'relationships'=>$relationships]);
     }
 	public function add(Request $req){
     	$user = new User();
@@ -100,7 +105,7 @@ class UserController extends Controller
 
 		$user->save();
 
-		return redirect()->route('members');
+		return redirect()->route('members', Auth::user()->subdomain);
     }
 	public function invite(Request $req) {
     	$emails = preg_split('/\r\n|[\r\n]/', $req->email);
@@ -184,7 +189,30 @@ class UserController extends Controller
 		session()->flash('success', 'Informations updated successfully');
 		return redirect()->route('edit',['account'=>Auth::user()->subdomain, 'member_id' => $member->id]);
 	}
-	public function search(Request $req) {
+	public function search(Request $req, $account) {
+		$role = Role::find($req->role);
+		if($req->role){
+			if($req->status)
+				$members = $role->membersByStatus($req->status);
+			else
+				$members = $role->members;
+		}else if(!$req->role && $req->status){
+			$members = User::where('status',$req->status);
+		}else{
+			return redirect()->route('members',Auth::user()->subdomain);
+		}
+		$user = new User();
+    	$roles = Role::all();
+    	$countries = Country::all();
+    	$departments = Department::all();
+        $jobs = Job::all();
+    	$paymentschedules = Paymentschedule::all();
+    	$paymentrates = Paymentrate::all();
+    	$paymentmethods = Paymentmethod::all();
+    	$projects = Project::all();
+    	$relationships = Relationship::all();
+
+        return view('members/index', ['user'=>$user,'members'=>$members,'roles'=>$roles,'countries'=>$countries,'departments'=>$departments,'jobs'=>$jobs,'paymentschedules'=>$paymentschedules,'paymentrates'=>$paymentrates,'paymentmethods'=>$paymentmethods,'projects'=>$projects,'relationships'=>$relationships,'roleFilter'=>$req->role,'statusFilter'=>$req->status]);
 		// $name = $req->name;
 		// $members = User::where(function ($query) {
 		//     				$query->where('organization_id', '=', Auth::user()->organization_id);
@@ -205,8 +233,9 @@ class UserController extends Controller
     	$paymentschedules = Paymentschedule::all();
     	$paymentrates = Paymentrate::all();
     	$paymentmethods = Paymentmethod::all();
+    	$relationships = Relationship::all();
 
-		return view('members/edit',['member'=>$member,'countries'=>$countries,'departments'=>$departments,'jobs'=>$jobs,'paymentschedules'=>$paymentschedules,'paymentrates'=>$paymentrates,'paymentmethods'=>$paymentmethods]);
+		return view('members/edit',['member'=>$member,'countries'=>$countries,'departments'=>$departments,'jobs'=>$jobs,'paymentschedules'=>$paymentschedules,'paymentrates'=>$paymentrates,'paymentmethods'=>$paymentmethods,'relationships'=>$relationships]);
 	}
 	public function setTheme(Request $req, $account) {
 		$user = User::find(Auth::user()->id);
@@ -231,6 +260,53 @@ class UserController extends Controller
 		else {
 			return redirect()->back()->withInput();
 		}
+	}
+	public function addEducation(Request $req, $account)
+	{
+		$education = new Education();
+
+		$education->school = $req->school;
+		$education->degree = $req->degree;
+		$education->field = $req->field;
+		$education->start_year = date('Y-m-d',strtotime($req->start_year));
+		$education->end_year = date('Y-m-d',strtotime($req->end_year));
+		$education->description = $req->description;
+		$education->user_id = $req->user;
+		$education->save();
+		return redirect()->route('members', Auth::user()->subdomain);
+	}
+	public function addContact(Request $req, $account)
+	{
+		$contact = new Contact();
+
+		$contact->name = $req->name;
+		$contact->phone = $req->phone;
+		$contact->email = $req->email;
+		$contact->address = $req->address;
+		$contact->city = $req->city;
+		$contact->province = $req->province;
+		$contact->postal_code = $req->postal_code;
+		$contact->country_id = $req->country;
+		$contact->relationship_id = $req->relationship;
+		$contact->user = $req->user_id;
+
+		$contact->save();
+		return redirect()->route('members', Auth::user()->subdomain);
+	}
+	public function addVisa(Request $req, $account)
+	{
+		$visa = new Visa();
+		$visa->date = date('Y-m-d',strtotime($req->date));
+		$visa->visa = $req->visa;
+		$visa->issue_date = date('Y-m-d',strtotime($req->issue_date));
+		$visa->expiration_date = date('Y-m-d',strtotime($req->expiration_date));
+		$visa->note = $req->note;
+		$visa->country_id = $req->country;
+		$visa->save();
+		$user = User::find($user);
+		$user->visa_id = $visa->id;
+		$user->save();
+		return redirect()->route('members', Auth::user()->subdomain);
 	}
 	//Api
 	public function tasks(Request $request){

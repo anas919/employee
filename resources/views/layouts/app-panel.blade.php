@@ -694,6 +694,14 @@
 		            <li class="">
 			            <a href="{{ route('boards',Auth::user()->subdomain) }}">
 			                <div class="icon-w">
+			                  	<div class="os-icon os-icon-clipboard"></div>
+			                </div>
+			                <span>Boards</span>
+			            </a>
+		            </li>
+		            <li class="">
+			            <a href="{{ route('tasks',Auth::user()->subdomain) }}">
+			                <div class="icon-w">
 			                  	<div class="os-icon os-icon-tasks-checked"></div>
 			                </div>
 			                <span>Tasks</span>

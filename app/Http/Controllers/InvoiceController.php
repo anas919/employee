@@ -29,12 +29,13 @@ class InvoiceController extends Controller
         $invoice->issue_date = date('Y-m-d',strtotime($req->issue_date));
         $invoice->due_date = date('Y-m-d',strtotime($req->due_date));
         $invoice->invoice_number = $req->invoice_number;
-        $invoice->po_number = $req->po_number;
+        if($invoice->po_number)
+            $invoice->po_number = $req->po_number;
         $invoice->sub_total = $req->sub_total;
         $invoice->grand_total = $req->grand_total;
-        if($req->notes != '')
+        if($req->notes)
             $invoice->notes = $req->notes;
-        if($req->invoice_tax != '')
+        if($req->invoice_tax)
             $invoice->tax = $req->invoice_tax;
         if($req->invoice_discount != '')
             $invoice->discount = $req->invoice_discount;

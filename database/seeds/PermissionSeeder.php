@@ -27,6 +27,8 @@ class PermissionSeeder extends Seeder
 			['module' => 'candidates','name' => 'view_resumes_candidates','description' => 'Can view resumes of applicants'],
 			['module' => 'candidates','name' => 'view_informations_candidates','description' => 'Can view all informations of applicants'],
 			['module' => 'candidates','name' => 'delete_candidates','description' => 'Can delete applicants'],
+			['module' => 'payroll','name' => 'view_payments','description' => 'Can view payments'],
+			['module' => 'payroll','name' => 'schedule_payments','description' => 'Can schedule payments'],
 			['module' => 'projects','name' => 'view_projects','description' => 'Can view list of projects, teams and members '],
 			['module' => 'projects','name' => 'edit_projects','description' => 'Can edit project informations (client, teams)'],
 			['module' => 'projects','name' => 'create_projects','description' => 'Can create new project'],

@@ -61,9 +61,31 @@ class User extends Authenticatable implements MustVerifyEmail
 	        }
 	        return false;
 	    }
+	    public function hasPermission($permission)
+	    {
+	    	$i=0;
+	    	foreach($this->roles as $role){
+	    		foreach ($role->permissions as $value) {
+	    			if($value->name==$permission)
+	    				$i++;
+	    		}
+	    		if($i==0)
+	    			return false;
+	    		else
+	    			return true;
+	    	}
+	    }
+	    public function activities()
+	    {
+	        return $this->hasMany('App\Activity');
+	    }
 	    public function boards()
 	    {
 	        return $this->hasMany('App\Board', 'head_member_id', 'id');
+	    }
+	    public function tasks()
+	    {
+	        return $this->hasMany('App\Task');
 	    }
 	    public function offers()
 	    {
@@ -108,7 +130,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	    }
 	    public function visa()
 	    {
-	        return $this->belongsTo('App\Visa', 'visa_id');
+	        return $this->belongsTo('App\Visa');
 	    }
 	    public function leaderteams()
 	    {
@@ -141,5 +163,13 @@ class User extends Authenticatable implements MustVerifyEmail
 		public function payslips()
 	    {
 	        return $this->hasMany('App\Payslip');
+	    }
+	    public function educations()
+	    {
+	        return $this->hasMany('App\Education');
+	    }
+	    public function relationships()
+	    {
+	        return $this->hasMany('App\Relationships');
 	    }
 }

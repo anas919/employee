@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Offer;
+use App\Activity;
 use App\Offerquestion;
 use App\Country;
 use App\Department;
@@ -35,8 +36,8 @@ class OfferController extends Controller
 		$offer->title = $req->title;
 		$offer->responsible_id = $req->responsible;
 		$offer->status = $req->status;
-		$offer->description = $req->ckeditor1;
-		$offer->qualifications = $req->ckeditor2;
+		$offer->description = $req->description;
+		$offer->qualifications = $req->qualifications;
 		$offer->department_id = $req->department;
 		$offer->type = $req->type;
 		$offer->experience = $req->experience;
@@ -61,6 +62,11 @@ class OfferController extends Controller
 			$offer->desired_salary = '1';
 
 		$offer->save();
+		$activity = new Activity();
+		$activity->module = 'offers';
+		$activity->activity = 'Create Offer under title "'.$offer->title.'"';
+		$activity->user_id = Auth::user()->id;
+		$activity->save();
 		if(isset($req->opt_questions)){
 			foreach ($req->opt_questions as $question) {
 				$offerquestion = new Offerquestion();
