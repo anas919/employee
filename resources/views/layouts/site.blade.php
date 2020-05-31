@@ -67,7 +67,7 @@
                 </li>
 
                 <li class="st-nav-section st-nav-primary nav-item" style="margin-left: 14%;">
-                    <a class="st-root-link nav-link" href="">Home </a>
+                    <a class="st-root-link nav-link" href="{{route('products')}}">Home </a>
                     <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="aboutus">About Us </a> 
                     <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="products">Products</a>
                     <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="developers">Developers</a> 

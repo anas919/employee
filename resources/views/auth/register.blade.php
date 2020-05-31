@@ -402,7 +402,7 @@ $countries =array(
      <div class="row">
           <div class="col-md-6 col-lg-7 fullscreen-md d-flex justify-content-center align-items-center overlay gradient gradient-53 alpha-7 image-background cover" style="background-image:url(http://beta.textwik.com/assets/skin/img/login-img.png);">
                <div style="margin-top: 15%;" class="content">
-                    <h2 class="display-4 display-md-3 color-1 mt-4 mt-md-0">Welcome to <span class="bold d-block">TextWik</span></h2>
+                    <h2 class="display-4 display-md-3 color-1 mt-4 mt-md-0">Welcome to <span class="bold d-block">Name</span></h2>
                     <p class="lead color-1 alpha-5">Login to your account</p>
                     <hr class="mt-md-6 w-25">
                     <div class="d-flex flex-column">

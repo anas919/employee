@@ -13,7 +13,10 @@ class TimeoffController extends Controller
     public function index(){
     	$members = User::all();
     	$policies = Policy::all();
-    	$timeoffs = Timeoff::all();
+    	if(Auth::user()->hasPermission('view_timeoffs'))
+    		$timeoffs = Timeoff::all();
+    	else
+    		$timeoffs = Timeoff::where('member_id',Auth::user()->id);
 
 		return view('timeoffs/index', ['members'=>$members, 'policies'=>$policies, 'timeoffs'=>$timeoffs]);
 	}

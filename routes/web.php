@@ -73,3 +73,7 @@ include 'urls.php';
 include 'permissions.php';
 include 'whitelist.php';
 include 'activities.php';
+
+Route::get('/products', function () {
+    return view('products/product');
+})->name('products');

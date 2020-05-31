@@ -9,21 +9,26 @@
 		<div class="col-sm-12">
 	      	<!--START - Recent Ticket Comments-->
 	      	<div class="element-wrapper">
+	      		@if(!count($policies))
 	            <div class="text-center">
 					<img src="{{ asset('new-res/respect-steps.svg') }}" alt="" width="420" height="360">
 					<h2 class="display-4">
 			        	No Time-Off Policy
 				    </h2>
 				    <h5>
-				        <small class="text-muted">To request a time off you must specify a policy (you can add more than one policy).</small>
+				        <small class="text-muted">To let members request a time off you must specify a policy (you can add more than one policy).</small>
 				    </h5>
 				    <button class="btn btn-sm btn-primary btn-upper" data-target="#addPolicyModal" data-toggle="modal" type="button"><i class="os-icon os-icon-ui-22"></i><span>Add Policy</span></button>
 	            </div>
+	            @endif
+	            @if(count($policies))
+	            @if(Auth::user()->hasPermission('request_timeoffs'))
 	      		<div class="element-actions">
 	      			<div class="form-inline justify-content-sm-end">
 	      				<button class="btn btn-sm btn-primary btn-upper" data-target="#requestTimeOffModal" data-toggle="modal" type="button"><i class="os-icon os-icon-ui-22"></i><span>Request Time Off</span></button>
 	      			</div>
 	      		</div>
+	      		@endif
 	            <h6 class="element-header">
 	              	Time Off Requests
 	            </h6>
@@ -151,6 +156,7 @@
 						</table>
 					</div>
 				</div>
+				@endif
 			</div>
 			<!--END - Recent Ticket Comments-->
 		</div>
@@ -217,7 +223,7 @@
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-secondary" data-dismiss="modal" type="button"> Close</button>
-						<button class="btn btn-primary" type="button"> Save</button>
+						<button class="btn btn-primary" type="submit"> Save</button>
 					</div>
 				</form>
 			</div>

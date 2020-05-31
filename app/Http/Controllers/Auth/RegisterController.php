@@ -15,6 +15,7 @@ use App\Tenant;
 use App\User;
 use App\Invite;
 use App\Organization;
+use App\Permission;
 use App\Mail\WelcomeMail;
 
 class RegisterController extends Controller
@@ -135,6 +136,10 @@ class RegisterController extends Controller
             $us->password = $user->password;
             $us->save();
             $us->roles()->attach(1);
+            $permissions = Permission::all();
+            foreach ($us->roles as $role) {
+                $role->permissions()->attach($permissions);
+            }
             $org = new Organization();
             $org->name = $data['org'];
             $org->country_id = $data['country'];
