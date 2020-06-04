@@ -24,7 +24,7 @@
         <div style="margin-bottom: auto;" class="col-md-5 col-lg-4 mx-auto">
             <div class="login-form mt-5 mt-md-0">
                 <img src="{{ asset('site/assets/skin2/img/favicon.ico') }}" class="logo img-responsive mb-4 mb-md-6" alt="">
-                <h1 class="color-5 bold">Login</h1>
+                <h1 class="bold">Login</h1>
                 <p class="color-2 mt-0 mb-4 mb-md-6">Don't have an account yet? <a href="{{ route('register') }}" class="accent bold">Create it here</a></p>
                 <!--Form-->
                 <form method="post" accept-charset="utf-8" action="{{ route('login') }}">
@@ -94,8 +94,8 @@
     }
     .btn-accent {
         color: #fff !important;
-        background-color: #9f55ff !important;
-        border-color: #9f55ff !important;
+        background-color: #34d085 !important;
+        border-color: #34d085 !important;
     }
     .fullscreen-md {
         min-height: 101vh;

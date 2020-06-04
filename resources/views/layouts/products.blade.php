@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/smart_wizard_theme_circles.css') }}">
     <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/smart_wizard_theme_dots.css') }}">
     <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/swiper.css') }}">
-    <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/styles1.css') }}">
     <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js') }}"></script>
     
 </head>

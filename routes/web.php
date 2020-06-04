@@ -77,3 +77,7 @@ include 'activities.php';
 Route::get('/products', function () {
     return view('products/product');
 })->name('products');
+
+Route::get('/pricing', function () {
+    return view('pricing');
+})->name('pricing');

@@ -18,8 +18,3 @@
 		<button aria-label="Close" class="close" data-dismiss="alert" type="button"><span aria-hidden="true"> ×</span></button><strong>{{ $message }}</strong>
 	</div>
 @endif
-@if($errors->any())
-	<div class="alert alert-danger alert-dismissible fade show" role="alert">
-		<button aria-label="Close" class="close" data-dismiss="alert" type="button"><span aria-hidden="true"> ×</span></button><strong>{{ $message }}</strong>
-	</div>
-@endif

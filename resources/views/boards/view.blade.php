@@ -762,7 +762,7 @@
   	}
 </script>
 <script>
-jQuery(document).ready(function(){
+$(document).ready(function(){
 	$('.editable-text').click(function(event) {
 		var tasklistId = $(this).attr('data-tasklist');
         var span, input, text;

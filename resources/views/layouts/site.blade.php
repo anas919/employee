@@ -14,8 +14,8 @@
     <link rel="icon" href="{{ asset('site/assets/skin2/img/favicon.ico') }}">
     
 
-    <title>Employee Manage is the best online management tool in USA Canada UK and Other countries</title>
-    <meta name="Description" content="Welcome to Domain.com talk shits.">
+    <title>EmpWik | Track & collaborate & organise your team's and employees for better productivity</title>
+    <meta name="Description" content="Welcome to EmpWik.">
     <meta name="Keywords" content="Keywords separated by cama">
 
     
@@ -47,7 +47,7 @@
     <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/smart_wizard_theme_circles.css') }}">
     <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/smart_wizard_theme_dots.css') }}">
     <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/swiper.css') }}">
-    <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/styles1.css') }}">
     <!-- End - Stylesheet Files -->
     
 </head>
@@ -67,7 +67,7 @@
                 </li>
 
                 <li class="st-nav-section st-nav-primary nav-item" style="margin-left: 14%;">
-                    <a class="st-root-link nav-link" href="{{route('products')}}">Home </a>
+                    <a class="st-root-link nav-link" href="">Home </a>
                     <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="aboutus">About Us </a> 
                     <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="products">Products</a>
                     <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="developers">Developers</a> 
@@ -296,7 +296,7 @@
                                     <ul class="mr-4">
                                        
                                         <li>
-                                              <a class="dropdown-item"  href="">
+                                              <a class="dropdown-item"  href="{{route('products')}}">
                                 <div class="media mb-4">
                                     <i class="fas fa-sms icon fa-2x"></i>
                                     <div class="media-body">
@@ -404,16 +404,16 @@
                 <div class="row gap-y" style="">
                     <div class="col-md-7" data-aos="fade-right" style="padding-top: 28px;">
                         <h1 class="extra-bold display-md-3 font-md" style="font-size: 3.5rem !important;">
-                           Increase Engagement
-                            <span class="d-block light" style="font-size: 50px;padding-top: 15px;"> Acquisition and Retention</span>
+                           Maximize Productivity
+                            <span class="d-block light" style="font-size: 50px;padding-top: 15px;"> Communication and Performance</span>
                         </h1>
                         <p class="lead">
-                            Mobile Messaging Application to Ensure Your Customer Engagement Experience Meets Your Customer's Expectations</p>
-                            <p class="handwritten font-md highlight px-4">It's FREE. It's the future</p>
+                            Need to plan and manage your projects? EmpWik let you manage project task's within teams, track time and monitor Employees.</p>
+                            <p class="handwritten font-md highlight px-4">Request demo</p>
                         <nav class="nav mt-5">
-                            <a style="background-image: linear-gradient(-135deg, #028fff 25%, #9F55FF 100%);" href="#" class="nav-link mr-3 btn btn-rounded btn-success">Join Now </a>
-                            <a style="background-color: #9f55ff;color: #ffffff;" href="#" class="nav-link btn btn btn-rounded btn-1">
-                                <i class="fas fa-tag mr-3"></i> Plans & pricing</a>
+                            <a style="background-image: linear-gradient(-135deg, #028fff 25%, #34d085 100%);" href="#" class="nav-link mr-3 btn btn-rounded btn-success">Book a demo </a>
+                            <a style="background-color: #34d085;color: #ffffff;" href="#" class="nav-link btn btn btn-rounded btn-1">
+                                <i class="fas fa-tag mr-3"></i> Free Trial{{-- Plans & pricing --}}</a>
                         </nav>
                     </div>
                 </div>
@@ -489,7 +489,7 @@
                                     <defs>
                                         <style>
                                             .cls-shape {
-                                                fill: #1fa2ff;
+                                                fill: #59ecaf;
                                             }
 
                                         </style>
@@ -523,7 +523,7 @@
                                     <defs>
                                         <style>
                                             .cls-shape {
-                                                fill: #1fa2ff;
+                                                fill: #59ecaf;
                                             }
 
                                         </style>
@@ -556,7 +556,7 @@
                                     <defs>
                                         <style>
                                             .cls-shape {
-                                                fill: #1fa2ff;
+                                                fill: #59ecaf;
                                             }
 
                                         </style>
@@ -591,7 +591,7 @@
                                     <defs>
                                         <style>
                                             .cls-shape {
-                                                fill: #1fa2ff;
+                                                fill: #59ecaf;
                                             }
 
                                         </style>
@@ -625,7 +625,7 @@
                                     <defs>
                                         <style>
                                             .cls-shape {
-                                                fill: #1fa2ff;
+                                                fill: #59ecaf;
                                             }
 
                                         </style>
@@ -762,6 +762,7 @@ return $result;
                 </div>
             </div>
         </section>
+        <section class="section singl-testimonial"><div class="container pt-8 bring-to-front"><div class="swiper-container pb-0 pb-lg-8 swiper-container-initialized swiper-container-horizontal" data-sw-nav-arrows=".reviews-nav"><div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1230px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="6" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/7.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Daniel Hamilton,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#59ecaf"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#59ecaf"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#59ecaf"></path></svg></div></div></div></div></div><div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/1.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Jane Doe,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div><div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/2.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Lorem Team,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div><div class="swiper-slide" data-swiper-slide-index="2" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/3.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Ipsum Team,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div><div class="swiper-slide" data-swiper-slide-index="3" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/4.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Priscilla Campbell,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div><div class="swiper-slide" data-swiper-slide-index="4" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/5.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Edith Fisher,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div><div class="swiper-slide" data-swiper-slide-index="5" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/6.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Kenneth Reyes,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div><div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="6" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/7.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Daniel Hamilton,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div><div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/1.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Jane Doe,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div></div><!-- Add Arrows --><div class="reviews-navigation"><div class="reviews-nav reviews-nav-prev btn btn-light btn-rounded shadow-box shadow-hover" tabindex="0" role="button" aria-label="Previous slide"><!-- <span class="text-uppercase small">Next</span> --> <i class="reviews-nav-icon fas fa-long-arrow-alt-left"></i></div><div class="reviews-nav reviews-nav-next btn btn-light btn-rounded shadow-box shadow-hover" tabindex="0" role="button" aria-label="Next slide"><!-- <span class="text-uppercase small">Next</span> --> <i class="reviews-nav-icon fas fa-long-arrow-alt-right"></i></div></div><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div></div></section>
 
         <section class="section overflow-hidden" style="">
             <div class="container pt-4 bring-to-front">
@@ -771,13 +772,13 @@ return $result;
                     <p style="    font-size: medium;" class="color-2 lead">We play nice with others through our most popular RESTful API that uses simple query parameters via SMPP, HTTP etcetera.</p>
                 </div>
                 <ul class="list-unstyled d-flex flex-wrap justify-content-around">
-                    <li data-aos-delay="0" style="background-image: url(site/assets/skin2/img/integration/wordpress.png);" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-6 aos-init aos-animate"></li>
-                    <li data-aos-easing="ease-in-out-cubic" data-aos="fade-down-right" data-aos-delay="100" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-4 aos-init" style="background-image: url(site/assets/skin2/img/integration/shopify.png)"></li>
-                    <li data-aos-easing="ease-in-out-cubic" data-aos="fade-up-right" data-aos-delay="200" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-5 aos-init" style="background-image: url(site/assets/skin2/img/integration/magento.png)"></li>
-                    <li data-aos-easing="ease-in-out-cubic" data-aos="fade-up" data-aos-delay="300" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-6 aos-init" style="background-image: url(site/assets/skin2/img/integration/laravel.png)"></li>
-                    <li data-aos-easing="ease-in-out-cubic" data-aos="fade-down-left" data-aos-delay="400" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-4 aos-init" style="background-image: url(site/assets/skin2/img/integration/woocommerce.png)"></li>
-                    <li data-aos-easing="ease-in-out-cubic" data-aos="fade-up-left" data-aos-delay="0" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-5 aos-init" style="background-image: url(site/assets/skin2/img/integration/codeIgniter.png)"></li>
-                    <li data-aos-easing="ease-in-out-cubic" data-aos="fade-left" data-aos-delay="100" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-6 aos-init" style="background-image: url(site/assets/skin2/img/integration/Cackephp.png)"></li>
+                    <li data-aos-delay="0" style="background-image: url({{ asset('site/assets/skin2/img/integration/wordpress.png') }});" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-6 aos-init aos-animate"></li>
+                    <li data-aos-easing="ease-in-out-cubic" data-aos="fade-down-right" data-aos-delay="100" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-4 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/shopify.png') }})"></li>
+                    <li data-aos-easing="ease-in-out-cubic" data-aos="fade-up-right" data-aos-delay="200" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-5 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/magento.png') }})"></li>
+                    <li data-aos-easing="ease-in-out-cubic" data-aos="fade-up" data-aos-delay="300" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-6 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/laravel.png') }})"></li>
+                    <li data-aos-easing="ease-in-out-cubic" data-aos="fade-down-left" data-aos-delay="400" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-4 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/woocommerce.png') }})"></li>
+                    <li data-aos-easing="ease-in-out-cubic" data-aos="fade-up-left" data-aos-delay="0" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-5 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/codeIgniter.png') }})"></li>
+                    <li data-aos-easing="ease-in-out-cubic" data-aos="fade-left" data-aos-delay="100" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-6 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/Cackephp.png') }})"></li>
                 </ul> 
             </div>
             </div>
@@ -789,7 +790,7 @@ return $result;
                 <div class="shadow rounded text-center bg-4-gradient color-1 p-5">
                     <h2 style="font-size: x-large;" class="mb-5">Boost Customer Engagement,Conversion & Retention </h2>
                     <p class="handwritten highlight font-md">Why wait? Start now!</p>
-                    <a style="    background-color: #9F55FF; border-color: #9F55FF;" href="" class="btn btn-5 btn-rounded mt-4">Start now</a>
+                    <a style="    background-color: #34d085; border-color: #34d085;" href="" class="btn btn-5 btn-rounded mt-4">Start now</a>
                 </div>
             </div> 
         </section>

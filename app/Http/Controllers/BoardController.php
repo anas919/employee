@@ -37,6 +37,6 @@ class BoardController extends Controller
 
         $members = User::all();
 
-        return view('boards/view', ['board'=>$board, 'members'=>$members]);
+        return view('boards/view1', ['board'=>$board, 'members'=>$members]);
     }
 }

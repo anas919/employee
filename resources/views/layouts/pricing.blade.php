@@ -21,25 +21,25 @@
 	<link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
 
 	<!-- themeforest:css -->
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/aos.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/bootstrap.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/cookieconsent.min.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/fonts/fontawesome/fontawesome.min.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/fontawesome-all.css">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/aos.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/cookieconsent.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/fonts/fontawesome/fontawesome.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/fontawesome-all.css') }}">
 
 
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/helper.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/magnific-popup.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/odometer-theme-minimal.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/pe-icon-7-stroke.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/prettify.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/simplebar.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/smart_wizard.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/smart_wizard_theme_arrows.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/smart_wizard_theme_circles.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/smart_wizard_theme_dots.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/swiper.css">
-	<link rel="stylesheet" href="<?php echo SITE_URL ?>/assets/skin2/css/styles.css">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/helper.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/magnific-popup.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/odometer-theme-minimal.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/pe-icon-7-stroke.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/prettify.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/simplebar.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/smart_wizard.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/smart_wizard_theme_arrows.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/smart_wizard_theme_circles.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/smart_wizard_theme_dots.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/swiper.css') }}">
+	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/styles1.css') }}">
     
     
 </head>
@@ -52,25 +52,27 @@
 			<ul class="st-nav-menu nav navbar-nav">
 				<li class="st-nav-section nav-item">
 					<a href="#main" class="navbar-brand">
-						<img src="<?php echo SITE_URL ?>/assets/skin2/img/textwik-footer.png" alt="Textwik" class="logo logo-sticky d-block d-md-none">
-						<img src="<?php echo SITE_URL ?>/assets/skin2/img/textwik-footer.png" alt="Textwik" class="logo d-none d-md-block">
+						<img src="{{ asset('site/assets/skin2/img/textwik-footer.png') }}" alt="Textwik" class="logo logo-sticky d-block d-md-none">
+						<img src="{{ asset('site/assets/skin2/img/textwik-footer.png') }}" alt="Textwik" class="logo d-none d-md-block">
+						{{-- <img src="{{ asset('site/assets/skin2/img/textwik-logo.png') }}" alt="Textwik" class="logo logo-sticky d-block d-md-none">
+                        <img src="{{ asset('site/assets/skin2/img/textwik-logo.png') }}" alt="Textwik" class="logo d-none d-md-block"> --}}
 					</a>
 				</li>
 
-				<li class="st-nav-section st-nav-primary nav-item" style="margin-left: 8%;">
-					<a class="st-root-link nav-link" href="<?php echo SITE_URL ?>">Home </a>
-					<a class="st-root-link nav-link" href="<?php echo SITE_URL ?>/pricing">Pricing </a> 
-					<a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="products">Products</a>
-					<a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="developers">Developers</a>  
-					<a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="aboutus">About us </a> 
-				</li>
+				<li class="st-nav-section st-nav-primary nav-item" style="margin-left: 19%;">
+                    <a class="st-root-link nav-link" href="">Home </a>
+                    <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="aboutus">About Us </a> 
+                    <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="products">Products</a>
+                    <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="developers">Developers</a> 
+                    <a class="st-root-link nav-link" href="">Pricing </a>  
+                </li>
 
 				<li class="st-nav-section st-nav-secondary nav-item">
-					<a class="btn btn-rounded btn-outline mr-3 px-3" href="<?php echo SITE_URL ?>/users/login" >
+					<a class="btn btn-rounded btn-outline mr-3 px-3" href="/users/login" >
 						<i class="fas fa-sign-in-alt d-none d-md-inline mr-md-0 mr-lg-2"></i>
 						<span class="d-md-none d-lg-inline">Login</span>
 					</a>
-					<a class="btn btn-rounded btn-solid px-3" href="<?php echo SITE_URL ?>/users/add" >
+					<a class="btn btn-rounded btn-solid px-3" href="/users/add" >
 						<i class="fas fa-user-plus d-none d-md-inline mr-md-0 mr-lg-2"></i>
 						<span class="d-md-none d-lg-inline">Signup</span>
 					</a>
@@ -138,28 +140,28 @@
 						<div class="st-dropdown-content-group">
 							<div class="row">
 								<div class="col mr-4">
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/about">About us</a> 
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/contact">Contact us</a> 
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/partner">Partner program</a> 
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/team">Team</a>
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/testimonials">Testimonials</a>
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/faqs">FAQs</a> 
+									<a class="dropdown-item"  href="/legal/about">About us</a> 
+									<a class="dropdown-item"  href="/legal/contact">Contact us</a> 
+									<a class="dropdown-item"  href="/legal/partner">Partner program</a> 
+									<a class="dropdown-item"  href="/legal/team">Team</a>
+									<a class="dropdown-item"  href="/legal/testimonials">Testimonials</a>
+									<a class="dropdown-item"  href="/legal/faqs">FAQs</a> 
 									
 								</div>
 								<div class="col mr-4">
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/investors">Investors</a>
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/carrers">Carrers</a>
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/press">Press</a>
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/learning-events">Learning & Events</a>
+									<a class="dropdown-item"  href="/legal/investors">Investors</a>
+									<a class="dropdown-item"  href="/legal/carrers">Carrers</a>
+									<a class="dropdown-item"  href="/legal/press">Press</a>
+									<a class="dropdown-item"  href="/legal/learning-events">Learning & Events</a>
 								</div>
 								<div class="col"> 
 
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/terms-conditions">Terms & Conditions</a>
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/privacy-policy">Privacy Policy</a>
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/antispam">Anti-Spam Policy </a>
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/dmca">DMCA Compliance </a> 
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/refund-policy">Refund Policy</a>
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/legal/shortcodes">Shortcodes T&Cs</a>
+									<a class="dropdown-item"  href="/legal/terms-conditions">Terms & Conditions</a>
+									<a class="dropdown-item"  href="/legal/privacy-policy">Privacy Policy</a>
+									<a class="dropdown-item"  href="/legal/antispam">Anti-Spam Policy </a>
+									<a class="dropdown-item"  href="/legal/dmca">DMCA Compliance </a> 
+									<a class="dropdown-item"  href="/legal/refund-policy">Refund Policy</a>
+									<a class="dropdown-item"  href="/legal/shortcodes">Shortcodes T&Cs</a>
 								</div>
 							</div>
 						</div>
@@ -195,13 +197,13 @@
 											<h4 class="text-uppercase regular">API Reference</h4>
 										</li>
 										<li>
-											<a  href="<?php echo SITE_URL ?>/dev/messaging-api">Messaging API</a>
+											<a  href="/dev/messaging-api">Messaging API</a>
 										</li>
 										<li>
-											<a  href="<?php echo SITE_URL ?>/dev/voice">Voice API</a>
+											<a  href="/dev/voice">Voice API</a>
 										</li>
 										<li>
-											<a  href="<?php echo SITE_URL ?>/devsmpp-access">SMPP Access</a>
+											<a  href="/devsmpp-access">SMPP Access</a>
 										</li>
 									</ul>
 								</div>
@@ -211,13 +213,13 @@
 											<h4 class="text-uppercase regular">.</h4>
 										</li>
 										<li>
-											<a  href="<?php echo SITE_URL ?>/dev/sdk-tools">SDK &  Tools</a>
+											<a  href="/dev/sdk-tools">SDK &  Tools</a>
 										</li>
 										<li>
-											<a  href="<?php echo SITE_URL ?>/dev/tutorials">Tutorials</a>
+											<a  href="/dev/tutorials">Tutorials</a>
 										</li>
 										<li>
-											<a  href="<?php echo SITE_URL ?>/dev/documentation">Documentation</a>
+											<a  href="/dev/documentation">Documentation</a>
 										</li>
 									</ul>
 								</div>
@@ -249,7 +251,7 @@
 				<div class="st-dropdown-section" data-dropdown="products">
 					<div class="st-dropdown-content">
 						<div class="st-dropdown-content-group">
-							<a class="dropdown-item"  href="<?php echo SITE_URL ?>/products/messaging">
+							<a class="dropdown-item"  href="/products/messaging">
 								<div class="media mb-4">
 									<i class="fas fa-sms icon fa-2x"></i>
 									<div class="media-body">
@@ -258,7 +260,7 @@
 									</div>
 								</div>
 							</a>
-							<a class="dropdown-item"  href="<?php echo SITE_URL ?>/products/voice">
+							<a class="dropdown-item"  href="/products/voice">
 								<div class="media mb-4">
 									<i class="fas fa-microphone icon fa-2x"></i>
 									<div class="media-body">
@@ -267,7 +269,7 @@
 									</div>
 								</div>
 							</a>
-							<a class="dropdown-item"  href="<?php echo SITE_URL ?>/products/notification">
+							<a class="dropdown-item"  href="/products/notification">
 								<div class="media mb-4">
 									<i class="fas fa-bell icon fa-2x"></i>
 									<div class="media-body">
@@ -276,7 +278,7 @@
 									</div>
 								</div>
 							</a>
-							<a class="dropdown-item"  href="<?php echo SITE_URL ?>/products/rcs">
+							<a class="dropdown-item"  href="/products/rcs">
 								<div class="media mb-4">
 									<i class="fas fa-robot icon fa-2x"></i>
 									<div class="media-body">
@@ -285,7 +287,7 @@
 									</div>
 								</div>
 							</a>
-							<a class="dropdown-item"  href="<?php echo SITE_URL ?>/products/whatsappbuisness">
+							<a class="dropdown-item"  href="/products/whatsappbuisness">
 								<div class="media mb-4">
 									<i class="fas fa-whatsapp icon fa-2x"></i>
 									<div class="media-body">
@@ -294,7 +296,7 @@
 									</div>
 								</div>
 							</a>
-							<a class="dropdown-item"  href="<?php echo SITE_URL ?>/products/viberbuisness">
+							<a class="dropdown-item"  href="/products/viberbuisness">
 								<div class="media mb-4">
 									<i class="fas fa-viber icon fa-2x"></i>
 									<div class="media-body">
@@ -307,16 +309,16 @@
 							<h4 class="text-uppercase regular">Huge Tools list</h4>
 							<div class="row">
 								<div class="col mr-4">
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/products/live-chat">Live Chat</a>
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/survey-feedback">Survey/Feedback</a> 
+									<a class="dropdown-item"  href="/products/live-chat">Live Chat</a>
+									<a class="dropdown-item"  href="/survey-feedback">Survey/Feedback</a> 
 								</div>
 								<div class="col mr-4">
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/products/appointments">Appointments</a>
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/autoresponders">Autoresponders</a> 
+									<a class="dropdown-item"  href="/products/appointments">Appointments</a>
+									<a class="dropdown-item"  href="/autoresponders">Autoresponders</a> 
 								</div>
 								<div class="col mr-4">
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/products/app-messaging">In-app Messaging</a>
-									<a class="dropdown-item"  href="<?php echo SITE_URL ?>/products/phone-numbers">Phone numbers</a>
+									<a class="dropdown-item"  href="/products/app-messaging">In-app Messaging</a>
+									<a class="dropdown-item"  href="/products/phone-numbers">Phone numbers</a>
 								</div>
 							</div>
 						</div>
@@ -334,7 +336,7 @@
 		
 		<header class="section header header-v6">
 			<div class="shape-wrapper">
-				<img src="<?php echo SITE_URL ?>/assets/skin2/img/v6/header/bg-shape.svg" class="main-background img-responsive" alt="" style="">
+				<img src="{{ asset('site/assets/skin2/img/v6/header/bg-shape.svg') }}" class="main-background img-responsive" alt="" style="">
 				<div class="shape shape-background shape-top center-xy"></div>
 				<div class="shape shape-background shape-right"></div>
 			</div>
@@ -351,7 +353,7 @@
 			</div>
 			<div class="main-shape-wrapper" style="">
 				<div data-aos="fade-left" data-aos-delay="300" class="aos-init aos-animate">
-					<img class="img-responsive main-shape" alt="" src="<?php echo SITE_URL ?>/assets/skin2/img/v6/header/intro-animation.png" style="min-width: 640px;margin-left: -134px;margin-top: 70px;">
+					<img class="img-responsive main-shape" alt="" src="{{ asset('site/assets/skin2/img/v6/header/intro-animation.png') }}" style="min-width: 640px;margin-left: -134px;margin-top: 70px;">
 				</div>
 			</div>
 		</header>
@@ -364,9 +366,9 @@
                     <div class="row gap-y text-center">
                         <div class="col-12 col-md-4 py-4 px-5 d-flex flex-column b-r">
                             <div class="icon-shape mb-4">
-                                <img src="<?php echo SITE_URL ?>/assets/skin2/img/shps/bullets/1.svg" class="shape shape-xxl icon-xxl" alt="">
+                                <img src="{{ asset('site/assets/skin2/img/shps/bullets/1.svg" class="shape shape-xxl icon-xxl') }}" alt="">
                                 <div class="rounded-circle bg-3 shadow-3 p-3 d-flex align-items-center justify-content-center shadow icon-xl center-xy">
-                                    <img src="<?php echo SITE_URL ?>/assets/skin2/img/demo/logo/bootstrap.svg" class="img-responsive" alt="">
+                                    <img src="{{ asset('site/assets/skin2/img/demo/logo/bootstrap.svg" class="img-responsive') }}" alt="">
                                 </div>
                             </div>
                             <h4 class="color-5 bold mt-3">Marketers</h4>
@@ -374,9 +376,9 @@
                         </div>
                         <div class="col-12 col-md-4 py-4 px-5 d-flex flex-column b-r">
                             <div class="icon-shape mb-4">
-                                <img src="<?php echo SITE_URL ?>/assets/skin2/img/shps/bullets/2.svg" class="shape shape-xxl icon-xxl" alt="">
+                                <img src="{{ asset('site/assets/skin2/img/shps/bullets/2.svg" class="shape shape-xxl icon-xxl') }}" alt="">
                                 <div class="rounded-circle gradient gradient-34 shadow-4 p-3 d-flex align-items-center justify-content-center shadow icon-xl center-xy">
-                                    <img src="<?php echo SITE_URL ?>/assets/skin2/img/demo/logo/angular.svg" class="img-responsive" alt="">
+                                    <img src="{{ asset('site/assets/skin2/img/demo/logo/angular.svg" class="img-responsive') }}" alt="">
                                 </div>
                             </div>
                             <h4 class="color-5 bold mt-3">Developers </h4>
@@ -384,9 +386,9 @@
                         </div>
                         <div class="col-12 col-md-4 py-4 px-5 d-flex flex-column">
                             <div class="icon-shape mb-4">
-                                <img src="<?php echo SITE_URL ?>/assets/skin2/img/shps/bullets/3.svg" class="shape shape-xxl icon-xxl" alt="">
+                                <img src="{{ asset('site/assets/skin2/img/shps/bullets/3.svg" class="shape shape-xxl icon-xxl') }}" alt="">
                                 <div class="rounded-circle bg-4 shadow-4 p-3 d-flex align-items-center justify-content-center shadow icon-xl center-xy">
-                                    <img src="<?php echo SITE_URL ?>/assets/skin2/img/demo/logo/jquery.svg" class="img-responsive" alt="">
+                                    <img src="{{ asset('site/assets/skin2/img/demo/logo/jquery.svg" class="img-responsive') }}" alt="">
                                 </div>
                             </div>
                             <h4 class="color-5 bold mt-3">Operators</h4>
@@ -410,8 +412,8 @@
 				<div class="row gap-y align-items-center py-5">
 					<div class="col-md-6">
 						<figure data-aos="fade-right">
-							<img src="<?php echo SITE_URL ?>/assets/skin2/img/shps/payments/register.svg" class="img-responsive w-50" alt="">
-							<img src="<?php echo SITE_URL ?>/assets/skin2/img/shps/payments/register-click.svg" class="img-responsive absolute w-50" alt="" style="bottom: 10%; left: 125px;" data-aos="fade-up">
+							<img src="{{ asset('site/assets/skin2/img/shps/payments/register.svg') }}" class="img-responsive w-50" alt="">
+							<img src="{{ asset('site/assets/skin2/img/shps/payments/register-click.svg" class="img-responsive absolute w-50') }}" alt="" style="bottom: 10%; left: 125px;" data-aos="fade-up">
 						</figure>
 					</div>
 					<div class="col-md-6">
@@ -445,7 +447,7 @@
 				<div class="row gap-y align-items-center py-5">
 					<div class="col-md-6 order-md-2">
 						<figure data-aos="fade-left">
-							<img src="<?php echo SITE_URL ?>/assets/skin2/img/shps/payments/configure.svg" class="img-responsive" alt="">
+							<img src="{{ asset('site/assets/skin2/img/shps/payments/configure.svg" class="img-responsive') }}" alt="">
 						</figure>
 					</div>
 					<div class="col-md-6">
@@ -478,7 +480,7 @@
 				<div class="row gap-y align-items-center py-5">
 					<div class="col-md-6">
 						<figure data-aos="fade-right">
-							<img src="<?php echo SITE_URL ?>/assets/skin2/img/shps/payments/receive.svg" class="img-responsive" alt="">
+							<img src="{{ asset('site/assets/skin2/img/shps/payments/receive.svg" class="img-responsive') }}" alt="">
 						</figure>
 					</div>
 					<div class="col-md-6">
@@ -513,7 +515,7 @@
 				<div class="row gap-y align-items-center py-5">
 					<div class="col-md-6 order-md-2">
 						<figure data-aos="fade-left">
-							<img src="<?php echo SITE_URL ?>/assets/skin2/img/shps/payments/configure.svg" class="img-responsive" alt="">
+							<img src="{{ asset('site/assets/skin2/img/shps/payments/configure.svg" class="img-responsive') }}" alt="">
 						</figure>
 					</div>
 					<div class="col-md-6">
@@ -656,13 +658,13 @@
 					<p class="color-2 lead">We use the latest trends because you deserve better</p>
 				</div>
 				<ul class="list-unstyled d-flex flex-wrap justify-content-around">
-					<li data-aos-delay="0" style="background-image: url(<?php echo SITE_URL ?>/assets/skin2/img/integration/wordpress.png);" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-6 aos-init aos-animate"></li>
-					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-down-right" data-aos-delay="100" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-4 aos-init" style="background-image: url(<?php echo SITE_URL ?>/assets/skin2/img/integration/shopify.png)"></li>
-					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-up-right" data-aos-delay="200" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-5 aos-init" style="background-image: url(<?php echo SITE_URL ?>/assets/skin2/img/integration/magento.png)"></li>
-					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-up" data-aos-delay="300" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-6 aos-init" style="background-image: url(<?php echo SITE_URL ?>/assets/skin2/img/integration/laravel.png)"></li>
-					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-down-left" data-aos-delay="400" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-4 aos-init" style="background-image: url(<?php echo SITE_URL ?>/assets/skin2/img/integration/codeIgniter.png)"></li>
-					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-up-left" data-aos-delay="0" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-5 aos-init" style="background-image: url(<?php echo SITE_URL ?>/assets/skin2/img/integration/codeIgniter.png)"></li>
-					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-left" data-aos-delay="100" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-6 aos-init" style="background-image: url(<?php echo SITE_URL ?>/assets/skin2/img/integration/Cackephp.png)"></li>
+					<li data-aos-delay="0" style="background-image: url({{ asset('site/assets/skin2/img/integration/wordpress.png') }});" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-6 aos-init aos-animate"></li>
+					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-down-right" data-aos-delay="100" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-4 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/shopify.png') }})"></li>
+					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-up-right" data-aos-delay="200" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-5 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/magento.png') }})"></li>
+					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-up" data-aos-delay="300" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-6 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/laravel.png') }})"></li>
+					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-down-left" data-aos-delay="400" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-4 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/codeIgniter.png') }})"></li>
+					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-up-left" data-aos-delay="0" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-5 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/codeIgniter.png') }})"></li>
+					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-left" data-aos-delay="100" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-6 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/Cackephp.png') }})"></li>
 				</ul> 
 			</div>
 			</div>
@@ -729,13 +731,13 @@
 			<div class="row align-items-center">
 				<div class="col-md-5 text-center text-md-left">
 					<nav class="nav justify-content-center justify-content-md-start">
-						<a class="nav-item nav-link" href="<?php echo SITE_URL ?>/about">About</a>
+						<a class="nav-item nav-link" href="/about">About</a>
 						<a class="nav-item nav-link" href="#">Services</a>
-						<a class="nav-item nav-link" href="<?php echo SITE_URL ?>/blog">Blog</a>
+						<a class="nav-item nav-link" href="/blog">Blog</a>
 					</nav>
 				</div>
 				<div class="col-md-2 text-center">
-					<img src="<?php echo SITE_URL ?>/assets/skin2/img/textwik-footer.png" alt="" class="logo">
+					<img src="{{ asset('site/assets/skin2/img/textwik-footer.png') }}" alt="" class="logo">
 				</div>
 				<div class="col-md-5 text-center text-md-right">
 					<p class="mt-2 mb-0 color-2 small">© 2019 Textwik, Ltd. All Rights Reserved</p>
@@ -745,37 +747,37 @@
 	</footer>
  
 
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/01.cookie-consent-util.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/02.1.cookie-consent-themes.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/02.2.cookie-consent-custom-css.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/02.3.cookie-consent-informational.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/02.4.cookie-consent-opt-out.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/02.5.cookie-consent-opt-in.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/02.6.cookie-consent-location.js"></script>
+	<script src="{{ asset('site/assets/skin2/js/01.cookie-consent-util.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/02.1.cookie-consent-themes.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/02.2.cookie-consent-custom-css.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/02.3.cookie-consent-informational.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/02.4.cookie-consent-opt-out.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/02.5.cookie-consent-opt-in.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/02.6.cookie-consent-location.js') }}"></script>
 
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/jquery.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/jquery.animatebar.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/odometer.min.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/simplebar.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/swiper.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/popper.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/jquery.easing.min.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/jquery.validate.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/jquery.smartWizard.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/bootstrap.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/jquery.waypoints.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/jquery.counterup.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/modernizr-2.8.3.min.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/aos.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/particles.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/typed.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/prettify.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/jquery.magnific-popup.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/cookieconsent.min.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/common-script.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/forms.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/site.js"></script>
-	<script src="<?php echo SITE_URL ?>/assets/skin2/js/stripe-menu.js"></script>
+	<script src="{{ asset('site/assets/skin2/js/jquery.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/jquery.animatebar.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/odometer.min.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/simplebar.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/swiper.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/popper.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/jquery.easing.min.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/jquery.validate.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/jquery.smartWizard.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/bootstrap.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/jquery.waypoints.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/jquery.counterup.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/modernizr-2.8.3.min.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/aos.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/particles.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/typed.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/prettify.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/jquery.magnific-popup.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/cookieconsent.min.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/common-script.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/forms.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/site.js') }}"></script>
+	<script src="{{ asset('site/assets/skin2/js/stripe-menu.js') }}"></script>
 	<!-- endinject -->
 </body>
 

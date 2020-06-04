@@ -421,7 +421,7 @@ $countries =array(
           <div  class="col-md-5 col-lg-4 mx-auto">
                <div class="login-form mt-5 mt-md-0">
 				   	<img src="{{ asset('site/assets/skin2/img/favicon.ico') }}" class="logo img-responsive mb-4 mb-md-6" alt="">
-                    <h1 class="color-5 bold">Register</h1>
+                    <h1 class="bold">Register</h1>
                     <p class="color-2 mb-4 mb-md-6">Already have an account? <a href="{{ route('login') }}" class="accent bold">Sign In</a></p>
                     <div id="validationMessages" class="alert alert-danger" style="display:none"></div>
                     <!--Form-->
@@ -607,8 +607,8 @@ $countries =array(
      }
      .btn-accent {
           color: #fff !important;
-          background-color: #9f55ff !important;
-          border-color: #9f55ff !important;
+          background-color: #34d085 !important;
+          border-color: #34d085 !important;
      }
      .btn {
           transition: all .3s ease !important;
