@@ -81,3 +81,23 @@ Route::get('/products', function () {
 Route::get('/pricing', function () {
     return view('pricing');
 })->name('pricing');
+
+Route::get('/about-us', function () {
+    return view('about');
+})->name('about-us');
+
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
+Route::get('testimonials', function () {
+    return view('testimonials');
+})->name('testimonials');
+
+Route::get('/faqs', function () {
+    return view('faqs');
+})->name('faqs');
+
+Route::get('/careers', function () {
+    return view('careers');
+})->name('careers');

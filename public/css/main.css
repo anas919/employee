@@ -16699,7 +16699,6 @@ a.el-tablo:hover .label {
   opacity: 0.6;
   border-right: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 0px;
-  padding: 8px 20px;
   margin-right: 0px;
 }
 
@@ -16723,7 +16722,7 @@ a.el-tablo:hover .label {
 }
 
 .os-tabs-controls.os-tabs-complex .nav-item .nav-link.active .tab-label {
-  font-size: 1.26rem;
+  /*font-size: 1.26rem;*/
   line-height: 1.25;
 }
 
@@ -16732,7 +16731,8 @@ a.el-tablo:hover .label {
   margin-right: 10px;
   text-transform: none;
   letter-spacing: normal;
-  font-size: 1.08rem;
+  font-size: 0.8rem;
+  /*font-size: 1.08rem;*/
   vertical-align: middle;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;

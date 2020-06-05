@@ -9,19 +9,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="author" content="Ocam" />
-    
+
     <link rel="apple-touch-icon" href="{{ asset('site/assets/skin2/img/apple-touch-icon.png') }}">
     <link rel="icon" href="{{ asset('site/assets/skin2/img/favicon.ico') }}">
-    
+
 
     <title>EmpWik | Track & collaborate & organise your team's and employees for better productivity</title>
     <meta name="Description" content="Welcome to EmpWik.">
     <meta name="Keywords" content="Keywords separated by cama">
 
-    
-    
+
+
     <!-- Stylesheet Files -->
-    
+
     <link href="{{ asset('https://fonts.googleapis.com/css?family=Poppins:100,300,400,700,900') }}" rel="stylesheet">
     <link href="{{ asset('https://fonts.googleapis.com/css?family=Caveat') }}" rel="stylesheet">
 
@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="{{ asset('site/assets/skin2/fonts/fontawesome/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/fontawesome-all.css') }}">
     <link rel="stylesheet" href="{{ asset('site/assets/skin/icon_fonts_assets/themefy/themify-icons.css') }}">
-            
+
 
 
     <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/helper.css') }}">
@@ -49,12 +49,16 @@
     <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/swiper.css') }}">
     <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/styles1.css') }}">
     <!-- End - Stylesheet Files -->
-    
+	<style media="screen">
+		.media-body > p{
+			font-size: 80%;
+		}
+	</style>
 </head>
 
 <body style="min-width: 440px;">
- 
- 
+
+
     <!-- Making stripe menu -->
     <nav class="st-nav navbar main-nav navigation fixed-top">
         <div class="container">
@@ -68,10 +72,11 @@
 
                 <li class="st-nav-section st-nav-primary nav-item" style="margin-left: 14%;">
                     <a class="st-root-link nav-link" href="">Home </a>
-                    <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="aboutus">About Us </a> 
+                    <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="aboutus">About Us </a>
+                    <!-- <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="menu">Menu</a> -->
                     <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="products">Products</a>
-                    <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="developers">Developers</a> 
-                    <a class="st-root-link nav-link" href="">Pricing </a>  
+                    <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="developers">Developers</a>
+                    <a class="st-root-link nav-link" href="">Pricing </a>
                 </li>
                 <li class="st-nav-section st-nav-secondary nav-item">
                     <a class="btn btn-rounded btn-outline mr-3 px-3" href="{{ route('login') }}" >
@@ -123,7 +128,7 @@
                                         <i class="fas fa-robot icon  "></i> RCS MESSAGING </a>
                                             <a class="regular text-primary" href="">
                                         <i class="fas fa-clipboard-list icon"></i>TEXTING SURVEY</a>
-                                         
+
                                     </div>
                                     <h4  style="margin-top: -6%; margin-right: -20%;" class="text-uppercase regular">Developers</h4>
 
@@ -143,7 +148,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div style="    margin-left: 7%;" class="st-dropdown-content-group bg-6 b-t">
                                 <a href="">Sign in
                                     <i class="fas fa-arrow-right"></i>
@@ -154,7 +159,7 @@
                                 <a href="">Sign UP
                                     <i class="fas fa-user-plus"></i>
                                 </a>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -173,23 +178,23 @@
                         <div class="st-dropdown-content-group">
                             <div class="row">
                                 <div class="col mr-4">
-                                    <a class="dropdown-item"  href="">About Us</a> 
-                                    <a class="dropdown-item"  href="">Contact us</a> 
-                                    <a class="dropdown-item"  href="">Testimonials</a>
-                                    <a class="dropdown-item"  href="">FAQs</a> 
-                                    
+                                    <a class="dropdown-item"  href="">About Us</a>
+                                    <a class="dropdown-item"  href="">Contact us</a>
                                 </div>
                                 <div class="col mr-4">
-                                    <a class="dropdown-item"  href="">Investors</a>
-                                    <a class="dropdown-item"  href="">Careers</a> 
+                                    <a class="dropdown-item"  href="">Testimonials</a>
+                                    <a class="dropdown-item"  href="">FAQs</a>
+                                </div>
+								<div class="col mr-4">
+                                    <a class="dropdown-item"  href="">Careers</a>
                                 </div>
                                  <!--
-                                <div class="col"> 
+                                <div class="col">
 
                                     <a class="dropdown-item"  href="">Terms & Conditions</a>
                                     <a class="dropdown-item"  href="">Privacy Policy</a>
                                     <a class="dropdown-item"  href="">Anti-Spam Policy </a>
-                                    <a class="dropdown-item"  href="">DMCA Compliance </a> 
+                                    <a class="dropdown-item"  href="">DMCA Compliance </a>
                                     <a class="dropdown-item"  href="">Refund Policy</a>
                                     <a class="dropdown-item"  href="">Shortcodes T&Cs</a>
                                 </div>
@@ -212,8 +217,8 @@
                                 </div><div class="col">
                                    <a class="dropdown-item bold" href="#">
                                     <i class="fab fa-instagram icon"></i> Instagram </a>
-                                </div>          
-                            </div>          
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -246,7 +251,7 @@
                                 </div>
                                 <div class="col">
                                     <ul class="mr-4">
-                                       
+
                                         <li>
                                             <a  href="">SDK &  Tools</a>
                                         </li>
@@ -258,7 +263,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                 
+
                             </div>
                         </div>
                         <div class="st-dropdown-content-group">
@@ -274,99 +279,153 @@
                                 <div class="col">
                                     <a class="dropdown-item bold"  href="#">
                                     <i class="ti-stack-overflow icon"></i> Stackoverflow</a>
-                                </div>          
-                            </div>          
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- END developers -->
-
+                <!--Menu!-->
+                <!-- <div class="st-dropdown-section" data-dropdown="menu">
+                    <div class="st-dropdown-content">
+							<div class="st-dropdown-content-group">
+							  <a class="dropdown-item" target="_blank" href="shop/home.html">
+								<div class="media align-items-center mb-2">
+								  <div class="text-contrast icon-md center-flex rounded-circle mr-3">
+									<i class="fas fa-stopwatch icon fa-2x"></i>
+								  </div>
+								  <div class="media-body">
+									<h3 class="link-title m-0">Home</h3>
+									<p class="m-0 text-secondary">Online store home with an outstanding UX</p>
+								  </div>
+								</div>
+							  </a>
+							  <a class="dropdown-item" target="_blank" href="shop/home.html">
+								<div class="media align-items-center">
+								  <div class="text-contrast icon-md center-flex rounded-circle mr-3">
+									<i class="fas fa-shopping-basket icon fa-2x"></i>
+								  </div>
+								  <div class="media-body">
+									<h3 class="link-title m-0">Home</h3>
+									<p class="m-0 text-secondary">Online store home with an outstanding UX</p>
+								  </div>
+								</div>
+							  </a>
+							</div>
+                    </div>
+                </div> -->
+                <!--Menu!-->
                 <!-- Produits -->
                 <div class="st-dropdown-section" data-dropdown="products">
                     <div class="st-dropdown-content">
                         <div class="st-dropdown-content-group">
-                              <div class="mb-4">
+                            <div class="mb-4 align-items-center">
                                 <h3 class="color-5 light text-nowrap">
                                     <span class="bold regular">Useful Tools</span> you'll need</h3>
                                 <p class="color-2 mt-0">Build modern, high-quality voice applications in the cloud.</p>
                             </div>
-                                 <div class="row">
-                                <div class="col">
+                            <div class="row">
+                                <div class="col-5">
                                     <ul class="mr-4">
-                                       
                                         <li>
-                                              <a class="dropdown-item"  href="{{route('products')}}">
-                                <div class="media mb-4">
-                                    <i class="fas fa-sms icon fa-2x"></i>
-                                    <div class="media-body">
-                                        <h3 class="link-title m-0">SMS/MMS MESSAGING</h3>
-                                        <p class="m-0 color-2">Send and Receive Highly Targeted Text Messages Globally</p>
-                                    </div>
-                                </div>
-                                                </a>
-                                        </li>
-                                        <li>
-                              <a class="dropdown-item"  href="">
-                                <div class="media mb-4">
-                                    <i class="fas fa-microphone icon fa-2x"></i>
-                                    <div class="media-body">
-                                        <h3 class="link-title m-0">VOICE MESSAGING</h3>
-                                        <p class="m-0 color-2">Powerful and Easy-to-Use IVR To Create and Send Voice </p>
-                                    </div>
-                                </div>
-                            </a>
+                                            <a class="dropdown-item"  href="{{route('products')}}">
+                                                <div class="media align-items-center mb-2">
+													<div class="text-contrast icon-md center-flex rounded-circle mr-3">
+                                                    	<i class="fas fa-stopwatch icon fa-2x"></i>
+													</div>
+                                                    <div class="media-body">
+                                                        <h3 class="link-title m-0">TIME TRACKING</h3>
+                                                        <p class="m-0 color-2">Flexible & Easy To Use Time Tracking Tool </p>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item"  href="">
-                                <div class="media mb-4">
-                                    <i class="fas fa-bell icon fa-2x"></i>
-                                    <div class="media-body">
-                                        <h3 class="link-title m-0">PUSH NOTIFICATION</h3>
-                                        <p class="m-0 color-2">Keep Subscribers Engaged & Coming Back on Your Website</p>
-                                    </div>
-                                </div>
-                            </a>
+                                                <div class="media align-items-center mb-2">
+													<div class="text-contrast icon-md center-flex rounded-circle mr-3">
+                                                    	<i class="fas fa-chart-pie icon fa-2x"></i>
+													</div>
+                                                    <div class="media-body">
+                                                        <h3 class="link-title m-0">TIMESHEETS</h3>
+                                                        <p class="m-0 color-2">Simple timesheets and powerful reports </p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item"  href="">
+                                                <div class="media align-items-center mb-2">
+													<div class="text-contrast icon-md center-flex rounded-circle mr-3">
+                                                    	<i class="fas fa-calendar-alt icon fa-2x"></i>
+													</div>
+                                                    <div class="media-body">
+                                                        <h3 class="link-title m-0">SCHEDULING</h3>
+                                                        <p class="m-0 color-2">Plan Your Team's Schedules and Mark Attendance</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item"  href="">
+                                                <div class="media align-items-center mb-2">
+													<div class="text-contrast icon-md center-flex rounded-circle mr-3">
+                                                    	<i class="fas fa-clipboard-list icon fa-2x"></i>
+													</div>
+                                                    <div class="media-body">
+                                                        <h3 class="link-title m-0">Tasks</h3>
+                                                        <p class="m-0 color-2">Organize & Prioritise tasks and projects within boards.</p>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="col">
+                                <div class="col-6">
                                     <ul style="margin-top: -6;" class="mr-4">
-                                       
-                                        <li>
-                                              
-                            <a class="dropdown-item"  href="">
-                                <div class="media mb-4">
-                                    <i class="fas fa-robot icon fa-2x"></i>
-                                    <div class="media-body">
-                                        <h3 class="link-title m-0">RCS MESSAGING</h3>
-                                        <p class="m-0 color-2">Combine Rich Text & Images, Trackable Actions and Brand Name</p>
-                                    </div>
-                                </div>
-                            </a>
+                                       <li>
+                                            <a class="dropdown-item"  href="">
+                                                <div class="media align-items-center mb-2">
+													<div class="text-contrast icon-md center-flex rounded-circle mr-3">
+                                                    	<i class="fas fa-handshake icon fa-2x"></i>
+													</div>
+                                                    <div class="media-body">
+                                                        <h3 class="link-title m-0">ONLINE INVOICING</h3>
+                                                        <p class="m-0 color-2">Easy to create, send and manage your company's invoices</p>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </li>
                                         <li>
-                                       <a class="dropdown-item"  href="">
-                                <div class="media mb-4">
-                                    <i class="fas fa-clipboard-list icon fa-2x"></i>
-                                    <div class="media-body">
-                                        <h3 class="link-title m-0">TEXTING SURVEY</h3>
-                                        <p class="m-0 color-2">Survey Customers with SMS and Instantly Reach Your Target Audience</p>
-                                    </div>
-                                </div>
-                            </a>
+                                            <a class="dropdown-item"  href="">
+                                                <div class="media align-items-center mb-2">
+													<div class="text-contrast icon-md center-flex rounded-circle mr-3">
+                                                    	<i class="fas fa-file-invoice-dollar icon fa-2x" style="margin-left:10px"></i>
+													</div>
+                                                    <div class="media-body">
+                                                        <h3 class="link-title m-0">Payroll</h3>
+                                                        <p class="m-0 color-2">Automates the Management of Employees' Salaries, Earnings & Deductions</p>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </li>
-                                      
+										<li>
+                                            <a class="dropdown-item"  href="">
+                                                <div class="media align-items-center mb-2">
+													<div class="text-contrast icon-md center-flex rounded-circle mr-3">
+                                                    	<i class="fas fa-eye icon fa-2x" style="margin-left:10px"></i>
+													</div>
+                                                    <div class="media-body">
+                                                        <h3 class="link-title m-0">MONITORING</h3>
+                                                        <p class="m-0 color-2">Track Employee Activities & Increase engagement </p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
-                                 
                             </div>
-                      
-                         
-                      
-                          
-                   
-                            
                             <h4 class="text-uppercase regular">Huge Tools list</h4>
                             <div class="row">
                                 <div class="col mr-4">
@@ -375,25 +434,22 @@
                                 </div>
                                 <div class="col mr-4">
                                     <a class="dropdown-item"  href="">Appointments</a>
-                                    <a class="dropdown-item"  href="">Autoresponders</a> 
+                                    <a class="dropdown-item"  href="">Autoresponders</a>
                                 </div>
                                 <div class="col mr-4">
                                     <a class="dropdown-item"  href="">In-app Messaging</a>
-                                   
+
                                 </div>
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
                 <!-- END Produits -->
             </div>
         </div>
     </nav>
-    
-    
-    <main >
-        
+    <main>
         <header class="section header header-v6">
             <div class="shape-wrapper">
                 <img src="{{ asset('site/assets/skin2/img/v6/header/bg-shape.svg') }}" class="main-background img-responsive" alt="" style="">
@@ -409,11 +465,11 @@
                         </h1>
                         <p class="lead">
                             Need to plan and manage your projects? EmpWik let you manage project task's within teams, track time and monitor Employees.</p>
-                            <p class="handwritten font-md highlight px-4">Request demo</p>
+                            <p class="handwritten font-md highlight px-4">Get Free Trial</p>
                         <nav class="nav mt-5">
-                            <a style="background-image: linear-gradient(-135deg, #028fff 25%, #34d085 100%);" href="#" class="nav-link mr-3 btn btn-rounded btn-success">Book a demo </a>
+                            <a style="background-image: linear-gradient(-135deg, #028fff 25%, #34d085 100%);" href="#" class="nav-link mr-3 btn btn-rounded btn-success">Free Trial </a>
                             <a style="background-color: #34d085;color: #ffffff;" href="#" class="nav-link btn btn btn-rounded btn-1">
-                                <i class="fas fa-tag mr-3"></i> Free Trial{{-- Plans & pricing --}}</a>
+                                <i class="fas fa-tag mr-3"></i> Book a demo{{-- Plans & pricing --}}</a>
                         </nav>
                     </div>
                 </div>
@@ -424,9 +480,6 @@
                 </div>
             </div>
         </header>
-
-        
-        
         <section class="section mt-n " data-aos="flip-right">
             <div class="container pt-0">
                 <div class="shadow bg-1 p-4 rounded">
@@ -438,8 +491,8 @@
                                     <img src="{{ asset('site/assets/skin2/img/textwik-marketers.png') }}" class="img-responsive" alt="">
                                 </div>
                             </div>
-                            <h4 class="color-5 bold mt-3">Marketers</h4>
-                            <p class="mt-4">Our solution helps marketers send messaging campaigns across channels to engage customers wherever they are.</p>
+                            <h4 class="color-5 bold mt-3">Owners</h4>
+                            <p class="mt-4">Our solution helps business owners monitoring members organization, workflow of projects and business processes.</p>
                         </div>
                         <div class="col-12 col-md-4 py-4 px-5 d-flex flex-column b-r">
                             <div class="icon-shape mb-4">
@@ -448,8 +501,8 @@
                                     <img src="{{ asset('site/assets/skin2/img/textwik-coders.png') }}" class="img-responsive" alt="">
                                 </div>
                             </div>
-                            <h4 class="color-5 bold mt-3">Developers </h4>
-                            <p class="mt-4">Our developer platform leverages RESTful APIs to power connectivity to inbound and outbound mobile messaging</p>
+                            <h4 class="color-5 bold mt-3">Managers </h4>
+                            <p class="mt-4">Project management shouldn’t be a pain for managers, Our solution gives more control of projects workflow, Ensure a more efficient way for managing teams, prioritizing tasks and monitor team members.</p>
                         </div>
                         <div class="col-12 col-md-4 py-4 px-5 d-flex flex-column">
                             <div class="icon-shape mb-4">
@@ -458,17 +511,13 @@
                                     <img src="{{ asset('site/assets/skin2/img/textwik-operators.png') }}" class="img-responsive" alt="">
                                 </div>
                             </div>
-                            <h4 class="color-5 bold mt-3">Operators</h4>
-                            <p class="mt-4">Partnerships with global mobile network operators who are focused on enterprise mobile messaging deployments.</p>
+                            <h4 class="color-5 bold mt-3">Employees </h4>
+                            <p class="mt-4">Ensure collaboration and communications between team members, Make work more enjoyable.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        
         </section>
-        
-        
- 
         <!-- Features -->
         <section class="section">
             <div class="shape-wrapper">
@@ -479,7 +528,7 @@
                 <div class="row gap-y align-items-center py-5">
                     <div class="col-md-6">
                         <figure data-aos="fade-right">
-                            <img src="{{ asset('site/assets/skin2/img/home/SMS_MMS.png') }}" class="img-responsive w50" alt=""> 
+                            <img src="{{ asset('site/assets/skin2/img/home/SMS_MMS.png') }}" class="img-responsive w50" alt="">
                         </figure>
                     </div>
                     <div class="col-md-6">
@@ -491,7 +540,6 @@
                                             .cls-shape {
                                                 fill: #59ecaf;
                                             }
-
                                         </style>
                                     </defs>
                                     <title>shape-4</title>
@@ -501,7 +549,7 @@
                                         </g>
                                     </g>
                                 </svg>
-                                <img src="{{ asset('site/assets/skin2/img/textwik-sms.png') }}" class="icon  fa-2x fa-user center-xy color-1"> 
+                                <img src="{{ asset('site/assets/skin2/img/textwik-sms.png') }}" class="icon  fa-2x fa-user center-xy color-1">
                             </div>
                         </div>
                         <h2 class="bold text-capitalize"> Engage Your Audience </h2>
@@ -535,7 +583,7 @@
                                         </g>
                                     </g>
                                 </svg>
-                                <img src="{{ asset('site/assets/skin2/img/textwik-voice.png') }}" class="icon  fa-2x fa-user center-xy color-1"> 
+                                <img src="{{ asset('site/assets/skin2/img/textwik-voice.png') }}" class="icon  fa-2x fa-user center-xy color-1">
                             </div>
                         </div>
                         <h2 class="bold text-capitalize">Voice Messaging  </h2>
@@ -568,7 +616,7 @@
                                         </g>
                                     </g>
                                 </svg>
-                                <img src="{{ asset('site/assets/skin2/img/textwik-push.png') }}" class="icon  fa-2x fa-user center-xy color-1"> 
+                                <img src="{{ asset('site/assets/skin2/img/textwik-push.png') }}" class="icon  fa-2x fa-user center-xy color-1">
                             </div>
                         </div>
                         <h2 class="bold text-capitalize">Push Notification</h2>
@@ -603,7 +651,7 @@
                                         </g>
                                     </g>
                                 </svg>
-                                <img src="{{ asset('site/assets/skin2/img/textwik-rcs.png') }}" class="icon  fa-2x fa-user center-xy color-1"> 
+                                <img src="{{ asset('site/assets/skin2/img/textwik-rcs.png') }}" class="icon  fa-2x fa-user center-xy color-1">
                             </div>
                         </div>
                         <h2 class="bold text-capitalize">Google RCS business messaging </h2>
@@ -611,7 +659,7 @@
                         <a href="#" class="btn gradient gradient-43 color-1 btn-rounded btn-outline-1 bw-2 bold mt-4">Learn More</a>
                     </div>
                 </div>
-                
+
                 <div class="row gap-y align-items-center py-5">
                     <div class="col-md-6">
                         <figure data-aos="fade-right">
@@ -637,7 +685,7 @@
                                         </g>
                                     </g>
                                 </svg>
-                                <img src="{{ asset('site/assets/skin2/img/textwik-survey.png') }}" class="icon  fa-2x fa-user center-xy color-1"> 
+                                <img src="{{ asset('site/assets/skin2/img/textwik-survey.png') }}" class="icon  fa-2x fa-user center-xy color-1">
                             </div>
                         </div>
                         <h2 class="bold text-capitalize">SMS Survey </h2>
@@ -646,7 +694,7 @@
                     </div>
                 </div>
 
-                
+
             </div>
         </section>
 
@@ -686,7 +734,7 @@
                                 <div class="swiper-slide">
                                     <pre class="prettyprint lang-php linenums">
 PHP Code Sample (cURL):
-$url = 'https://textwik.com/apis/addcontact/';      
+$url = 'https://textwik.com/apis/addcontact/';
 $fields = array('apikey' => $api_key,
     'group' => $group_name,
     'number' => $number,
@@ -722,7 +770,7 @@ return $result;
                                 </div>
                                 <div class="swiper-slide">
                                     <pre class="prettyprint lang-php linenums">
-$url = 'https://www.textwik.com/apis/addappointment/';      
+$url = 'https://www.textwik.com/apis/addappointment/';
 $fields = array('apikey' => $api_key,
     'number' => $number,
     'apptdate' => $apptdate,
@@ -779,27 +827,27 @@ return $result;
                     <li data-aos-easing="ease-in-out-cubic" data-aos="fade-down-left" data-aos-delay="400" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-4 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/woocommerce.png') }})"></li>
                     <li data-aos-easing="ease-in-out-cubic" data-aos="fade-up-left" data-aos-delay="0" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-5 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/codeIgniter.png') }})"></li>
                     <li data-aos-easing="ease-in-out-cubic" data-aos="fade-left" data-aos-delay="100" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-6 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/Cackephp.png') }})"></li>
-                </ul> 
+                </ul>
             </div>
             </div>
         </section>
 
         <section class="section bg-6 b-b edge top-left" data-aos="flip-left">
-              
+
             <div class="container bring-to-front">
                 <div class="shadow rounded text-center bg-4-gradient color-1 p-5">
                     <h2 style="font-size: x-large;" class="mb-5">Boost Customer Engagement,Conversion & Retention </h2>
                     <p class="handwritten highlight font-md">Why wait? Start now!</p>
                     <a style="    background-color: #34d085; border-color: #34d085;" href="" class="btn btn-5 btn-rounded mt-4">Start now</a>
                 </div>
-            </div> 
+            </div>
         </section>
-         
+
         <section class="section b-b" data-aos="fade-up">
           <div class="container">
               <div class="row gap-y align-items-center text-center text-lg-left">
                   <div class="col-12 col-md-4 py-4 px-5 b-md-r">
-                      <i class="pe pe-7s-headphones pe-3x color-5"></i> 
+                      <i class="pe pe-7s-headphones pe-3x color-5"></i>
                       <a href="#" class="mt-4 color-5 d-flex align-items-center">
                           <h4 class="mr-3">Contact Sales!</h4><i class="fas fa-long-arrow-alt-right"></i>
                       </a>
@@ -808,17 +856,17 @@ return $result;
                       </p>
                   </div>
                   <div class="col-12 col-md-4 py-4 px-5 b-md-r">
-                      <i class="pe-7s-attention pe-3x color-5"></i> 
+                      <i class="pe-7s-attention pe-3x color-5"></i>
                       <a href="#" class="mt-4 color-5 d-flex align-items-center">
                           <h4 class="mr-3">Report Abuse!</h4>
                           <i class="fas fa-long-arrow-alt-right"></i>
                       </a>
-                      <p class="mt-4">TextWik is committed to fighting mobile spam. We don’t send SMS messages or phone calls directly to end-users. 
+                      <p class="mt-4">TextWik is committed to fighting mobile spam. We don’t send SMS messages or phone calls directly to end-users.
                           <a href="#">Abuse Reporting</a>
                       </p>
                   </div>
                   <div class="col-12 col-md-4 py-4 px-5">
-                      <i class="pe pe-7s-help1 pe-3x color-5"></i> 
+                      <i class="pe pe-7s-help1 pe-3x color-5"></i>
                       <a href="#" class="mt-4 color-5 d-flex align-items-center">
                           <h4 class="mr-3">Technical Support!</h4>
                           <i class="fas fa-long-arrow-alt-right"></i>
@@ -830,10 +878,10 @@ return $result;
               </div>
           </div>
         </section>
-        
+
     </main>
     <!-- ./Footer - Simple -->
-     
+
     <footer  class="site-footer section text-center" data-aos="fade-up">
         <div class="container pb-4">
             <div class="font-md regular">BE IN THE KNOW</div>

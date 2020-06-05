@@ -499,15 +499,16 @@ $countries =array(
                               </div>
                               <div class="col-md-12{{ $errors->has('subdomain') ? ' has-error' : '' }}">
                                    <label class="control-label bold small text-uppercase color-2">Desired Url *</label>
-                                   <div class="form-group has-icon">
-                                        <div class="input text">
+                                   <div class="form-group">
+                                        <div class="input-group">
                                              <input type="text" name="subdomain" class="form-control form-control-rounded" value="{{ old('subdomain') }}">
+                                             <span class="input-group-append"><span class="input-group-text">localhost.com</span></span>
                                              @if ($errors->has('subdomain'))
                                                   <span class="help-block">
                                                        <strong>{{ $errors->first('subdomain') }}</strong>
                                                   </span>
                                              @endif
-                                        </div><i class="icon fas">.localhost.com</i>
+                                        </div>
                                    </div>
                               </div>
                               <div class="col-md-12{{ $errors->has('password') ? ' has-error' : '' }}">

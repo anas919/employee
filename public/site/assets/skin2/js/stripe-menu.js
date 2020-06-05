@@ -35,7 +35,7 @@
             enter: "mouseenter",
             leave: "mouseleave"
         };
-        
+
         /**
          * The main navigation element.
          **/
@@ -119,7 +119,7 @@
     function StripeMenuPopup(element) {
         var popupMenu = this;
         var eventTrigger = $scope.Util.touch.isSupported ? "touchend" : "click";
-        
+
         this.root = document.querySelector(element);
         this.activeClass = "st-popup-active";
         this.link = this.root.querySelector(".st-root-link");
@@ -267,7 +267,7 @@
         for (var i = 0; i < activeLinks.length; i++)
             activeLinks[i].classList.remove(this.activeClass)
     };
-    
+
     $(function() {
         new StripeMenu(".st-nav");
         new StripeMenuPopup(".st-nav .st-nav-section.st-nav-mobile");
