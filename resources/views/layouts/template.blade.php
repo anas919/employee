@@ -10,8 +10,8 @@
 <meta name="Description" content="Welcome to Textwik.com top bulk sms, sms marketing, mms marketing service for business across the Globe. We provide best online sms marketing tools to stay ahead of your marketing goals.">
 <meta name="Keywords" content="best online sms marketing tool, bulk sms service, text message marketing, sms marketing, business sms, mms marketing, online sms service">
 
-    
-    
+
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
 	<!-- Place favicon.ico in the root directory -->
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -40,12 +40,12 @@
 	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/smart_wizard_theme_dots.css') }}">
 	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/swiper.css') }}">
 	<link rel="stylesheet" href="{{ asset('site/assets/skin2/css/styles1.css') }}">
-    
-    
+
+
 </head>
 
 <body>
-	 
+
 	<!-- Making stripe menu -->
 	<nav class="st-nav navbar main-nav navigation fixed-top">
 		<div class="container">
@@ -61,10 +61,10 @@
 
 				<li class="st-nav-section st-nav-primary nav-item" style="margin-left: 19%;">
                     <a class="st-root-link nav-link" href="">Home </a>
-                    <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="aboutus">About Us </a> 
+                    <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="aboutus">About Us </a>
                     <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="products">Products</a>
-                    <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="developers">Developers</a> 
-                    <a class="st-root-link nav-link" href="">Pricing </a>  
+                    <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="developers">Developers</a>
+                    <a class="st-root-link nav-link" href="">Pricing </a>
                 </li>
 
 				<li class="st-nav-section st-nav-secondary nav-item">
@@ -140,13 +140,13 @@
 						<div class="st-dropdown-content-group">
 							<div class="row">
 								<div class="col mr-4">
-									<a class="dropdown-item"  href="/legal/about">About us</a> 
-									<a class="dropdown-item"  href="/legal/contact">Contact us</a> 
-									<a class="dropdown-item"  href="/legal/partner">Partner program</a> 
+									<a class="dropdown-item"  href="/legal/about">About us</a>
+									<a class="dropdown-item"  href="/legal/contact">Contact us</a>
+									<a class="dropdown-item"  href="/legal/partner">Partner program</a>
 									<a class="dropdown-item"  href="/legal/team">Team</a>
 									<a class="dropdown-item"  href="/legal/testimonials">Testimonials</a>
-									<a class="dropdown-item"  href="/legal/faqs">FAQs</a> 
-									
+									<a class="dropdown-item"  href="/legal/faqs">FAQs</a>
+
 								</div>
 								<div class="col mr-4">
 									<a class="dropdown-item"  href="/legal/investors">Investors</a>
@@ -154,12 +154,12 @@
 									<a class="dropdown-item"  href="/legal/press">Press</a>
 									<a class="dropdown-item"  href="/legal/learning-events">Learning & Events</a>
 								</div>
-								<div class="col"> 
+								<div class="col">
 
 									<a class="dropdown-item"  href="/legal/terms-conditions">Terms & Conditions</a>
 									<a class="dropdown-item"  href="/legal/privacy-policy">Privacy Policy</a>
 									<a class="dropdown-item"  href="/legal/antispam">Anti-Spam Policy </a>
-									<a class="dropdown-item"  href="/legal/dmca">DMCA Compliance </a> 
+									<a class="dropdown-item"  href="/legal/dmca">DMCA Compliance </a>
 									<a class="dropdown-item"  href="/legal/refund-policy">Refund Policy</a>
 									<a class="dropdown-item"  href="/legal/shortcodes">Shortcodes T&Cs</a>
 								</div>
@@ -223,7 +223,7 @@
 										</li>
 									</ul>
 								</div>
-								 
+
 							</div>
 						</div>
 						<div class="st-dropdown-content-group">
@@ -239,8 +239,8 @@
 								<div class="col">
 									<a class="dropdown-item bold"  href="#">
 									<i class="fas fa-stack-overflow icon"></i> Stackoverflow</a>
-								</div> 			
-							</div>			
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -305,16 +305,16 @@
 									</div>
 								</div>
 							</a>
-							
+
 							<h4 class="text-uppercase regular">Huge Tools list</h4>
 							<div class="row">
 								<div class="col mr-4">
 									<a class="dropdown-item"  href="/products/live-chat">Live Chat</a>
-									<a class="dropdown-item"  href="/survey-feedback">Survey/Feedback</a> 
+									<a class="dropdown-item"  href="/survey-feedback">Survey/Feedback</a>
 								</div>
 								<div class="col mr-4">
 									<a class="dropdown-item"  href="/products/appointments">Appointments</a>
-									<a class="dropdown-item"  href="/autoresponders">Autoresponders</a> 
+									<a class="dropdown-item"  href="/autoresponders">Autoresponders</a>
 								</div>
 								<div class="col mr-4">
 									<a class="dropdown-item"  href="/products/app-messaging">In-app Messaging</a>
@@ -331,9 +331,9 @@
 			</div>
 		</div>
 	</nav>
- 
-	<main>
-		
+    @yield('content')
+	{{--<main>
+
 		<header class="section header header-v6">
 			<div class="shape-wrapper">
 				<img src="{{ asset('site/assets/skin2/img/v6/header/bg-shape.svg') }}" class="main-background img-responsive" alt="" style="">
@@ -358,8 +358,8 @@
 			</div>
 		</header>
 
-        
-        
+
+
         <section class="section mt-n">
             <div class="container pt-0">
                 <div class="shadow bg-1 p-4 rounded">
@@ -397,11 +397,11 @@
                     </div>
                 </div>
             </div>
-        
+
         </section>
-        
-        
- 
+
+
+
 		<!-- Features -->
 		<section class="section">
 			<div class="shape-wrapper">
@@ -665,13 +665,13 @@
 					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-down-left" data-aos-delay="400" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-4 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/codeIgniter.png') }})"></li>
 					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-up-left" data-aos-delay="0" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-5 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/codeIgniter.png') }})"></li>
 					<li data-aos-easing="ease-in-out-cubic" data-aos="fade-left" data-aos-delay="100" class="shadow-box bg-6 rounded-circle icon-xxl image-background contain mt-6 aos-init" style="background-image: url({{ asset('site/assets/skin2/img/integration/Cackephp.png') }})"></li>
-				</ul> 
+				</ul>
 			</div>
 			</div>
 		</section>
 
 		  <section class="section bg-6 b-b edge top-left">
-              
+
 			<div class="container bring-to-front">
 				<div class="shadow rounded text-center bg-4-gradient color-1 p-5">
 					<h2 class="mb-5">Try Dashcore now.... love it forever</h2>
@@ -680,8 +680,8 @@
 				</div>
 			</div>
 		</section>
-	</main>
-	 
+	</main>--}}
+
 	<!-- ./Footer - Stay in Touch -->
 	<footer class="site-footer section text-center">
 		<div class="container pb-4">
@@ -745,7 +745,7 @@
 			</div>
 		</div>
 	</footer>
- 
+
 
 	<script src="{{ asset('site/assets/skin2/js/01.cookie-consent-util.js') }}"></script>
 	<script src="{{ asset('site/assets/skin2/js/02.1.cookie-consent-themes.js') }}"></script>

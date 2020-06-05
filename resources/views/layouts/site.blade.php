@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <head>
     <style type="text/css">
-        .image-background.contain {
+.image-background.contain {
     background-size: contain;
     height: 100px !important;
+}
+.media-body > p{
+    font-size: 80%;
 }
     </style>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -49,11 +52,6 @@
     <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/swiper.css') }}">
     <link rel="stylesheet" href="{{ asset('site/assets/skin2/css/styles1.css') }}">
     <!-- End - Stylesheet Files -->
-	<style media="screen">
-		.media-body > p{
-			font-size: 80%;
-		}
-	</style>
 </head>
 
 <body style="min-width: 440px;">
@@ -75,7 +73,7 @@
                     <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="aboutus">About Us </a>
                     <!-- <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="menu">Menu</a> -->
                     <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="products">Products</a>
-                    <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="developers">Developers</a>
+                    <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="cases">Use cases</a>
                     <a class="st-root-link nav-link" href="">Pricing </a>
                 </li>
                 <li class="st-nav-section st-nav-secondary nav-item">
@@ -130,7 +128,7 @@
                                         <i class="fas fa-clipboard-list icon"></i>TEXTING SURVEY</a>
 
                                     </div>
-                                    <h4  style="margin-top: -6%; margin-right: -20%;" class="text-uppercase regular">Developers</h4>
+                                    <h4  style="margin-top: -6%; margin-right: -20%;" class="text-uppercase regular">Use cases</h4>
 
                                     <div class="col mr-4">
                                         <a class="regular text-primary" href="">
@@ -224,7 +222,7 @@
                 </div>
 
                 <!-- developers -->
-                <div class="st-dropdown-section" data-dropdown="developers">
+                <div class="st-dropdown-section" data-dropdown="cases">
                     <div class="st-dropdown-content">
                         <div class="st-dropdown-content-group">
                             <div class="mb-4">
@@ -286,36 +284,6 @@
                 </div>
 
                 <!-- END developers -->
-                <!--Menu!-->
-                <!-- <div class="st-dropdown-section" data-dropdown="menu">
-                    <div class="st-dropdown-content">
-							<div class="st-dropdown-content-group">
-							  <a class="dropdown-item" target="_blank" href="shop/home.html">
-								<div class="media align-items-center mb-2">
-								  <div class="text-contrast icon-md center-flex rounded-circle mr-3">
-									<i class="fas fa-stopwatch icon fa-2x"></i>
-								  </div>
-								  <div class="media-body">
-									<h3 class="link-title m-0">Home</h3>
-									<p class="m-0 text-secondary">Online store home with an outstanding UX</p>
-								  </div>
-								</div>
-							  </a>
-							  <a class="dropdown-item" target="_blank" href="shop/home.html">
-								<div class="media align-items-center">
-								  <div class="text-contrast icon-md center-flex rounded-circle mr-3">
-									<i class="fas fa-shopping-basket icon fa-2x"></i>
-								  </div>
-								  <div class="media-body">
-									<h3 class="link-title m-0">Home</h3>
-									<p class="m-0 text-secondary">Online store home with an outstanding UX</p>
-								  </div>
-								</div>
-							  </a>
-							</div>
-                    </div>
-                </div> -->
-                <!--Menu!-->
                 <!-- Produits -->
                 <div class="st-dropdown-section" data-dropdown="products">
                     <div class="st-dropdown-content">

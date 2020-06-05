@@ -79,25 +79,29 @@ Route::get('/products', function () {
 })->name('products');
 
 Route::get('/pricing', function () {
-    return view('pricing');
+    return view('site.pricing');
 })->name('pricing');
 
 Route::get('/about-us', function () {
-    return view('about');
+    return view('site.about');
 })->name('about-us');
 
 Route::get('/contact', function () {
-    return view('contact');
+    return view('site.contact');
 })->name('contact');
 
 Route::get('testimonials', function () {
-    return view('testimonials');
+    return view('site.testimonials');
 })->name('testimonials');
 
 Route::get('/faqs', function () {
-    return view('faqs');
+    return view('site.faqs');
 })->name('faqs');
 
 Route::get('/careers', function () {
     return view('careers');
 })->name('careers');
+
+Route::get('/terms', function () {
+    return view('site.terms');
+})->name('terms');

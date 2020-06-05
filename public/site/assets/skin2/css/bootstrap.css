@@ -2489,7 +2489,7 @@ fieldset:disabled a.btn {
 
 .btn-success {
   color: #fff;
-  background-color: #28a745;
+  background-color: #22ca84;
   border-color: #28a745;
 }
 
@@ -8344,7 +8344,7 @@ button.bg-dark:focus {
 .ml-auto,
 .mx-auto {
   margin-left: auto !important;
-  
+
 }
 
 @media (min-width: 576px) {
