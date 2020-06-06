@@ -644,18 +644,11 @@
 		//Date picker input
 		$("input.birth-daterange").daterangepicker({
             singleDatePicker: true,
-            showDropdowns: true,                
-            //timePicker: true,
-            //timePicker24Hour: true,
-            //timePickerSeconds: true,
+            showDropdowns: true,
             minYear: parseInt(moment().subtract(10, 'years').format('YYYY'),10),
             maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
-            autoUpdateInput: false,                
-            singleClasses: "",
-            locale: {
-                //format: 'DD.MM.YYYY HH:mm:ss'
-                //format: 'DD.MM.YYYY'
-            }
+            autoUpdateInput: false,
+            singleClasses: ""
         });
 
         $('input.birth-daterange').on('apply.daterangepicker', function (ev, picker) {

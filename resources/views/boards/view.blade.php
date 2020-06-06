@@ -819,9 +819,6 @@ $(document).ready(function(){
 });
 </script>
 <style>
-.select2 {
-	width: 100% !important;
-}
 .os-dropdown ul li button {
   display: block;
   white-space: nowrap;

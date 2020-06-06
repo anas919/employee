@@ -58,19 +58,15 @@
 			        	</div>
 			        	<div class="title-right">
 			        		<div class="dropdown">
-								<button onclick="dropDown(this);" class="icon-feather-plus dropbtn"></button>
-								<div class="dropdown-content">
-									<span>Home</span>
-									<span>About</span>
-									<span>Contact</span>
-								</div>
+								<button onclick="createCard({{ $tasklist->id }})" class="icon-feather-plus dropbtn"></button>
 							</div>
 			        		<div class="dropdown">
 							  	<button onclick="dropDown(this);" class="icon-feather-more-vertical dropbtn"></button>
 							  	<div id="myDropdown1" class="dropdown-content">
 								    <span onclick="createCard({{ $tasklist->id }})"><i class="os-icon os-icon-ui-22"></i>Add Card</span>
-								    <span onclick="duplicateList({{ $tasklist->id }})"><i class="os-icon os-icon-grid-10"></i>Duplicate List</span>
-								    <span onclick="archiveList({{ $tasklist->id }})"><i class="os-icon os-icon-ui-44"></i>Contact</span>
+								    <span onclick="duplicateList({{ $tasklist->id }})"><i class="os-icon os-icon-grid-10"></i>Duplicate list</span>
+								    <span onclick="archiveList({{ $tasklist->id }})"><i class="os-icon os-icon-ui-44"></i>Archive list</span>
+								    <span onclick="deleteList({{ $tasklist->id }})"><i class="os-icon os-icon-ui-44"></i>Delete list</span>
 							  	</div>
 							</div>
 			        	</div>
@@ -135,13 +131,13 @@
 	</div>
 </div>
 <div aria-hidden="true" class="modal fade" id="editCardModal" role="dialog" tabindex="-1">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style="margin-right: 0px;">
         <div class="modal-content">
           	<div class="modal-header faded smaller">
             	<div class="modal-title">
               		<div class="form-check" style="margin-top: auto;">
 						<label>
-							<input type="checkbox" name="check"> <span class="label-text"></span>
+							<input id="mark" type="checkbox" name="check"> <span id="task_info" class="label-text"></span>
 						</label><span id="assignedMembers" class="cell-image-list">Assigned to:</span><span> Due Date: </span><strong>Sep 12th, 2017</strong>
 					</div>
             	</div>
@@ -151,81 +147,130 @@
           		<div class="os-tabs-controls os-tabs-complex">
 					<ul class="nav nav-tabs">
 						<li class="nav-item">
-							<a aria-expanded="false" class="nav-link active show" data-toggle="tab" href="#tab_overview"><span class="tab-label">General</span></a>
+							<a aria-expanded="false" class="nav-link active show" data-toggle="tab" href="#general"><span class="tab-label">General</span></a>
 						</li>
 						<li class="nav-item">
-							<a aria-expanded="false" class="nav-link" data-toggle="tab" href="#tab_sales"><span class="tab-label">Details</span></a>
+							<a aria-expanded="false" class="nav-link" data-toggle="tab" href="#details"><span class="tab-label">Details</span></a>
 						</li>
 						<li class="nav-item">
-							<a aria-expanded="false" class="nav-link" data-toggle="tab" href="#tab_sales"><span class="tab-label">Files & resources</span><span class="badge badge-success"></i><span>1</span></span></a>
+							<a aria-expanded="false" class="nav-link" data-toggle="tab" href="#attached"><span class="tab-label">Files & resources</span><span class="badge badge-success"></i><span>1</span></span></a>
 						</li>
 					</ul>
                 </div>
-              	<div class="row">
-	              	<div class="col-sm-12">
-		                <label for="">Task name</label><input class="form-control" placeholder="Enter task name" type="text" id="cardTitle">
-	              	</div>
-	              	<div class="col-sm-12">
-						<div class="form-group">
-					        <label for=""> Description</label>
-							<textarea cols="80" id="ckeditor2" name="cardCkeditor1" rows="10"></textarea>
-					    </div>
+              	<div class="tab-content">
+              		<div id="general" class="tab-pane fade in active col-sm-12">
+              			<div class="row">
+			              	<div class="col-sm-12">
+				                <label for="">Task name</label><input class="form-control" placeholder="Enter task name" type="text" id="cardTitle">
+			              	</div>
+			              	<div class="col-sm-6">
+					         	<div class="form-group">
+					                <label for=""> Members</label>
+					                <select class="form-control edit-members-select" multiple="true" name="editcardMembers[]" id="editcardMembers"></select>
+					            </div>
+					        </div>
+				            <div class="col-sm-6">
+		                  		<div class="form-group">
+		                    		<label for=""> Due Date</label>
+		                    		<div class="date-input">
+		                      			<input class="due_date-daterange form-control" placeholder="Due Date" type="text" value="" id="cardDueDate">
+		                    		</div>
+		                  		</div>
+		                	</div>
+	                		<div class="col-sm-12">
+		                  		<div class="form-group">
+		                    		<label for="">Priority</label>
+		                    		<select class="form-control" id="cardPriority">
+		                      			<option value="high">
+		                        			High Priority
+		                      			</option>
+		                      			<option value="normal">
+		                        			Normal Priority
+		                      			</option>
+		                      			<option value="low">
+		                        			Low Priority
+		                      			</option>
+		                    		</select>
+		                  		</div>
+		                	</div>
+		                </div>
 					</div>
-                	<div class="col-sm-6">
-                  		<div class="form-group">
-                    		<label for=""> Due Date</label>
-                    		<div class="date-input">
-                      			<input class="single-daterange form-control" placeholder="Due Date" type="text" value="" id="cardDueDate">
-                    		</div>
-                  		</div>
-                	</div>
-            		<div class="col-sm-6">
-                  		<div class="form-group">
-                    		<label for="">Priority</label>
-                    		<select class="form-control" id="cardPriority">
-                      			<option value="high">
-                        			High Priority
-                      			</option>
-                      			<option value="normal">
-                        			Normal Priority
-                      			</option>
-                      			<option value="low">
-                        			Low Priority
-                      			</option>
-                    		</select>
-                  		</div>
-                	</div>
+					<div id="details" class="tab-pane fade in">
+	                	<div class="col-sm-12">
+							<div class="form-group">
+						        <label for=""> Description</label>
+								<textarea id="ckeditor2" name="cardCkeditor1"></textarea>
+						    </div>
+						</div>
+	                </div>
+	                <div id="attached" class="tab-pane fade in">
+	            		<div class="form-group">
+		                	<label for="">Media Attached</label>
+		                	<div class="attached-media-w" id="cardFiles">
+		                  		{{-- <img src="{{ asset('img/portfolio9.jpg') }}"><img src="{{ asset('img/portfolio2.jpg') }}"><img src="{{ asset('img/portfolio12.jpg') }}"> --}}
+		                	</div>
+		              	</div>
+			            <div id="my-awesome-dropzone" class="dropzone">
+			            	<div class="dz-message">
+		                      <div>
+		                        <h4>Drop attached images or files here or click to upload.</h4><div class="text-muted">5MB max size allowed</div>
+		                      </div>
+		                    </div>
+			            </div>
+	                </div>
               	</div>
-	         	<div class="form-group">
-	                <label for=""> Members</label>
-	                <select class="form-control edit-members-select" multiple="true" name="editcardMembers[]" id="editcardMembers"></select>
-	            </div>
-              	<div class="form-group">
-                	<label for="">Media Attached</label>
-                	<div class="attached-media-w" id="cardFiles">
-                  		{{-- <img src="{{ asset('img/portfolio9.jpg') }}"><img src="{{ asset('img/portfolio2.jpg') }}"><img src="{{ asset('img/portfolio12.jpg') }}"> --}}
-                	</div>
-              	</div>
-	            <div id="my-awesome-dropzone" class="dropzone">
-	            	<div class="dz-message">
-                      <div>
-                        <h4>Drop files here or click to upload.</h4><div class="text-muted">(This is just a demo dropzone. Selected files are not actually uploaded)</div>
-                      </div>
-                    </div>
-	            </div>
       		</div>
 	        <div class="modal-footer buttons-on-left">
-	            <button class="btn btn-teal" type="button" id="edit-members-save"> Save changes</button><button class="btn btn-link" data-dismiss="modal" type="button" id="edit-members-close"> Cancel</button>
+	            <button class="btn btn-primary" type="button" id="edit-members-save"> Save changes</button><button class="btn btn-link" data-dismiss="modal" type="button" id="edit-members-close"> Cancel</button>
 	      	</div>
     	</div>
 	</div>
 </div>
+<div class="modal fade" id="previewPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header faded smaller">
+				<div class="modal-title">
+					<span id="preview-img-name"></span>
+				</div>
+				<button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"> &times;</span></button>
+			</div>
+			<div class="modal-body mb-0 p-0">
+				<div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+					    <img class="embed-responsive-item" id="preview-img" src=""></iframe>
+				</div>
+			</div>
+		</div>
+  	</div>
+</div>
 @endsection
 @section('scripts')
+<script type="text/javascript">
+	$('#mark').change(function () {
+		if($(this).is(':checked')) {
+			$('#message-success').text('Marked as done');
+			$("#alert-success").show();
+			setTimeout(function() { $("#alert-success").hide(); }, 2000);
+		}else{
+			$('#message-success').text('Marked as undone');
+			$("#alert-success").show();
+			setTimeout(function() { $("#alert-success").hide(); }, 2000);
+		}   
+    });
+</script>
 <link rel="stylesheet" type="text/css" href="{{asset('icon_fonts_assets/feather/style.css')}}">
 <script src="{{ asset('bower_components/dragula.js/dist/dragula.min.js') }}"></script>
 <link href="{{ asset('bower_components/dragula.js/dist/dragula.min.css') }}" rel="stylesheet">
 <style type="text/css">
+	/*mark task*/
+	#task_info:hover{
+		cursor: pointer;
+	}
+	/*ckeditor*/
+	#cke_1_contents{
+		height: 20vh !important;
+	}
+	/**/
 	#listCreate > .list-title > .title-right > i{
 		-webkit-box-flex: 1;
 	    -ms-flex: 1 1 auto;
@@ -262,46 +307,12 @@
 	}
 </style>
 <script type="text/javascript">
-	function createList(){
-		if($('#listCreate').length){
-			alert('You already creating a list, Finish the list you\'re creating first');
-		}else{
-			$('#addListBtn').before('<div class="board-list" id="listCreate"><div class="list-title"><div class="title-left"><input type="text" class="form-control" size="4" id="nameList" placeholder="List title here"></div><div class="title-right"><i class="icon-feather-save" onclick="addList()"></i><i class="icon-feather-x" onclick="closeList()"></i></div></div></div>');
-		}
-	}
-	function addList() {
-		var name = $('#nameList').val();
-		if(name!=''){
-			$('#loading').css('display','block');
-			$.ajax({
-				type:'POST',
-				url:'{{ url('/') }}/tasklists/add',
-				data:{ name: name, board_id: {{$board->id}} },
-				success:function(data){
-					$('#loading').css('display','none');
-				  	$('#listCreate').remove();
-					$('#addListBtn').before('<div class="col-lg-4 col-xxl-3"><div class="pipeline white lined-primary"><div class="pipeline-header"><h5>'+data.tasklist.title+'</h5><div class="pipeline-header-numbers"><div class="pipeline-value"></div><div class="pipeline-count">0 members</div></div><div class="pipeline-settings os-dropdown-trigger"><i class="os-icon os-icon-hamburger-menu-1"></i><div class="os-dropdown"><div class="icon-w"><i class="os-icon os-icon-ui-46"></i></div><ul><li><button onclick="createCard('+data.tasklist.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-22"></i><span>Add Card</span></button></li><li><button onclick="duplicateList('+data.tasklist.id+')" class="small-edit" type="button"><i class="os-icon os-icon-grid-10"></i><span>Duplicate List</span></button></li><li><button onclick="archiveList('+data.tasklist.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-44"></i><span>Archive List</span></button></li></ul></div></div></div><div class="pipeline-body" id="pipeline-'+data.tasklist.id+'"></div></div></div>');
-				},
-				error:function(error){
-					console.log(error);
-				}
-			});
-		}
-	}
-	$(document).on("keypress", "#nameList", function(e){
-        if(e.which == 13){
-            addList();
-        }
-    });
-	function closeList(){
-		$('#listCreate').remove();
-	}
+	//Uploads
 	var uploadedFiles = {
     	files : {}
 	};
 	var uniqId=0;
 	Dropzone.autoDiscover = false;
-	// "myAwesomeDropzone" is the camelized version of the HTML element's ID
 	Dropzone.options.myAwesomeDropzone = {
 	  	paramName: "attachedFile", // The name that will be used to transfer the file
 	  	maxFilesize: 5, // MB
@@ -362,6 +373,204 @@
 		members_data.push({ id: {{ $member->id }}, text: '<div> @if ($member->media_id)<img src="{{ asset('storage/'.$member->media->reference) }}" width="30px" height="30px">{{ $member->first_name }} {{ $member->last_name }} @else <div class="avatar" style="border-radius: 50%;">{{ substr($member->first_name, 0, 1).substr($member->last_name, 0, 1) }}</div>{{ $member->first_name }} {{ $member->last_name }} @endif </div>' });
 	@empty
 	@endforelse
+	function dropDown(element) {
+	  var elements = ".dropdown-content";
+	  $(elements).removeClass('show-elem');
+	  $(element).next(elements).toggleClass("show-elem");
+	}
+	window.onclick = function(event) {
+	  if (!event.target.matches('.dropbtn')) {
+	    var dropdowns = document.getElementsByClassName("dropdown-content");
+	    var i;
+	    for (i = 0; i < dropdowns.length; i++) {
+	      var openDropdown = dropdowns[i];
+	      if (openDropdown.classList.contains('show-elem')) {
+	        openDropdown.classList.remove('show-elem');
+	      }
+	    }
+	  }
+	}
+	//Edit card
+	if ($('#ckeditor2').length) {
+	    CKEDITOR.replace('ckeditor2');
+	}
+	function previewImg(src, name) {
+		$('#preview-img').attr('src',src);
+		$('#preview-img-name').text(name);
+		$('#previewPicture').modal('show');
+	}
+	function createCard(tasklist_id){
+		if($('#card-'+tasklist_id).length){
+
+		}else{
+			$('#pipeline-'+tasklist_id).prepend('<div id="card-section-'+tasklist_id+'"><button onclick="closeCard('+tasklist_id+')" class="close" type="button">×</button><input class="form-control" placeholder="Card title" type="text" id="card-'+tasklist_id+'"><button class="mr-2 mb-2 btn btn-primary btn-sm" type="button" style="width: 100%;margin-top: 10px;" onclick="addCard('+tasklist_id+')"> Create board</button></div>');
+		}
+	}
+	function closeCard(tasklist_id){
+		$('#card-section-'+tasklist_id).remove();
+	}
+	function addCard(tasklist_id) {
+		title = $('#card-'+tasklist_id).val();
+		$('#loading').css('display','block');
+		$.ajax({
+			type:'POST',
+			url:'{{ url('/') }}/cards/add',
+			data:{ tasklist_id: tasklist_id, title: title},
+			success:function(data){
+				$('#loading').css('display','none');
+			  	$('#card-section-'+tasklist_id).remove();
+			  	$('#pipeline-'+tasklist_id).prepend('<div class="pipeline-item"  data-tasklist="'+tasklist_id+'" data-card="'+data.card.id+'"><div class="pi-controls"><div class="pi-settings os-dropdown-trigger"><i class="os-icon os-icon-ui-46"></i><div class="os-dropdown"><div class="icon-w"><i class="os-icon os-icon-ui-46"></i></div><ul><li><button onclick="assignMembers('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-users"></i><span>Assign Members</span></button></li><li><button onclick="editCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-49"></i><span>Edit Card</span></button></li><li><button onclick="duplicateCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-grid-10"></i><span>Duplicate Card</span></button></li><li><button onclick="removeCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-15"></i><span>Remove Card</span></button></li><li><button onclick="archiveCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-44"></i><span>Archive Card</span></button></li></ul></div></div><div class="status status-green" data-placement="top" data-toggle="tooltip" title="Active Status"></div></div><div class="pi-body"><div class="pi-info"><div class="h6 pi-name" id="card-title-'+data.card.id+'">'+data.card.title+'</div></div></div><div class="pi-foot"><div class="tags"><button class="btn btn-outline-primary badge badge-primary-inverted">Details</button><button class="btn btn-outline-danger badge badge-danger-inverted"  id="card-due_date-'+data.card.id+'"></button></div><div class="cell-image-list" id="card-members-'+data.card.id+'"><small>No Members</small></div></div></div>');
+			},
+			error:function(error){
+				console.log(error);
+			}
+		});
+	}
+	$('input.due_date-daterange').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('L'));
+    });
+
+    $('input.due_date-daterange').on('cancel.daterangepicker', function (ev, picker) {
+        $(this).val('');
+    });
+    $("input.due_date-daterange").daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        minYear: parseInt(moment().subtract(10, 'years').format('YYYY'),10),
+        maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
+        autoUpdateInput: false,                
+        singleClasses: "",
+    });
+	function editCard(card_id){
+		$('#loading').css('display','block');
+		// $("input.due_date-daterange").daterangepicker({
+  //           singleDatePicker: true,
+  //           showDropdowns: true,
+  //           minYear: parseInt(moment().subtract(10, 'years').format('YYYY'),10),
+  //           maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
+  //           autoUpdateInput: false,                
+  //           singleClasses: "",
+  //       });
+		c_edit_card_id = card_id;
+		selected_edit_card_members = [];
+		$.ajax({
+			type:'GET',
+			url:'{{ url('/') }}/cards/edit/'+card_id,
+			success:function(data){
+				$('#loading').css('display','none');
+				$('#assignedMembers').text('Assigned to: ');
+				$('#cardTitle').val(data.card.title);
+				$('#cardPriority').val(data.card.priority);
+				if(data.card.description)
+					CKEDITOR.instances['ckeditor2'].setData(data.card.description);
+				if(data.card.due_date){
+					var due_date = data.card.due_date.split("-");
+					$('#cardDueDate').val(due_date[1]+'/'+due_date[2]+'/'+due_date[0])
+				}else{
+					$('input.due_date-daterange').val('');
+				}
+				for(let i = 0; i < data.members.length; i++){
+					selected_edit_card_members.push(data.members[i]['id']);
+					if(data.members[i]['reference']){
+						$('#assignedMembers').append('<div class="cell-img"><div class="user-with-avatar"><img alt="'+data.members[i]['id']+'" src="{{ url('/') }}/storage/'+data.members[i]['reference']+'"></div></div>');
+					}else{
+						$('#assignedMembers').append('<div class="cell-img avatar">'+data.members[i]['name']+'</div>');
+					}
+				}
+				$(".edit-members-select").select2({
+					// maximumSelectionLength: 1,
+					data: members_data,
+					templateResult: function (d) { return $(d.text); },
+					templateSelection: function (d) { return $(d.text); },
+				});
+				$(".edit-members-select").val(selected_edit_card_members).trigger('change');
+				$("#cardFiles").html('');
+				for(let i = 0; i < data.card.attachedFiles.length; i++){
+					var d = new Date(data.card.created_at);
+					var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+					var mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+					var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+					var upload_date =	mo+' '+da+','+ye;
+					if(data.card.attachedFiles[i]['mime_type'] == 'image/jpeg' || data.card.attachedFiles[i]['mime_type'] == 'image/png') {
+						$("#cardFiles").append('<div onclick="previewImg(\'{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'\',\''+data.card.attachedFiles[i]['name']+'\');" class="attachment"><div class="attachment-preview" style="background-image: url({{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+');background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><span>'+data.card.attachedFiles[i]['name']+'</span></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
+					}else if(data.card.attachedFiles[i]['mime_type'] == 'text/html'){
+						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
+					}else if(data.card.attachedFiles[i]['mime_type'] == 'text/plain'){
+						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
+					}else if(data.card.attachedFiles[i]['mime_type'] == 'application/pdf'){
+						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
+					}else if(data.card.attachedFiles[i]['mime_type'] == 'application/zip' || data.card.attachedFiles[i]['mime_type'] == 'application/x-rar'){
+						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
+					}else if(data.card.attachedFiles[i]['mime_type'] == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
+						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
+					}else if(data.card.attachedFiles[i]['mime_type'] == 'application/vnd.openxmlformats-officedocument.presentationml.presentation'){
+						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
+					}else if(data.card.attachedFiles[i]['mime_type'] == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
+					}else{
+						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
+					}
+				}
+				initDropzones();
+				$("#my-awesome-dropzone").dropzone({
+					url: "{{ url('/') }}/cards/attach-file/"+card_id,
+					// acceptedFiles: 'image/jpeg,image/gif,image/png,application/pdf,.eps,.csv,.xls,.xlsx/.doc,.docx/.ppt/.pptx/text/plain,text/html,video/*,audio/*,.zip,.rar',
+					headers: {
+                    	'x-csrf-token': $('meta[name="csrf-token"]').attr('content'),
+                	},
+				});
+				$('#editCardModal').modal('show');
+			},
+			error:function(error){
+				console.log(error);
+			}
+		});
+	}
+	$("#edit-members-save").click(function(){
+		$('#loading').css('display','block');
+		var cardTitle = $("#cardTitle").val();
+		var cardDueDate = $("#cardDueDate").val();
+		var editcardMembers = $("#editcardMembers").select2("val");
+		var cardDescription = CKEDITOR.instances['ckeditor2'].getData();
+		var cardPriority = $('#cardPriority :selected').val();
+		// console.log(cardPriority);
+		$.ajax({
+			type:'POST',
+			url:'{{ route('update-card', Auth::user()->subdomain) }}',
+			data: {
+				id:c_edit_card_id,
+				title:cardTitle,
+				description:cardDescription,
+				priority:cardPriority,
+				due_date: cardDueDate,
+				members:editcardMembers
+			},
+			success:function(data){
+				$('#loading').css('display','none');
+				$('#card-members-'+c_edit_card_id).empty();
+				$('#card-title-'+c_edit_card_id).empty();
+				$('#card-due_date-'+c_edit_card_id).empty();
+				$('#card-title-'+c_edit_card_id).append(data.card.title);
+				var d = new Date(data.card.due_date);
+				var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+				var mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+				var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+				$('#card-due_date-'+c_edit_card_id).append(mo+' '+da+','+ye);
+				for(let i = 0; i < data.members.length; i++){
+					if(data.members[i]['reference']){
+						$('#card-members-'+c_edit_card_id).append('<div class="cell-img"><div class="user-with-avatar"><img alt="'+data.members[i]['id']+'" src="{{ url('/') }}/storage/'+data.members[i]['reference']+'"></div></div>');
+					}else{
+						$('#card-members-'+c_edit_card_id).append('<div class="cell-img avatar">'+data.members[i]['name']+'</div>');
+					}
+				}
+				$('#edit-members-close').trigger("click");
+				//location.reload(true);
+			},
+			error:function(error){
+
+			}
+		});
+	});
 	$(document).ready(function(){
 		$('.editable-text').mouseenter(function(event) {
 			$(this).find('i').css('display','block');
@@ -424,101 +633,60 @@
 	        }
 	    });
 	});
-	function dropDown(element) {
-	  var elements = ".dropdown-content";
-	  $(elements).removeClass('show-elem');
-	  $(element).next(elements).toggleClass("show-elem");
+	//Lists
+	function createList(){
+		if($('#listCreate').length){
+			alert('You already creating a list, Finish the list you\'re creating first');
+		}else{
+			$('#addListBtn').before('<div class="board-list" id="listCreate"><div class="list-title"><div class="title-left"><input type="text" class="form-control" size="4" id="nameList" placeholder="List title here"></div><div class="title-right"><i class="icon-feather-save" onclick="addList()"></i><i class="icon-feather-x" onclick="closeList()"></i></div></div></div>');
+		}
 	}
-	window.onclick = function(event) {
-	  if (!event.target.matches('.dropbtn')) {
-	    var dropdowns = document.getElementsByClassName("dropdown-content");
-	    var i;
-	    for (i = 0; i < dropdowns.length; i++) {
-	      var openDropdown = dropdowns[i];
-	      if (openDropdown.classList.contains('show-elem')) {
-	        openDropdown.classList.remove('show-elem');
-	      }
-	    }
-	  }
+	function addList() {
+		var name = $('#nameList').val();
+		if(name!=''){
+			$('#loading').css('display','block');
+			$.ajax({
+				type:'POST',
+				url:'{{ url('/') }}/tasklists/add',
+				data:{ name: name, board_id: {{$board->id}} },
+				success:function(data){
+					$('#loading').css('display','none');
+				  	$('#listCreate').remove();
+					$('#addListBtn').before('<div class="col-lg-4 col-xxl-3"><div class="pipeline white lined-primary"><div class="pipeline-header"><h5>'+data.tasklist.title+'</h5><div class="pipeline-header-numbers"><div class="pipeline-value"></div><div class="pipeline-count">0 members</div></div><div class="pipeline-settings os-dropdown-trigger"><i class="os-icon os-icon-hamburger-menu-1"></i><div class="os-dropdown"><div class="icon-w"><i class="os-icon os-icon-ui-46"></i></div><ul><li><button onclick="createCard('+data.tasklist.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-22"></i><span>Add Card</span></button></li><li><button onclick="duplicateList('+data.tasklist.id+')" class="small-edit" type="button"><i class="os-icon os-icon-grid-10"></i><span>Duplicate List</span></button></li><li><button onclick="archiveList('+data.tasklist.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-44"></i><span>Archive List</span></button></li></ul></div></div></div><div class="pipeline-body" id="pipeline-'+data.tasklist.id+'"></div></div></div>');
+				},
+				error:function(error){
+					console.log(error);
+				}
+			});
+		}
 	}
-	//Edit card
-	if ($('#ckeditor2').length) {
-	    CKEDITOR.replace('ckeditor2');
+	$(document).on("keypress", "#nameList", function(e){
+        if(e.which == 13){
+            addList();
+        }
+    });
+	function closeList(){
+		$('#listCreate').remove();
 	}
-	function editCard(card_id){
+	function duplicateList(tasklist_id){
 		$('#loading').css('display','block');
-		c_edit_card_id = card_id;
-		selected_edit_card_members = [];
 		$.ajax({
 			type:'GET',
-			url:'{{ url('/') }}/cards/edit/'+card_id,
+			url:'{{ url('/') }}/tasklists/duplicate/'+tasklist_id,
 			success:function(data){
 				$('#loading').css('display','none');
-				$('#assignedMembers').text('Assigned to: ');
-				$('#cardTitle').val(data.card.title);
-				$('#cardPriority').val(data.card.priority);
-				if(data.card.description)
-					CKEDITOR.instances['ckeditor2'].setData(data.card.description);
-				if(data.card.due_date){
-					var due_date = data.card.due_date.split("-");
-					$('#cardDueDate').val(due_date[1]+'/'+due_date[2]+'/'+due_date[0])
-				}
-				for(let i = 0; i < data.members.length; i++){
-					selected_edit_card_members.push(data.members[i]['id']);
-					if(data.members[i]['reference']){
-						$('#assignedMembers').append('<div class="cell-img"><div class="user-with-avatar"><img alt="'+data.members[i]['id']+'" src="{{ url('/') }}/storage/'+data.members[i]['reference']+'"></div></div>');
-					}else{
-						$('#assignedMembers').append('<div class="cell-img avatar">'+data.members[i]['name']+'</div>');
-					}
-				}
-				$(".edit-members-select").select2({
-					// maximumSelectionLength: 1,
-					data: members_data,
-					templateResult: function (d) { return $(d.text); },
-					templateSelection: function (d) { return $(d.text); },
-				});
-				$(".edit-members-select").val(selected_edit_card_members).trigger('change');
-				$("#cardFiles").html('');
-				for(let i = 0; i < data.card.attachedFiles.length; i++){
-					var d = new Date(data.card.created_at);
-					var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-					var mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-					var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
-					var upload_date =	mo+' '+da+','+ye;
-					if(data.card.attachedFiles[i]['mime_type'] == 'image/jpeg' || data.card.attachedFiles[i]['mime_type'] == 'image/png') {
-						$("#cardFiles").append('<div onclick="previewImg(\'{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'\',\''+data.card.attachedFiles[i]['name']+'\');" class="attachment"><div class="attachment-preview" style="background-image: url({{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+');background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><span>'+data.card.attachedFiles[i]['name']+'</span></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
-					}else if(data.card.attachedFiles[i]['mime_type'] == 'text/html'){
-						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
-					}else if(data.card.attachedFiles[i]['mime_type'] == 'text/plain'){
-						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
-					}else if(data.card.attachedFiles[i]['mime_type'] == 'application/pdf'){
-						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
-					}else if(data.card.attachedFiles[i]['mime_type'] == 'application/zip' || data.card.attachedFiles[i]['mime_type'] == 'application/x-rar'){
-						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
-					}else if(data.card.attachedFiles[i]['mime_type'] == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
-						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
-					}else if(data.card.attachedFiles[i]['mime_type'] == 'application/vnd.openxmlformats-officedocument.presentationml.presentation'){
-						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
-					}else if(data.card.attachedFiles[i]['mime_type'] == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
-						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
-					}else{
-						$("#cardFiles").append('<div class="attachment"><div class="attachment-preview" style="background-color: #0b1319;"></div><div class="attachment-details"><div class="attachment-name"><a class="attachment" href="{{ url('/') }}/storage/'+data.card.attachedFiles[i]['reference']+'" download="'+data.card.attachedFiles[i]['name']+'"><span> '+data.card.attachedFiles[i]['name']+'</span></a></div><div class="attachment-info">Uploaded in '+upload_date+' <a href="#"><i class="os-icon os-icon-ui-49"></i></a><a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a></div></div></div>');
-					}
-				}
-				initDropzones();
-				$("#my-awesome-dropzone").dropzone({
-					url: "{{ url('/') }}/cards/attach-file/"+card_id,
-					// acceptedFiles: 'image/jpeg,image/gif,image/png,application/pdf,.eps,.csv,.xls,.xlsx/.doc,.docx/.ppt/.pptx/text/plain,text/html,video/*,audio/*,.zip,.rar',
-					headers: {
-                    	'x-csrf-token': $('meta[name="csrf-token"]').attr('content'),
-                	},
-				});
-				$('#editCardModal').modal('show');
+				location.reload(true);
 			},
 			error:function(error){
 				console.log(error);
 			}
 		});
+	}
+	function archiveList(tasklist_id){
+
+	}
+	function deleteList(tasklist_id){
+
 	}
 </script>
 <style type="text/css">
@@ -697,5 +865,55 @@
 	  padding-top: 10px;
 	  padding-bottom: 5px;
 	}
+	/*Preview view*/
+
+.attachment {
+	border-radius: 3px;
+	min-height: 80px;
+	margin: 0 0 8px;
+	overflow: hidden;
+	position: relative;
+}
+.attachment .attachment-preview {
+	background-color: rgba(9,30,66,.04);
+	background-position: 50%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	border-radius: 3px;
+	height: 80px;
+	margin-top: -40px;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	text-align: center;
+	text-decoration: none;
+	z-index: 1;
+	width: 112px;
+	cursor: pointer;
+}
+.attachment .attachment-details {
+	box-sizing: border-box;
+	cursor: pointer;
+	padding: 8px 8px 8px 128px;
+	min-height: 80px;
+	margin: 0;
+	z-index: 0;
+}
+.attachment .attachment-name {
+	font-weight: 700;
+	word-wrap: break-word;
+	color: #047bf8;
+	background-color: transparent;
+	text-decoration: underline;
+}
+.attachment .attachment-info {
+	margin-bottom: 8px;
+}
+a {
+    color: #047bf8;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
 </style>
 @endsection

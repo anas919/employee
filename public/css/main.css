@@ -29162,6 +29162,9 @@ Contents:
 /*# sourceMappingURL=main.css.map */
 
 /* Added By Me */
+.select2 {
+  width: 100% !important;
+}
 .floated-actions {
   width: 30%;
     z-index: 9999;
