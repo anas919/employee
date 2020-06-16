@@ -18,6 +18,9 @@ Route::group(['middleware' => 'web'], function () {
 
 	        Route::post('/update', 'TaskController@update')
 	        	->name('update-task');
+
+			Route::post('/assign-lists', 'TaskController@assignLists')
+		        ->name('assign-lists');
 	    });
 	});
 });

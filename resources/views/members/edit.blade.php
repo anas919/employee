@@ -90,7 +90,7 @@
 		            			<div class="col-sm-4">
                     				<div class="form-group">
                       					<label for="">Employee N°</label>
-                      					<input class="form-control" type="text" name="number" value="@if($member->number) {{ $member->number }} @endif" required>
+                      					<input class="form-control" type="text" name="number" value="@if($member->number) {{ $member->number }} @endif">
                     				</div>
                   				</div>
                   				<div class="col-sm-4">

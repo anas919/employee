@@ -37,7 +37,7 @@
               		@include('layouts.flash')
               		<div class="element-actions">
               			<div class="form-inline justify-content-sm-end">
-              				<button class="btn btn-sm btn-primary btn-upper" data-target="#addBoardModal" data-toggle="modal" type="button"><i class="os-icon os-icon-ui-22"></i><span>Add Board</span></button>
+              				<!-- <button class="btn btn-sm btn-primary btn-upper" data-target="#addBoardModal" data-toggle="modal" type="button"><i class="os-icon os-icon-ui-22"></i><span>Add Board</span></button> -->
               			</div>
               		</div>
                     <h6 class="element-header">
@@ -85,8 +85,8 @@
 									</div>
 								</div>
 							</div>
-							@forelse($boards as $board)
-							<div class="support-ticket" onclick="openBoardTab({{ $board->id }})">
+							@forelse($projects as $project)
+							<div class="support-ticket" onclick="openBoardTab({{ $project->id }})">
 								<div class="st-meta">
   									<div class="badge badge-success-inverted">
     									Run Well
@@ -97,27 +97,27 @@
 								<div class="st-body">
 									<div class="cell-image-list" style="padding-right: 15px;">
 										<div class="cell-img avatar" style="width: 35px;height: 35px;">
-											{{ substr($board->project->name, 0, 2) }}
+											{{ substr($project->name, 0, 2) }}
 										</div>
 									</div>
   									<div class="ticket-content">
 										<h6 class="ticket-title">
-											{{ $board->title }}
+											{{ $project->board->title }}
 										</h6>
     									<div class="ticket-description">
-      										Small Optional description on the project...
+      										{{$project->description}}
     									</div>
   									</div>
 								</div>
 								<div class="st-foot row">
 									<div class="text-left col-6">
-										@if(count($board->project->teams))
+										@if(count($project->teams))
 		  									<span class="label">Members:</span>
 		  									@php
 												$ids = [];
 											@endphp
 											<div class="cell-image-list">
-												@foreach($board->project->teams as $team)
+												@foreach($project->teams as $team)
 													@if(count($team->members))
 														@foreach($team->members as $member)
 															@if(!in_array($member->id, $ids))
@@ -154,45 +154,6 @@
 							@empty
 							No boards found
 							@endforelse
-							<div class="support-ticket">
-								<div class="st-meta">
-			                      	<div class="badge badge-danger-inverted">
-			                        	Require Attention
-			                      	</div>
-			                      	<i class="os-icon os-icon-ui-09"></i>
-			                      	<i class="os-icon os-icon-ui-49"></i>
-			                      	<div class="status-pill red"></div>
-			                    </div>
-			                    <div class="st-body">
-			                      	<div class="avatar">
-			                        	<img alt="" src="{{ asset('img/avatar2.jpg') }}">
-			                      	</div>
-			                      	<div class="ticket-content">
-			                        	<h6 class="ticket-title">
-			                          		Projects 2 tasks
-			                        	</h6>
-			                        	<div class="ticket-description">
-			                          		Small Optional description on the project...
-			                        	</div>
-			                      	</div>
-			                    </div>
-			                    <div class="st-foot row">
-									<div class="text-left col-6">
-				                      	<span class="label">Members:</span>
-	  									<div class="cell-image-list">
-										    <div class="cell-img" style="background-image: url({{ asset('img/portfolio9.jpg') }});border-radius: 50%;"></div>
-										    <div class="cell-img" style="background-image: url({{ asset('img/portfolio2.jpg') }});border-radius: 50%;"></div>
-										    <div class="cell-img" style="background-image: url({{ asset('img/portfolio12.jpg') }});border-radius: 50%;"></div>
-										    <div class="cell-img-more">
-										      + 5 more
-										    </div>
-										</div>
-									</div>
-									<div class="text-right col-6">
-			                      		<span class="label">Last Activity:</span><span class="value">Jan 24th 8:14am</span>
-			                      	</div>
-			                    </div>
-			                </div>
 							<div class="load-more-tickets">
 								<a href="#"><span>Load More Boards...</span></a>
 							</div>
@@ -256,7 +217,7 @@
 		-------------------->
 	</div>
 </div>
-<div aria-hidden="true" aria-labelledby="addBoardModal" class="modal fade" id="addBoardModal" role="dialog" tabindex="-1">
+<!-- <div aria-hidden="true" aria-labelledby="addBoardModal" class="modal fade" id="addBoardModal" role="dialog" tabindex="-1">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -290,7 +251,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 @endsection
 @section('scripts')
 <style>
@@ -300,16 +261,16 @@
 	}
 </style>
 <script>
-	var projects = [];
-	@forelse($projects as $project)
-		projects.push({id: {{$project->id}},text: '<div> <div class="avatar" style="border-radius: 50%;">{{ substr($project->name, 0, 2) }}</div>{{ $project->name }} </div>'});
-	@empty
-	@endforelse
-	$(".projects-select").select2({
-		data: projects,
-		templateResult: function (d) { return $(d.text); },
-		templateSelection: function (d) { return $(d.text); },
-	});
+	// var projects = [];
+	// @forelse($projects as $project)
+	// 	projects.push({id: {{$project->id}},text: '<div> <div class="avatar" style="border-radius: 50%;">{{ substr($project->name, 0, 2) }}</div>{{ $project->name }} </div>'});
+	// @empty
+	// @endforelse
+	// $(".projects-select").select2({
+	// 	data: projects,
+	// 	templateResult: function (d) { return $(d.text); },
+	// 	templateSelection: function (d) { return $(d.text); },
+	// });
 	function openBoardTab(board_id) {
 		window.open(
 		  	'{{ url('/') }}'+'/boards/'+board_id,

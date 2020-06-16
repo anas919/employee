@@ -24,6 +24,9 @@ Route::group(['middleware' => 'web'], function () {
 
 	        Route::get('/duplicate/{tasklist_id}', 'TasklistController@duplicateTasklist')
 	            ->name('duplicate-tasklist');
+
+			Route::get('/delete/{tasklist_id}', 'TasklistController@deleteTasklist')
+		            ->name('delete-tasklist');
 	    });
 	});
 });

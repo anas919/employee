@@ -21,6 +21,7 @@ class CardController extends Controller
         $card = new Card();
 
 		$card->tasklist_id = $req->tasklist_id;
+        $card->project_id = $tasklist->board->project->id;
         $card->title = $req->title;
         $card->priority = 'normal';
 
@@ -108,8 +109,10 @@ class CardController extends Controller
         }
         if($req->title)
             $card->title = $req->title;
-        if($req->due_date)
+        if($req->due_date != '')
             $card->due_date = date('Y-m-d',strtotime($req->due_date));
+        else
+            $card->due_date = null;
 
         $card->priority = $req->priority;
         if($req->description)
@@ -227,6 +230,32 @@ class CardController extends Controller
     }
 
 	//Api Routes
+    public function dragDropUpdateCard(Request $req, $card_id, $source_tasklist, $target_tasklist, $previous_card){
+        $tenant = Tenant::where('database',$req->user()->subdomain)->first();
+        if($tenant)
+            $tenant->configure()->use();
+        $card = Card::find($card_id);
+
+        $card->tasklist_id = $target_tasklist;
+
+        //
+        if($previous_card != '0'){
+            $previous_card = Card::find($previous_card);
+            $t = $previous_card;
+            $card->order = $previous_card->order;
+            DB::select(DB::raw(
+                "UPDATE cards SET `order` = `order` + 1 WHERE `id` <> ".$card_id." AND `order` >= ".$previous_card->order." AND `tasklist_id` = ".$card->tasklist_id
+            ));
+        } else {
+            $t = '0';
+            $last_card = DB::table('cards')->where('tasklist_id', '=', $target_tasklist)->max('order');
+            $card->order = $last_card + 1;
+        }
+
+        $card->save();
+
+        return response()->json(['success', 'Task updated']);
+    }
 	public function getCard(Request $request, $card_id)
 	{
 		$tenant = Tenant::where('database',$request->user()->subdomain)->first();

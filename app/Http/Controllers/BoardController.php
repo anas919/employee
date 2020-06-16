@@ -8,6 +8,7 @@ use App\Project;
 use App\Board;
 use App\Organization;
 use App\User;
+use App\Tenant;
 
 class BoardController extends Controller
 {
@@ -38,5 +39,21 @@ class BoardController extends Controller
         $members = User::all();
 
         return view('boards/view1', ['board'=>$board, 'members'=>$members]);
+    }
+    //Api Desktop
+    public function getBoard(Request $request, $project_id)
+    {
+        $tenant = Tenant::where('database',$request->user()->subdomain)->first();
+        if($tenant)
+            $tenant->configure()->use();
+        $project = Project::find($project_id);
+        $board = Board::find($project->id);
+        foreach ($board->tasklists as $tasklist) {
+            $board->tasklists = $board->tasklists->sortBy('order');
+            foreach ($tasklist->cards as $card) {
+                $tasklist->card = $card;
+            }
+        }
+        return response()->json(['board'=>$board]);
     }
 }

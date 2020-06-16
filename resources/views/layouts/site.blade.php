@@ -176,15 +176,15 @@
                         <div class="st-dropdown-content-group">
                             <div class="row">
                                 <div class="col mr-4">
-                                    <a class="dropdown-item"  href="">About Us</a>
-                                    <a class="dropdown-item"  href="">Contact us</a>
+                                    <a class="dropdown-item"  href="{{route('about-us')}}">About Us</a>
+                                    <a class="dropdown-item"  href="{{route('contact')}}">Contact us</a>
                                 </div>
                                 <div class="col mr-4">
-                                    <a class="dropdown-item"  href="">Testimonials</a>
-                                    <a class="dropdown-item"  href="">FAQs</a>
+                                    <a class="dropdown-item"  href="{{route('testimonials')}}">Testimonials</a>
+                                    <a class="dropdown-item"  href="{{route('faqs')}}">FAQs</a>
                                 </div>
 								<div class="col mr-4">
-                                    <a class="dropdown-item"  href="">Careers</a>
+                                    <a class="dropdown-item"  href="{{route('careers')}}">Careers</a>
                                 </div>
                                  <!--
                                 <div class="col">
@@ -778,7 +778,267 @@ return $result;
                 </div>
             </div>
         </section>
-        <section class="section singl-testimonial"><div class="container pt-8 bring-to-front"><div class="swiper-container pb-0 pb-lg-8 swiper-container-initialized swiper-container-horizontal" data-sw-nav-arrows=".reviews-nav"><div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1230px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="6" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/7.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Daniel Hamilton,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#59ecaf"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#59ecaf"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#59ecaf"></path></svg></div></div></div></div></div><div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/1.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Jane Doe,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div><div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/2.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Lorem Team,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div><div class="swiper-slide" data-swiper-slide-index="2" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/3.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Ipsum Team,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div><div class="swiper-slide" data-swiper-slide-index="3" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/4.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Priscilla Campbell,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div><div class="swiper-slide" data-swiper-slide-index="4" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/5.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Edith Fisher,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div><div class="swiper-slide" data-swiper-slide-index="5" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/6.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Kenneth Reyes,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div><div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="6" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/7.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Daniel Hamilton,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div><div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" style="width: 1230px;"><div class="row gap-y align-items-center"><div class="col-lg-6"><figure class="testimonial-img ml-md-auto"><img src="img/v6/reviews/1.jpg" class="img-responsive rounded shadow-lg" alt="..."></figure></div><div class="col-lg-6 ml-md-auto"><div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6"><blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote><div class="author mt-4"><p class="small"><span class="bold text-contrast">Jane Doe,</span> Web Developer</p><img src="img/v6/reviews/signature.svg" class="img-responsive signature mx-auto" alt="..."></div><div class="shape-wrapper aos-init" data-aos="fade-up"><svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path></svg> <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path></svg> <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path></svg></div></div></div></div></div></div><!-- Add Arrows --><div class="reviews-navigation"><div class="reviews-nav reviews-nav-prev btn btn-light btn-rounded shadow-box shadow-hover" tabindex="0" role="button" aria-label="Previous slide"><!-- <span class="text-uppercase small">Next</span> --> <i class="reviews-nav-icon fas fa-long-arrow-alt-left"></i></div><div class="reviews-nav reviews-nav-next btn btn-light btn-rounded shadow-box shadow-hover" tabindex="0" role="button" aria-label="Next slide"><!-- <span class="text-uppercase small">Next</span> --> <i class="reviews-nav-icon fas fa-long-arrow-alt-right"></i></div></div><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div></div></section>
+        <section class="section singl-testimonial">
+           <div class="container pt-8 bring-to-front">
+              <div class="swiper-container pb-0 pb-lg-8 swiper-container-initialized swiper-container-horizontal" data-sw-nav-arrows=".reviews-nav">
+                 <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1230px, 0px, 0px);">
+                    <div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="6" style="width: 1230px;">
+                       <div class="row gap-y align-items-center">
+                          <div class="col-lg-6">
+                             <figure class="testimonial-img ml-md-auto"><img src="{{asset('site/assets/skin2/img/v6/reviews/7.jpg')}}" class="img-responsive rounded shadow-lg" alt="..."></figure>
+                          </div>
+                          <div class="col-lg-6 ml-md-auto">
+                             <div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6">
+                                <blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote>
+                                <div class="author mt-4">
+                                   <p class="small"><span class="bold text-contrast">Daniel Hamilton,</span> Web Developer</p>
+                                   <img src="{{asset('site/assets/skin2/img/v6/reviews/signature.svg')}}" class="img-responsive signature mx-auto" alt="...">
+                                </div>
+                                <div class="shape-wrapper aos-init" data-aos="fade-up">
+                                   <svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#59ecaf"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#59ecaf"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#59ecaf"></path>
+                                   </svg>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" style="width: 1230px;">
+                       <div class="row gap-y align-items-center">
+                          <div class="col-lg-6">
+                             <figure class="testimonial-img ml-md-auto"><img src="{{asset('site/assets/skin2/img/v6/reviews/1.jpg')}}" class="img-responsive rounded shadow-lg" alt="..."></figure>
+                          </div>
+                          <div class="col-lg-6 ml-md-auto">
+                             <div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6">
+                                <blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote>
+                                <div class="author mt-4">
+                                   <p class="small"><span class="bold text-contrast">Jane Doe,</span> Web Developer</p>
+                                   <img src="{{asset('site/assets/skin2/img/v6/reviews/signature.svg')}}" class="img-responsive signature mx-auto" alt="...">
+                                </div>
+                                <div class="shape-wrapper aos-init" data-aos="fade-up">
+                                   <svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path>
+                                   </svg>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" style="width: 1230px;">
+                       <div class="row gap-y align-items-center">
+                          <div class="col-lg-6">
+                             <figure class="testimonial-img ml-md-auto"><img src="{{asset('site/assets/skin2/img/v6/reviews/2.jpg')}}" class="img-responsive rounded shadow-lg" alt="..."></figure>
+                          </div>
+                          <div class="col-lg-6 ml-md-auto">
+                             <div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6">
+                                <blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote>
+                                <div class="author mt-4">
+                                   <p class="small"><span class="bold text-contrast">Lorem Team,</span> Web Developer</p>
+                                   <img src="{{asset('site/assets/skin2/img/v6/reviews/signature.svg')}}" class="img-responsive signature mx-auto" alt="...">
+                                </div>
+                                <div class="shape-wrapper aos-init" data-aos="fade-up">
+                                   <svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path>
+                                   </svg>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="swiper-slide" data-swiper-slide-index="2" style="width: 1230px;">
+                       <div class="row gap-y align-items-center">
+                          <div class="col-lg-6">
+                             <figure class="testimonial-img ml-md-auto"><img src="{{asset('site/assets/skin2/img/v6/reviews/3.jpg')}}" class="img-responsive rounded shadow-lg" alt="..."></figure>
+                          </div>
+                          <div class="col-lg-6 ml-md-auto">
+                             <div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6">
+                                <blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote>
+                                <div class="author mt-4">
+                                   <p class="small"><span class="bold text-contrast">Ipsum Team,</span> Web Developer</p>
+                                   <img src="{{asset('site/assets/skin2/img/v6/reviews/signature.svg')}}" class="img-responsive signature mx-auto" alt="...">
+                                </div>
+                                <div class="shape-wrapper aos-init" data-aos="fade-up">
+                                   <svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path>
+                                   </svg>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="swiper-slide" data-swiper-slide-index="3" style="width: 1230px;">
+                       <div class="row gap-y align-items-center">
+                          <div class="col-lg-6">
+                             <figure class="testimonial-img ml-md-auto"><img src="{{asset('site/assets/skin2/img/v6/reviews/4.jpg')}}" class="img-responsive rounded shadow-lg" alt="..."></figure>
+                          </div>
+                          <div class="col-lg-6 ml-md-auto">
+                             <div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6">
+                                <blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote>
+                                <div class="author mt-4">
+                                   <p class="small"><span class="bold text-contrast">Priscilla Campbell,</span> Web Developer</p>
+                                   <img src="{{asset('site/assets/skin2/img/v6/reviews/signature.svg')}}" class="img-responsive signature mx-auto" alt="...">
+                                </div>
+                                <div class="shape-wrapper aos-init" data-aos="fade-up">
+                                   <svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path>
+                                   </svg>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="swiper-slide" data-swiper-slide-index="4" style="width: 1230px;">
+                       <div class="row gap-y align-items-center">
+                          <div class="col-lg-6">
+                             <figure class="testimonial-img ml-md-auto"><img src="{{asset('site/assets/skin2/img/v6/reviews/5.jpg')}}" class="img-responsive rounded shadow-lg" alt="..."></figure>
+                          </div>
+                          <div class="col-lg-6 ml-md-auto">
+                             <div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6">
+                                <blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote>
+                                <div class="author mt-4">
+                                   <p class="small"><span class="bold text-contrast">Edith Fisher,</span> Web Developer</p>
+                                   <img src="{{asset('site/assets/skin2/img/v6/reviews/signature.svg')}}" class="img-responsive signature mx-auto" alt="...">
+                                </div>
+                                <div class="shape-wrapper aos-init" data-aos="fade-up">
+                                   <svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path>
+                                   </svg>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="swiper-slide" data-swiper-slide-index="5" style="width: 1230px;">
+                       <div class="row gap-y align-items-center">
+                          <div class="col-lg-6">
+                             <figure class="testimonial-img ml-md-auto"><img src="{{asset('site/assets/skin2/img/v6/reviews/6.jpg')}}" class="img-responsive rounded shadow-lg" alt="..."></figure>
+                          </div>
+                          <div class="col-lg-6 ml-md-auto">
+                             <div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6">
+                                <blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote>
+                                <div class="author mt-4">
+                                   <p class="small"><span class="bold text-contrast">Kenneth Reyes,</span> Web Developer</p>
+                                   <img src="{{asset('site/assets/skin2/img/v6/reviews/signature.svg')}}" class="img-responsive signature mx-auto" alt="...">
+                                </div>
+                                <div class="shape-wrapper aos-init" data-aos="fade-up">
+                                   <svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path>
+                                   </svg>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="6" style="width: 1230px;">
+                       <div class="row gap-y align-items-center">
+                          <div class="col-lg-6">
+                             <figure class="testimonial-img ml-md-auto"><img src="{{asset('site/assets/skin2/img/v6/reviews/7.jpg')}}" class="img-responsive rounded shadow-lg" alt="..."></figure>
+                          </div>
+                          <div class="col-lg-6 ml-md-auto">
+                             <div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6">
+                                <blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote>
+                                <div class="author mt-4">
+                                   <p class="small"><span class="bold text-contrast">Daniel Hamilton,</span> Web Developer</p>
+                                   <img src="{{asset('site/assets/skin2/img/v6/reviews/signature.svg')}}" class="img-responsive signature mx-auto" alt="...">
+                                </div>
+                                <div class="shape-wrapper aos-init" data-aos="fade-up">
+                                   <svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path>
+                                   </svg>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" style="width: 1230px;">
+                       <div class="row gap-y align-items-center">
+                          <div class="col-lg-6">
+                             <figure class="testimonial-img ml-md-auto"><img src="{{asset('site/assets/skin2/img/v6/reviews/1.jpg')}}" class="img-responsive rounded shadow-lg" alt="..."></figure>
+                          </div>
+                          <div class="col-lg-6 ml-md-auto">
+                             <div class="user-review text-center italic bg-primary text-contrast rounded shadow-lg py-5 px-4 px-lg-6">
+                                <blockquote class="regular py-4"><i class="quote fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet aspernatur, autem deserunt distinctio dolores eius, exercitationem facilis inventore.</blockquote>
+                                <div class="author mt-4">
+                                   <p class="small"><span class="bold text-contrast">Jane Doe,</span> Web Developer</p>
+                                   <img src="{{asset('site/assets/skin2/img/v6/reviews/signature.svg')}}" class="img-responsive signature mx-auto" alt="...">
+                                </div>
+                                <div class="shape-wrapper aos-init" data-aos="fade-up">
+                                   <svg class="svg-review-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#35dc8c"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#7cf5fb"></path>
+                                   </svg>
+                                   <svg class="svg-review-bottom back left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                      <path d="M95,0 Q90,90 0,100 L100,100 100,0 Z" fill="#A45AFF"></path>
+                                   </svg>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                 <!-- Add Arrows -->
+                 <div class="reviews-navigation">
+                    <div class="reviews-nav reviews-nav-prev btn btn-light btn-rounded shadow-box shadow-hover" tabindex="0" role="button" aria-label="Previous slide">
+                       <!-- <span class="text-uppercase small">Next</span> --> <i class="reviews-nav-icon fas fa-long-arrow-alt-left"></i>
+                    </div>
+                    <div class="reviews-nav reviews-nav-next btn btn-light btn-rounded shadow-box shadow-hover" tabindex="0" role="button" aria-label="Next slide">
+                       <!-- <span class="text-uppercase small">Next</span> --> <i class="reviews-nav-icon fas fa-long-arrow-alt-right"></i>
+                    </div>
+                 </div>
+                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+              </div>
+           </div>
+        </section>
 
         <section class="section overflow-hidden" style="">
             <div class="container pt-4 bring-to-front">
@@ -899,9 +1159,9 @@ return $result;
             <div class="row align-items-center">
                 <div class="col-md-5 text-center text-md-left">
                     <nav class="nav justify-content-center justify-content-md-start">
-                        <a class="nav-item nav-link" href="">About</a>
+                        <a class="nav-item nav-link" href="{{route('about-us')}}">About</a>
                         <a class="nav-item nav-link" href="#">Services</a>
-                        <a class="nav-item nav-link" href="#">Policies</a>
+                        <a class="nav-item nav-link" href="{{route('terms')}}">Policies</a>
                     </nav>
                 </div>
                 <div class="col-md-2 text-center">

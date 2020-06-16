@@ -10565,8 +10565,8 @@ a.text-dark:hover, a.text-dark:focus {
 .table.table-padded tbody tr:hover {
   -webkit-box-shadow: 0px 2px 5px rgba(69, 101, 173, 0.1);
           box-shadow: 0px 2px 5px rgba(69, 101, 173, 0.1);
-  -webkit-transform: translateY(-1px) scale(1.01);
-          transform: translateY(-1px) scale(1.01);
+  /*-webkit-transform: translateY(-1px) scale(1.01);*/
+          /*transform: translateY(-1px) scale(1.01);*/
 }
 
 .table.table-padded tbody td {
@@ -11007,7 +11007,7 @@ legend:before {
 }
 .small-edit:hover {
   border: none;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+  /* box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2); */
   outline-color: rgba(255, 255, 255, 0);
   outline-offset: 15px;
   /*text-shadow: 1px 1px 2px #427388;*/
@@ -11385,7 +11385,7 @@ legend:before {
 
 .modal-header .avatar {
   border-radius: 50%;
-  width: 40px;
+  width: 35px;
   height: auto;
 }
 
@@ -21754,7 +21754,7 @@ Pricing Plans Styles
 /* Pipeline Item Styles */
 .pipeline-item {
   background-color: #fff;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   border-radius: 4px;
   position: relative;
   -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
@@ -29208,7 +29208,7 @@ button.close span {
   10%, 90% {
     transform: translate3d(-1px, 0, 0);
   }
-  
+
   20%, 80% {
     transform: translate3d(2px, 0, 0);
   }
@@ -29239,4 +29239,7 @@ text-decoration: none;
   background-color: transparent;
   cursor: pointer;
   border: none;
+}
+.input-group-append{
+	cursor: pointer;
 }

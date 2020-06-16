@@ -12,6 +12,7 @@ use App\Tasklist;
 use App\Board;
 use App\Card;
 use App\Cardfile;
+use App\Tenant;
 
 class TasklistController extends Controller
 {
@@ -62,7 +63,7 @@ class TasklistController extends Controller
 	        ));
 		}
 
-        return response()->json(['success', 'Task updated']);
+        return response()->json(['success'=>'Task updated']);
     }
     public function duplicateTasklist(Request $req, $account, $tasklist_id){
         $tasklist = Tasklist::find($tasklist_id);
@@ -119,5 +120,43 @@ class TasklistController extends Controller
         }
 
         return response()->json(['tasklist'=>$tasklist]);
+    }
+    public function deleteTasklist(Request $req, $account, $tasklist_id)
+    {
+        $tasklist = Tasklist::find($tasklist_id);
+            foreach($tasklist->cards as $card){
+                $card->members()->detach();
+                foreach ($card->files as $file) {
+                    $file->delete();
+                }
+                $card->delete();
+            }
+        $tasklist->delete();
+        return response()->json(['success'=>'List deleted']);
+    }
+    //Api
+    public function dragDropUpdateList(Request $request, $source, $target){
+        $tenant = Tenant::where('database',$request->user()->subdomain)->first();
+        if($tenant)
+            $tenant->configure()->use();
+        if($target == '0'){
+            $source_tasklist = Tasklist::find($source);
+            $source_tasklist->order = 1;
+            $source_tasklist->save();
+            DB::select(DB::raw(
+                "UPDATE tasklists SET `order` = `order` + 1 WHERE `id` <> ".$source_tasklist->id." AND `order` >= ".$source_tasklist->order
+            ));
+        }else{
+            $source_tasklist = Tasklist::find($source);
+            $target_tasklist = Tasklist::find($target);
+
+            $source_tasklist->order = $target_tasklist->order + 1;
+            $source_tasklist->save();
+            DB::select(DB::raw(
+                "UPDATE tasklists SET `order` = `order` + 1 WHERE `id` <> ".$source_tasklist->id." AND `order` >= ".$source_tasklist->order
+            ));
+        }
+
+        return response()->json(['success'=>'Task updated']);
     }
 }

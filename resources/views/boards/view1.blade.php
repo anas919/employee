@@ -51,34 +51,39 @@
 	  	<div class="board">
 	    	<div class="board-lists">
 	    		@forelse($board->tasklists->sortBy('order') as $tasklist)
-	      		<div class="board-list">
+	      		<div class="board-list draggable-list" data-tasklist="{{ $tasklist->id }}">
 			        <div class="list-title">
 			        	<div class="title-left">
-			        		<h5 class="editable-text" data-tasklist="{{ $tasklist->id }}"><span>{{ $tasklist->title }}</span><i class="icon-feather-edit-2" style="display: none;"></i></h5>
+			        		<h5 class="editable-text"><span class="draggable-list">{{ $tasklist->title }}</span><i class="icon-feather-edit-2" style="display: none;"></i></h5>
 			        	</div>
 			        	<div class="title-right">
 			        		<div class="dropdown">
-								<button onclick="createCard({{ $tasklist->id }})" class="icon-feather-plus dropbtn"></button>
+								<button onclick="createCard({{ $tasklist->id }})" class="icon-feather-plus dropbtn-list draggable-list" data-placement="top" data-toggle="tooltip" title="" type="button" data-original-title="Add a task"></button>
 							</div>
 			        		<div class="dropdown">
-							  	<button onclick="dropDown(this);" class="icon-feather-more-vertical dropbtn"></button>
-							  	<div id="myDropdown1" class="dropdown-content">
-								    <span onclick="createCard({{ $tasklist->id }})"><i class="os-icon os-icon-ui-22"></i>Add Card</span>
-								    <span onclick="duplicateList({{ $tasklist->id }})"><i class="os-icon os-icon-grid-10"></i>Duplicate list</span>
-								    <span onclick="archiveList({{ $tasklist->id }})"><i class="os-icon os-icon-ui-44"></i>Archive list</span>
-								    <span onclick="deleteList({{ $tasklist->id }})"><i class="os-icon os-icon-ui-44"></i>Delete list</span>
+							  	<button onclick="dropDown(this,event);" class="icon-feather-more-vertical dropbtn-list draggable-list"></button>
+							  	<div class="dropdown-content">
+								    <span onclick="duplicateList({{ $tasklist->id }})">Duplicate list</span>
+								    <span onclick="archiveList({{ $tasklist->id }})">Archive list</span>
+								    <span onclick="deleteList(this,{{ $tasklist->id }})">Delete list</span>
 							  	</div>
 							</div>
 			        	</div>
 			        </div>
-			        <div class="pipeline-body" id="pipeline-{{ $tasklist->id }}">
+			        <div class="pipeline-body draggable-list" id="pipeline-{{ $tasklist->id }}">
 	        			@forelse($tasklist->cards->sortByDesc('order') as $card)
-	          			<div class="pipeline-item" data-tasklist="{{ $tasklist->id }}" data-card="{{ $card->id }}" onclick="editCard({{ $card->id }})">
+	          			<div class="pipeline-item" data-tasklist="{{ $tasklist->id }}" data-card="{{ $card->id }}" onclick="editCard(this,event,{{ $card->id }})">
 	            			<div class="pi-controls">
-	              				<div class="pi-settings">
-	                				<i class="os-icon os-icon-ui-46"></i>
-                				</div>
-	              				<div class="status status-green" data-placement="top" data-toggle="tooltip" title="Active Status"></div>
+                            <div class="status status-green" data-placement="top" data-toggle="tooltip" title="Active Status" style="display:inline-block"></div>
+                                <div class="dropdown">
+    							  	<button onclick="dropDown(this,event);" class="icon-feather-more-vertical dropbtn"></button>
+    							  	<div class="dropdown-content">
+    								    <span onclick="assignMembers(event,{{ $card->id }})">Assign members</span>
+    								    <span onclick="duplicateCard(event,{{ $card->id }})">Duplicate task</span>
+    								    <span onclick="archiveCard(event,{{ $card->id }})">Archive task</span>
+    								    <span onclick="removeCard(event,{{ $card->id }})">Remove task</span>
+    							  	</div>
+    							</div>
 				            </div>
 				            <div class="pi-body">
 								<div class="pi-info">
@@ -116,22 +121,47 @@
 	          			@empty
 	          			@endforelse
 	        		</div>
-
-			        <div class="add-card" onclick="createCard(this,{{ $tasklist->id }})">
-			          	+ Add another card
-			        </div>
 	      		</div>
 	      		@empty
 	      		@endforelse
-	      		<div onclick="createList()" class="board-list" id="addListBtn">
+	      		<div onclick="createList()" class="add-list" id="addListBtn">
 	      			<span>+ Add list</span>
 		    	</div>
 	    	</div>
 	  	</div>
 	</div>
 </div>
+<div aria-hidden="true" aria-labelledby="assignMembersModal" class="modal fade" id="assignMembersModal" role="dialog" tabindex="-1">
+   	<div class="modal-dialog" role="document">
+    	<div class="modal-content">
+     		<div class="modal-header">
+		      	<h5 class="modal-title" id="exampleModalLabel">
+		        	Edit Card
+		      	</h5>
+      			<button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"> &times;</span></button>
+     		</div>
+     		<div class="modal-body">
+      			<form>
+					{{-- <input type="hidden" name="_token" value="{{  }}"> --}}
+       				<div class="row">
+						<div class="col-sm-12">
+				         	<div class="form-group">
+				                <label for=""> Members</label>
+				                <select class="form-control assign-members-select" multiple="true" name="cardMembers[]" id="cardMembers"></select>
+				            </div>
+				        </div>
+    				</div>
+    				<div class="modal-footer">
+				      	<button class="btn btn-secondary" data-dismiss="modal" type="button" id="assign-members-close"> Close</button>
+				      	<button class="btn btn-primary" type="button" id="assign-members-save"> Save</button>
+				    </div>
+      			</form>
+     		</div>
+	    </div>
+   	</div>
+</div>
 <div aria-hidden="true" class="modal fade" id="editCardModal" role="dialog" tabindex="-1">
-    <div class="modal-dialog" role="document" style="margin-right: 0px;">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
           	<div class="modal-header faded smaller">
             	<div class="modal-title">
@@ -172,9 +202,14 @@
 				            <div class="col-sm-6">
 		                  		<div class="form-group">
 		                    		<label for=""> Due Date</label>
-		                    		<div class="date-input">
+		                    		<div class="date-input input-group">
 		                      			<input class="due_date-daterange form-control" placeholder="Due Date" type="text" value="" id="cardDueDate">
-		                    		</div>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <i class="icon-feather-trash-2"></i><span>Clear</span>
+                                            </div>
+                                        </div>
+                                    </div>
 		                  		</div>
 		                	</div>
 	                		<div class="col-sm-12">
@@ -245,7 +280,111 @@
 </div>
 @endsection
 @section('scripts')
+<script src="{{ asset('bower_components/dragula.js/dist/dragula.min.js') }}"></script>
+<link href="{{ asset('bower_components/dragula.js/dist/dragula.min.css') }}" rel="stylesheet">
 <script type="text/javascript">
+    /*Dragula*/
+    if ($('.board-lists').length) {
+        // var tasklist_id;
+        var task_source;
+        var task_target;
+        // INIT DRAG AND DROP FOR PIPELINE ITEMS
+        var dragulaObj1 = dragula($('.board-lists').toArray(), {
+    				moves: function (el, container, handle, sibling) {
+                        console.log(handle.classList.contains('board-list'));
+                        return handle.classList.contains('draggable-list');
+    				}
+    			})
+            .on('drag', function (el, container) {
+            	$('#addListBtn').hide();
+                task_source = $(el)[0].attributes['data-tasklist'].nodeValue;
+                console.log(container);
+            })
+            .on('drop', function (el, container) {
+            	$('#addListBtn').show();
+                if(typeof $(el).prev()[0] == 'undefined')
+                    task_target = 'no_previous';
+                else {
+                    task_target = $(el).prev()[0].attributes['data-tasklist'].nodeValue;
+                }
+                $.ajax({
+                    type:'GET',
+                    url:'{{ route('drag-drop-tasklist', Auth::user()->subdomain) }}',
+                    data:{
+                        source_tasklist: task_source,
+                        target_tasklist: task_target,
+                    },
+                    success:function(data){
+                        // console.log(data)
+                    },
+                    error:function(error){
+                        console.log(error);
+                    }
+                });
+            })
+            .on('dragend', function (el, container) {
+            	$('#addListBtn').show();
+                // console.log(el);
+                //     $(container).closest('#tasklists').addClass('over');
+            })
+            .on('over', function (el, container) {
+                // console.log(el);
+                //     $(container).closest('#tasklists').addClass('over');
+            }).on('out', function (el, container, source) {
+                // console.log(el);
+                // var new_task_body = $(container).closest('#tasklists');
+                // new_task_body.removeClass('over');
+                // var old_task_body = $(source).closest('#tasklists');
+            });
+    }
+    if ($('.pipeline-body').length) {
+        var card_id;
+		var source_pipeline;
+		var target_pipeline;
+		var prev_card;
+		// INIT DRAG AND DROP FOR PIPELINE ITEMS
+		var dragulaObj = dragula($('.pipeline-body').toArray(), {})
+			.on('drag', function (el, container) {
+				source_pipeline = $(container).closest('.pipeline-body')[0].id.slice(9);//Result :[object HTMLDivElement] on drag
+			})
+			.on('drop', function (el, container) {
+				target_pipeline = $(container).closest('.pipeline-body')[0].id.slice(9);//Result :[object HTMLDivElement] on drop
+				// console.log('card_id : '+card_id+', source : '+source_pipeline+', target : '+target_pipeline);
+				if($(el).prev().length == 0){
+					prev_card = 0;
+				}else {
+					prev_card = $(el).prev()[0].attributes['data-card']['nodeValue'];
+				}
+				//ajax logic
+				// console.log(prev_card);
+				$.ajax({
+					type:'GET',
+					url:'{{ route('drag-drop-card', Auth::user()->subdomain) }}',
+					data:{
+						card_id: card_id,
+						source_tasklist: source_pipeline,
+						target_tasklist: target_pipeline,
+						previous_card: prev_card
+					},
+					success:function(data){
+						// console.log(data)
+					},
+					error:function(error){
+						console.log(error);
+					}
+				});
+			})
+			.on('over', function (el, container) {
+				//Event triggered when you move from list to another list
+				card_id = $('.gu-transit').attr('data-card');
+		  		$(container).closest('.pipeline-body').addClass('over');
+			}).on('out', function (el, container, source) {
+				var new_pipeline_body = $(container).closest('.pipeline-body');
+				new_pipeline_body.removeClass('over');
+				var old_pipeline_body = $(source).closest('.pipeline-body');
+		});
+    }
+    /*Dragula*/
 	$('#mark').change(function () {
 		if($(this).is(':checked')) {
 			$('#message-success').text('Marked as done');
@@ -255,7 +394,7 @@
 			$('#message-success').text('Marked as undone');
 			$("#alert-success").show();
 			setTimeout(function() { $("#alert-success").hide(); }, 2000);
-		}   
+		}
     });
 </script>
 <link rel="stylesheet" type="text/css" href="{{asset('icon_fonts_assets/feather/style.css')}}">
@@ -373,10 +512,12 @@
 		members_data.push({ id: {{ $member->id }}, text: '<div> @if ($member->media_id)<img src="{{ asset('storage/'.$member->media->reference) }}" width="30px" height="30px">{{ $member->first_name }} {{ $member->last_name }} @else <div class="avatar" style="border-radius: 50%;">{{ substr($member->first_name, 0, 1).substr($member->last_name, 0, 1) }}</div>{{ $member->first_name }} {{ $member->last_name }} @endif </div>' });
 	@empty
 	@endforelse
-	function dropDown(element) {
-	  var elements = ".dropdown-content";
-	  $(elements).removeClass('show-elem');
-	  $(element).next(elements).toggleClass("show-elem");
+	function dropDown(element,event) {
+        if(event)
+            event.stopPropagation();
+        var elements = ".dropdown-content";
+        $(elements).removeClass('show-elem');
+        $(element).next(elements).toggleClass("show-elem");
 	}
 	window.onclick = function(event) {
 	  if (!event.target.matches('.dropbtn')) {
@@ -394,17 +535,26 @@
 	if ($('#ckeditor2').length) {
 	    CKEDITOR.replace('ckeditor2');
 	}
+    $('.input-group-append').on('click',function(){
+        $('input.due_date-daterange').val('');
+    });
+    function validateText(){
+        if($('.txtarea').val()!=''){
+            $('.txtarea-create-btn').prop("disabled", false);
+        }else{
+            $('.txtarea-create-btn').prop("disabled", true);
+        }
+    }
 	function previewImg(src, name) {
 		$('#preview-img').attr('src',src);
 		$('#preview-img-name').text(name);
 		$('#previewPicture').modal('show');
 	}
 	function createCard(tasklist_id){
-		if($('#card-'+tasklist_id).length){
-
-		}else{
-			$('#pipeline-'+tasklist_id).prepend('<div id="card-section-'+tasklist_id+'"><button onclick="closeCard('+tasklist_id+')" class="close" type="button">×</button><input class="form-control" placeholder="Card title" type="text" id="card-'+tasklist_id+'"><button class="mr-2 mb-2 btn btn-primary btn-sm" type="button" style="width: 100%;margin-top: 10px;" onclick="addCard('+tasklist_id+')"> Create board</button></div>');
-		}
+		if(!$('#card-'+tasklist_id).length){
+            $('#pipeline-'+tasklist_id).prepend('<div id="card-section-'+tasklist_id+'"><button onclick="closeCard('+tasklist_id+')" class="close txtarea-close-btn" type="button">×</button><textarea rows="4" class="form-control txtarea" onkeyup="validateText()" placeholder="Card title" type="text" id="card-'+tasklist_id+'"></textarea><button class="mr-2 mb-2 btn btn-primary btn-sm txtarea-create-btn" type="button" onclick="addCard('+tasklist_id+')" disabled> Create task</button></div>');
+            $('#card-'+tasklist_id).focus();
+        }
 	}
 	function closeCard(tasklist_id){
 		$('#card-section-'+tasklist_id).remove();
@@ -419,8 +569,8 @@
 			success:function(data){
 				$('#loading').css('display','none');
 			  	$('#card-section-'+tasklist_id).remove();
-			  	$('#pipeline-'+tasklist_id).prepend('<div class="pipeline-item"  data-tasklist="'+tasklist_id+'" data-card="'+data.card.id+'"><div class="pi-controls"><div class="pi-settings os-dropdown-trigger"><i class="os-icon os-icon-ui-46"></i><div class="os-dropdown"><div class="icon-w"><i class="os-icon os-icon-ui-46"></i></div><ul><li><button onclick="assignMembers('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-users"></i><span>Assign Members</span></button></li><li><button onclick="editCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-49"></i><span>Edit Card</span></button></li><li><button onclick="duplicateCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-grid-10"></i><span>Duplicate Card</span></button></li><li><button onclick="removeCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-15"></i><span>Remove Card</span></button></li><li><button onclick="archiveCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-44"></i><span>Archive Card</span></button></li></ul></div></div><div class="status status-green" data-placement="top" data-toggle="tooltip" title="Active Status"></div></div><div class="pi-body"><div class="pi-info"><div class="h6 pi-name" id="card-title-'+data.card.id+'">'+data.card.title+'</div></div></div><div class="pi-foot"><div class="tags"><button class="btn btn-outline-primary badge badge-primary-inverted">Details</button><button class="btn btn-outline-danger badge badge-danger-inverted"  id="card-due_date-'+data.card.id+'"></button></div><div class="cell-image-list" id="card-members-'+data.card.id+'"><small>No Members</small></div></div></div>');
-			},
+			  	$('#pipeline-'+tasklist_id).prepend('<div class="pipeline-item" data-tasklist="'+tasklist_id+'" data-card="'+data.card.id+'" onclick="editCard(this,event,'+data.card.id+')"><div class="pi-controls"><div class="status status-green" data-placement="top" data-toggle="tooltip" title="Active Status" style="display:inline-block"></div><div class="dropdown"><button onclick="dropDown(this,event);" class="icon-feather-more-vertical dropbtn"></button><div class="dropdown-content"><span onclick="assignMembers(event,'+data.card.id+')">Assign members</span><span onclick="duplicateCard(event,'+data.card.id+')">Duplicate task</span><span onclick="archiveCard(event,'+data.card.id+')">Archive task</span><span onclick="removeCard(event,'+data.card.id+')">Remove task</span></div></div></div><div class="pi-body"><div class="pi-info"><div class="h6 pi-name" id="card-title-'+data.card.id+'">'+data.card.title+'</div></div></div><div class="pi-foot"><div class="tags"><button class="btn btn-outline-primary badge badge-primary-inverted">Details</button><button class="btn btn-outline-danger badge badge-danger-inverted" id="card-due_date-'+data.card.id+'"></button></div><div class="cell-image-list" id="card-members-'+data.card.id+'"><small>No Members</small></div></div></div>');
+            },
 			error:function(error){
 				console.log(error);
 			}
@@ -438,19 +588,23 @@
         showDropdowns: true,
         minYear: parseInt(moment().subtract(10, 'years').format('YYYY'),10),
         maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
-        autoUpdateInput: false,                
+        autoUpdateInput: false,
         singleClasses: "",
     });
-	function editCard(card_id){
-		$('#loading').css('display','block');
-		// $("input.due_date-daterange").daterangepicker({
-  //           singleDatePicker: true,
-  //           showDropdowns: true,
-  //           minYear: parseInt(moment().subtract(10, 'years').format('YYYY'),10),
-  //           maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
-  //           autoUpdateInput: false,                
-  //           singleClasses: "",
-  //       });
+    $('#editCardModal').on('hidden.bs.modal', function () {
+        $('.pipeline-item').removeAttr('style');
+    })
+	function editCard(element,event,card_id){
+        var screenHalfSize=$(window).width()/2;
+        if(event.pageX<screenHalfSize){
+            $('.modal-dialog').removeClass('ml-0');
+            $('.modal-dialog').addClass('mr-0');
+        }else{
+            $('.modal-dialog').removeClass('mr-0');
+            $('.modal-dialog').addClass('ml-0');
+        }
+		$(element).css('z-index','1042');
+        $('#loading').css('display','block');
 		c_edit_card_id = card_id;
 		selected_edit_card_members = [];
 		$.ajax({
@@ -465,7 +619,7 @@
 					CKEDITOR.instances['ckeditor2'].setData(data.card.description);
 				if(data.card.due_date){
 					var due_date = data.card.due_date.split("-");
-					$('#cardDueDate').val(due_date[1]+'/'+due_date[2]+'/'+due_date[0])
+					$('#cardDueDate').val(due_date[1]+'/'+due_date[2]+'/'+due_date[0]);
 				}else{
 					$('input.due_date-daterange').val('');
 				}
@@ -551,11 +705,15 @@
 				$('#card-title-'+c_edit_card_id).empty();
 				$('#card-due_date-'+c_edit_card_id).empty();
 				$('#card-title-'+c_edit_card_id).append(data.card.title);
-				var d = new Date(data.card.due_date);
-				var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-				var mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-				var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
-				$('#card-due_date-'+c_edit_card_id).append(mo+' '+da+','+ye);
+                if(data.card.due_date){
+    				var d = new Date(data.card.due_date);
+    				var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+    				var mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+    				var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+    				$('#card-due_date-'+c_edit_card_id).append(mo+' '+da+','+ye);
+                }else{
+                    // $('#card-due_date-'+c_edit_card_id).append(mo+' '+da+','+ye);
+                }
 				for(let i = 0; i < data.members.length; i++){
 					if(data.members[i]['reference']){
 						$('#card-members-'+c_edit_card_id).append('<div class="cell-img"><div class="user-with-avatar"><img alt="'+data.members[i]['id']+'" src="{{ url('/') }}/storage/'+data.members[i]['reference']+'"></div></div>');
@@ -571,6 +729,114 @@
 			}
 		});
 	});
+    function duplicateCard(event,card_id){
+        if(event)
+            event.stopPropagation();
+        $('#loading').css('display','block');
+        $.ajax({
+            type:'GET',
+            url:'{{ url('/') }}/cards/duplicate/'+card_id,
+            success:function(data){
+                $('#loading').css('display','none');
+                html = '<div class="pipeline-item"><div class="pi-controls"><div class="pi-settings os-dropdown-trigger"><i class="os-icon os-icon-ui-46"></i><div class="os-dropdown"><div class="icon-w"><i class="os-icon os-icon-ui-46"></i></div><ul><li><button onclick="assignMembers(event,'+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-users"></i><span>Assign Members</span></button></li><li><button onclick="editCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-49"></i><span>Edit Card</span></button></li><li><button onclick="duplicateCard(event,'+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-grid-10"></i><span>Duplicate Card</span></button></li><li><button onclick="removeCard(event,'+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-15"></i><span>Remove Card</span></button></li><li><button onclick="archiveCard('+data.card.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-44"></i><span>Archive Card</span></button></li></ul></div></div><div class="status status-green" data-placement="top" data-toggle="tooltip" title="Active Status" style="display:inline-block"></div></div><div class="pi-body"><div class="pi-info"><div class="h6 pi-name" id="card-title-'+data.card.id+'">'+data.card.title+'</div></div></div><div class="pi-foot"><div class="tags"><button class="btn btn-outline-primary badge badge-primary-inverted">Details</button><button class="btn btn-outline-danger badge badge-danger-inverted"  id="card-due_date-'+data.card.id+'">';
+                if(data.card.due_date){
+                    var d = new Date(data.card.due_date);
+                    var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+                    var mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+                    var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+                    html += mo+' '+da+','+ye;
+                }
+                html += '</button></div><div class="cell-image-list" id="card-members-'+data.card.id+'"><small>';
+                for(let i = 0; i < data.members.length; i++){
+                    if(data.members[i]['reference']){
+                        html += '<div class="cell-img"><div class="user-with-avatar"><img alt="'+data.members[i]['id']+'" src="{{ url('/') }}/storage/'+data.members[i]['reference']+'"></div></div>';
+                    }else{
+                        html += '<div class="cell-img avatar">'+data.members[i]['name']+'</div>';
+                    }
+                }
+                html += '</small></div></div></div>';
+                $('.pipeline-item[data-card="'+card_id+'"]').before(html);
+            },
+            error:function(error){
+                console.log(error);
+            }
+        });
+    }
+    function removeCard(event,card_id){
+        if(event)
+            event.stopPropagation();
+        $('#loading').css('display','block');
+        $.ajax({
+            type:'GET',
+            url:'{{ url('/') }}/cards/delete/'+card_id,
+            success:function(data){
+                $('#loading').css('display','none');
+                $('.pipeline-item[data-card="'+card_id+'"]').remove();
+            },
+            error:function(error){
+                console.log(error);
+            }
+        });
+    }
+    function archiveCard(card_id){
+
+    }
+    function assignMembers(event,card_id){
+        if(event)
+            event.stopPropagation();
+        $('#loading').css('display','block');
+        c_card_id = card_id;
+        selected_card_members = [];
+        $.ajax({
+            type:'GET',
+            url:'{{ url('/') }}/cards/fetch-members/'+card_id,
+            success:function(data){
+                $('#loading').css('display','none');
+                for(let i = 0; i < data.members.length; i++){
+                    selected_card_members.push(data.members[i]['id']);
+                }
+                $(".assign-members-select").select2({
+                    // maximumSelectionLength: 1,
+                    data: members_data,
+                    templateResult: function (d) { return $(d.text); },
+                    templateSelection: function (d) { return $(d.text); },
+                });
+                $(".assign-members-select").val(selected_card_members).trigger('change');
+                $('#assignMembersModal').modal('show');
+            },
+            error:function(error){
+                console.log(error);
+            }
+        });
+    }
+    $("#assign-members-save").click(function(){
+        $('#loading').css('display','block');
+        var cardMembers = $("#cardMembers").select2("val");
+        $.ajax({
+            type:'POST',
+            url:'{{ route('assign-members', Auth::user()->subdomain) }}',
+            data: {
+                id:c_card_id,
+                members:cardMembers
+            },
+            success:function(data){
+                $('#loading').css('display','none');
+                $('#card-members-'+c_card_id).empty();
+                for(let i = 0; i < data.members.length; i++){
+                    if(data.members[i]['reference']){
+                        $('#card-members-'+c_card_id).append('<div class="cell-img"><div class="user-with-avatar"><img alt="'+data.members[i]['id']+'" src="{{ url('/') }}/storage/'+data.members[i]['reference']+'"></div></div>');
+                    }else{
+                        $('#card-members-'+c_card_id).append('<div class="cell-img avatar">'+data.members[i]['name']+'</div>');
+                    }
+                }
+                $('#assign-members-close').trigger("click");
+                //location.reload(true);
+            },
+            error:function(error){
+
+            }
+        });
+    });
 	$(document).ready(function(){
 		$('.editable-text').mouseenter(function(event) {
 			$(this).find('i').css('display','block');
@@ -580,7 +846,7 @@
 		});
 		$('.editable-text').click(function(event) {
 			$(this).find('i').css('display','none');
-			var tasklistId = $(this).attr('data-tasklist');
+			var tasklistId = $(this).closest('.board-list').attr('data-tasklist');
 	        var span, input, text;
 
 	        // Get the event (handle MS difference)
@@ -603,6 +869,7 @@
 	            input.value = text;
 	            input.className = "form-control";
 	            input.size = Math.max(text.length / 4 * 3, 4);
+                input.id = "listName";
 	            span.parentNode.insertBefore(input, span);
 
 	            // Focus it, hook blur to undo
@@ -612,7 +879,9 @@
 	                span.parentNode.removeChild(input);
 
 	                // Update the span
-	                span.innerHTML = input.value == "" ? "&nbsp;" : input.value;
+                    if(input.value == "")
+                        alert('Unspecified Title for list')
+	                span.innerHTML = input.value == "" ? "No title" : input.value;
 	                $.ajax({
 						type:'POST',
 						url:'{{ route('update-tasklist', Auth::user()->subdomain) }}',
@@ -652,8 +921,8 @@
 				success:function(data){
 					$('#loading').css('display','none');
 				  	$('#listCreate').remove();
-					$('#addListBtn').before('<div class="col-lg-4 col-xxl-3"><div class="pipeline white lined-primary"><div class="pipeline-header"><h5>'+data.tasklist.title+'</h5><div class="pipeline-header-numbers"><div class="pipeline-value"></div><div class="pipeline-count">0 members</div></div><div class="pipeline-settings os-dropdown-trigger"><i class="os-icon os-icon-hamburger-menu-1"></i><div class="os-dropdown"><div class="icon-w"><i class="os-icon os-icon-ui-46"></i></div><ul><li><button onclick="createCard('+data.tasklist.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-22"></i><span>Add Card</span></button></li><li><button onclick="duplicateList('+data.tasklist.id+')" class="small-edit" type="button"><i class="os-icon os-icon-grid-10"></i><span>Duplicate List</span></button></li><li><button onclick="archiveList('+data.tasklist.id+')" class="small-edit" type="button"><i class="os-icon os-icon-ui-44"></i><span>Archive List</span></button></li></ul></div></div></div><div class="pipeline-body" id="pipeline-'+data.tasklist.id+'"></div></div></div>');
-				},
+					$('#addListBtn').before('<div class="board-list draggable-list" data-tasklist="'+data.tasklist.id+'"><div class="list-title"><div class="title-left"><h5 class="editable-text"><span class="draggable-list">'+data.tasklist.title+'</span><i class="icon-feather-edit-2" style="display: none;"></i></h5></div><div class="title-right"><div class="dropdown"><button onclick="createCard('+data.tasklist.id+')" class="icon-feather-plus dropbtn draggable-list" data-placement="top" data-toggle="tooltip" title="" type="button" data-original-title="Add a task"></button></div><div class="dropdown"><button onclick="dropDown(this,event);" class="icon-feather-more-vertical dropbtn draggable-list"></button><div class="dropdown-content"><span onclick="duplicateList('+data.tasklist.id+')">Duplicate list</span><span onclick="archiveList('+data.tasklist.id+')">Archive list</span><span onclick="deleteList(this,'+data.tasklist.id+')">Delete list</span></div></div></div></div><div class="pipeline-body draggable-list" id="pipeline-'+data.tasklist.id+'"></div></div>');
+                },
 				error:function(error){
 					console.log(error);
 				}
@@ -685,11 +954,65 @@
 	function archiveList(tasklist_id){
 
 	}
-	function deleteList(tasklist_id){
-
+	function deleteList(element,tasklist_id){
+        $('#loading').css('display','block');
+        $.ajax({
+            type:'GET',
+            url:'{{ url('/') }}/tasklists/delete/'+tasklist_id,
+            success:function(data){
+                $(element).closest('.board-list').remove();
+                $('#loading').css('display','none');
+                // location.reload(true);
+            },
+            error:function(error){
+                console.log(error);
+            }
+        });
 	}
 </script>
 <style type="text/css">
+    /*Textarea Btn*/
+    .txtarea{
+        border-color: #047bf8;
+    }
+    .txtarea-create-btn{
+        position: relative;
+        left: 138px !important;
+        top: -40px;
+        width: 40%;
+        margin-top: 10px;
+    }
+    .txtarea-close-btn{
+        position: relative;
+        left: -2%;
+        top: 20px;
+        margin-top: 10px;
+    }
+    /*Date input*/
+    .input-group>.input-group-append span{
+        display:none;
+        display: inline-block;
+        position: absolute;
+        background-color: #047bf8;
+        color: #fff;
+        padding: 4px 7px;
+        border-radius: 4px;
+        font-size: 0.81rem;
+        white-space: nowrap;
+        top: -30px;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        display: none;
+    }
+    .input-group>.input-group-append:hover span{
+        display:block;
+    }
+    .date-input:before{
+        z-index: 10;
+    }
+    .input-group-append{
+        cursor: pointer;
+    }
 	/*edit Modal*/
 	.os-tabs-controls.os-tabs-complex .nav-tabs{
 		width: 100%
@@ -702,6 +1025,15 @@
 		background-color: #047bf8;
 		color: #fff;
 		cursor: pointer;
+	}
+	#addListBtn{
+		background-color: rgb(55, 134, 216);
+		border-radius: 3px;
+		display: grid;
+		grid-auto-rows: max-content;
+		grid-gap: 10px;
+		height: max-content;
+		padding: 10px;
 	}
 	.editable-text{
 		display: -webkit-box;
@@ -730,7 +1062,20 @@
 
 
 	/**/
-	.dropbtn {
+	.dropbtn-list {
+		background: none;
+		border: none;
+		cursor: pointer;
+	}
+
+	.dropbtn-list:hover,
+	.dropbtn-list:focus {
+		background-color: #98efbf;
+		border: none;
+        border-radius: 3px;
+        padding: 3px;
+	}
+    .dropbtn {
 		background: none;
 		border: none;
 		cursor: pointer;
@@ -740,7 +1085,8 @@
 	.dropbtn:focus {
 		background-color: #ddd;
 		border: none;
-	  /*background-color: #2980B9;*/
+        border-radius: 3px;
+        padding: 3px;
 	}
 
 	.dropdown {
@@ -755,7 +1101,7 @@
 		min-width: 160px;
 		overflow: auto;
 		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-		z-index: 1;
+		z-index: 10;
 	}
 
 	.dropdown-content span  {
@@ -796,10 +1142,11 @@
 	  grid-auto-flow: column;
 	  grid-gap: 8px;
 	  overflow: scroll;
+      cursor: move;
 	}
 
 	.board-list {
-	  background-color: rgb(202, 205, 210);
+	  background-color: rgb(55, 134, 216);;
 	  border-radius: 3px;
 	  display: grid;
 	  grid-auto-rows: max-content;
@@ -860,11 +1207,6 @@
 	  box-shadow: 0 1px 0 rgba(9,30,66,.25);
 	  padding: 10px;
 	}*/
-
-	.add-card {
-	  padding-top: 10px;
-	  padding-bottom: 5px;
-	}
 	/*Preview view*/
 
 .attachment {

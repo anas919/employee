@@ -12,7 +12,7 @@
         <div class="container" style="">
             <div class="row">
                 <div class="col-md-6">
-                    <h1 class="regular display-4 color-1 mb-4">Faq's </h1>
+                    <h1 class="regular display-4 color-1 mb-4">Testimonials </h1>
                     <p class="lead color-1">Here are the answers to some of the most common questions we hear from our appreciated customers.</p>
                 </div>
             </div>

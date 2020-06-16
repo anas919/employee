@@ -749,8 +749,9 @@ $(function () {
   // #17. BOOTSTRAP RELATED JS ACTIVATIONS
 
   // - Activate tooltips
-  $('[data-toggle="tooltip"]').tooltip();
-
+  $('[data-toggle="tooltip"]').tooltip({
+        trigger : 'hover'
+    });
   // - Activate popovers
   $('[data-toggle="popover"]').popover();
 

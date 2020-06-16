@@ -18,8 +18,8 @@ class Card extends Model
     {
         return $this->hasMany('App\Cardfile');
     }
-    public function tasks()
+    public function project()
     {
-        return $this->hasMany('App\Task');
+        return $this->belongsTo('App\Project');
     }
 }

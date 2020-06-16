@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    public function boards()
+    public function board()
     {
-        return $this->hasMany('App\Board');
+        return $this->hasOne('App\Board');
     }
     public function teams()
     {

@@ -333,6 +333,6 @@ class UserController extends Controller
 	            ->json(['members' => $users]);
 		}
 		return response()
-			->json(['denied' => '$users']);
+			->json(['denied' => 'users']);
 	}
 }

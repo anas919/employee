@@ -165,10 +165,10 @@ class OfferController extends Controller
 					$candidateresponse->save();
 				}
 			}
-			$company = Organization::find(1);
-		    return redirect()->route('view-offer', ['account'=>$company->name, 'offer_id'=>$req->offer])->with('success','You\'re apply has been sent successfuly.');
+			// $company = Organization::find(1);
+		    return redirect()->route('view-offer', ['account'=>$account, 'offer_id'=>$req->offer])->with('success','You\'re apply has been sent successfuly.');
 		}else{
-			return redirect()->route('view-offer', ['account'=>$company->name, 'offer_id'=>$req->offer])->with('error','Offer expired');
+			return redirect()->route('view-offer', ['account'=>$account, 'offer_id'=>$req->offer])->with('error','Offer expired');
 		}
 	}
 	public function closeOffer(Request $req, $account, $offer_id) {
