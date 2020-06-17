@@ -14,6 +14,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Checkout without subscriptions
+Route::get('paypal', 'PaypalController@index')->name('paypal');
+Route::post('create-payment', 'PaypalController@create')->name('create-payment');
+Route::get('execute-payment', 'PaypalController@execute')->name('execute-payment');
+//Subscriptions
+Route::get('payment', 'PaymentController@index')->name('payment');
+Route::get('payment/plans', 'PaymentController@getPlans')->name('plans');
+Route::get('payment/plan/{plan_id}', 'PaymentController@showPlan')->name('planDetails');
+Route::get('payment/plan/{plan_id}/activate', 'PaymentController@activate')->name('activate-plan');
+Route::get('payment/create-plan', 'PaymentController@createPlan')->name('create-plan');
+Route::post('payment/plan/{plan_id}/create-agreement', 'PaymentController@createAgreement')->name('create-agreement');
+Route::get('execute-agreement/{status}', 'PaymentController@executeAgreement')->name('execute-agreement');
+//
 
 Route::get('/users', function () {
     return [

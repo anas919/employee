@@ -17,7 +17,7 @@ class CreateTimeoffsTable extends Migration
             $table->increments('id');
             $table->integer('member_id')->unsigned();
             $table->foreign('member_id')->references('id')->on('users');
-            $table->integer('policy_id')->unsigned();
+            $table->integer('policy_id')->unsigned()->nullable();
             $table->foreign('policy_id')->references('id')->on('policies');
             $table->date('start_date');
             $table->date('end_date');

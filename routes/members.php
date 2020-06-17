@@ -2,6 +2,15 @@
 
 Route::group(['middleware' => 'web'], function () {
 	Route::domain('{account}.localhost')->group(function () {
+		Route::group(['middleware' => ['auth'], 'prefix' => '/members'], function () {
+			Route::get('/theme', 'UserController@setTheme')
+				->name('pref-theme');
+		});
+	});
+});
+
+Route::group(['middleware' => 'web'], function () {
+	Route::domain('{account}.localhost')->group(function () {
     	Route::group(['middleware' => ['auth','verified','roles'], 'roles' => ['Admin'], 'prefix' => '/members'], function () {
 
 			Route::get('', 'UserController@index')
@@ -30,9 +39,6 @@ Route::group(['middleware' => 'web'], function () {
 
 	        Route::post('/update', 'UserController@update')
 	        	->name('update');
-
-	        Route::get('/theme', 'UserController@setTheme')
-	            ->name('pref-theme');
     	});
 	});
 });

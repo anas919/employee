@@ -16,23 +16,34 @@ class TimeoffController extends Controller
     	if(Auth::user()->hasPermission('view_timeoffs'))
     		$timeoffs = Timeoff::all();
     	else
-    		$timeoffs = Timeoff::where('member_id',Auth::user()->id);
+    		$timeoffs = Timeoff::where('member_id',Auth::user()->id)->get();
 
 		return view('timeoffs/index', ['members'=>$members, 'policies'=>$policies, 'timeoffs'=>$timeoffs]);
 	}
 	public function add(Request $req, $account) {
+        if($req->timeoff_members){
+            foreach ($req->timeoff_members as $member) {
+    			$timeoff = new Timeoff();
 
-		foreach ($req->timeoff_members as $member) {
-			$timeoff = new Timeoff();
+    			$timeoff->member_id = $member;
+    			$timeoff->policy_id = $req->policy;
+    			$timeoff->reason = $req->reason;
+    			$timeoff->start_date = date('Y-m-d',strtotime($req->start_date));
+    			$timeoff->end_date = date('Y-m-d',strtotime($req->end_date));
 
-			$timeoff->member_id = $member;
-			$timeoff->policy_id = $req->policy;
-			$timeoff->reason = $req->reason;
-			$timeoff->start_date = date('Y-m-d',strtotime($req->start_date));
-			$timeoff->end_date = date('Y-m-d',strtotime($req->end_date));
+    			$timeoff->save();
+    		}
+        }else{
+            $timeoff = new Timeoff();
 
-			$timeoff->save();
-		}
+            $timeoff->member_id = Auth::user()->id;
+            $timeoff->reason = $req->reason;
+            $timeoff->start_date = date('Y-m-d',strtotime($req->start_date));
+            $timeoff->end_date = date('Y-m-d',strtotime($req->end_date));
+
+            $timeoff->save();
+        }
+
 		return redirect()->route('timeoffs', Auth::user()->subdomain)->with('success','Timeoffs created Successefuly');
 	}
 	public function addPolicy(Request $req, $account) {

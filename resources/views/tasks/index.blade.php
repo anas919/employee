@@ -168,7 +168,6 @@
                                                                 @endforelse
                                                             @endif
 					    							  	</div>
-                                                        <button class="dropdown-item"><i class="os-icon os-icon-edit-1"></i> Edit</button>
 														<button class="dropdown-item" onclick="deleteTask({{ $task->id }});"><i class="os-icon os-icon-ui-15"></i> Delete</button>
 													</div>
 												</div>
@@ -489,12 +488,15 @@
 	});
 	timer.addEventListener('secondsUpdated', function (e) {
 	    $('#chrono .values').html(timer.getTimeValues().toString());
+        $('title').text(timer.getTimeValues().toString()+'-'+$('#task').val());
 	});
 	timer.addEventListener('started', function (e) {
 	    $('#chrono .values').html(timer.getTimeValues().toString());
+        $('title').text(timer.getTimeValues().toString()+'-'+$('#task').val());
 	});
 	timer.addEventListener('reset', function (e) {
 	    $('#chrono .values').html(timer.getTimeValues().toString());
+        $('title').text(timer.getTimeValues().toString()+'-'+$('#task').val());
 	});
 	function updateDescription(task_id){
 		$('#loading').css('display','block');

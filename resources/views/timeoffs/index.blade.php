@@ -91,9 +91,11 @@
 									<th>
 										Status
 									</th>
+                                    @if(Auth::user()->hasPermission('approve_timeoffs')){{--must add this permission timeoff actions--}}
 									<th>
 										Actions
 									</th>
+                                    @endif
 								</tr>
 							</thead>
 							<tbody>
@@ -122,9 +124,13 @@
 										</div>
 									</td>
 									<td>
-										<div class="smaller lighter">
-										  	{{ $timeoff->policy->name }}
-										</div>
+                                        @if($timeoff->member->policies)
+                                        @foreach($timeoff->member->policies as $policy)
+    										<div class="smaller lighter">
+    										  	{{ $policy->name }}-popover here
+    										</div>
+                                        @endforeach
+                                        @endif
 									</td>
 									<td>
 										<span class="smaller lighter">{{ (new DateTime($timeoff->start_date))->format('M d,Y') }}</span>
@@ -141,14 +147,24 @@
 									<td class="nowrap">
 										@if($timeoff->status == 'approved') <i class="badge badge-success-inverted">Approved</i> @elseif($timeoff->status == 'submitted') <i class="badge badge-warning-inverted">Submitted</i> @else <i class="badge badge-danger-inverted">Denied</i> @endif
 									</td>
+                                    @if(Auth::user()->hasPermission('approve_timeoffs')){{--must add this permission timeoff actions--}}
 									<td class="row-actions">
 										<div class="btn-group mr-1 mb-1">
 											<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton1" type="button">Actions</button>
 											<div aria-labelledby="dropdownMenuButton1" class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
-												<button class="dropdown-item"><i class="os-icon os-icon-ui-15"></i> Delete</button>
-											</div>
+                                                @if(Auth::user()->hasPermission('approve_timeoffs'))
+                                                <button class="dropdown-item"><i class="icon-feather-check-circle"></i> Approve</button>
+                                                @endif
+                                                @if(Auth::user()->hasPermission('approve_timeoffs'))
+                                                <button class="dropdown-item"><i class="icon-feather-x"></i> Deny</button>
+                                                @endif
+                                                @if(Auth::user()->hasPermission('approve_timeoffs'))
+                                                <button class="dropdown-item"><i class="os-icon os-icon-ui-15"></i> Delete</button>
+                                                @endif
+                                            </div>
 										</div>
 									</td>
+                                    @endif
 								</tr>
 								@empty
 								@endforelse
@@ -175,6 +191,8 @@
 				<form action="{{ route('add-timeoff', Auth::user()->subdomain) }}" method="POST">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="row">
+                        {{--must be owner--}}
+                        @if(Auth::user()->hasRole('Admin'))
 						<div class="col-sm-12">
 							<div class="form-group">
 						        <div for="">
@@ -198,6 +216,7 @@
 					          	<select class="form-control timeoff-policies-select" multiple="true" name="policy"></select>
 						    </div>
 						</div>
+                        @endif
 						<div class="col-sm-6">
 	            			<div class="form-group">
 			                  	<label for="">Start Date</label>
@@ -216,8 +235,8 @@
 	          			</div>
 						<div class="col-sm-12">
 							<div class="form-group">
-	              				<label for="">Reason</label>
-	              				<textarea class="form-control" name="reason"></textarea>
+	              				<label for="">Reason *</label>
+	              				<textarea class="form-control" name="reason" required></textarea>
 	            			</div>
 						</div>
 					</div>
@@ -245,7 +264,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 						  	<div class="form-group">
-						    	<label for=""> Policy Name</label>
+						    	<label for=""> Policy Name *</label>
 						    	<input class="form-control" placeholder="Policy Name" type="text" name="name">
 						  	</div>
 						</div>
@@ -310,6 +329,8 @@
 </div>
 @endsection
 @section('scripts')
+<link rel="stylesheet" type="text/css" href="{{asset('icon_fonts_assets/feather/style.css')}}">
+
 <style>
 	.select2 {
 		width: 100% !important;
@@ -319,7 +340,7 @@
 	var members = [];
 	var policies = [];
 	@forelse($members as $member)
-		members.push({ id: {{ $member->id }}, text: '<div> @if ($member->media_id)<img src="{{ asset('storage/'.$member->media->reference) }}" width="30px" height="30px">{{ $member->first_name }} {{ $member->last_name }} @else <div class="avatar" style="border-radius: 50%;">{{ substr($member->first_name, 0, 1).substr($member->last_name, 0, 1) }}</div>{{ $member->first_name }} {{ $member->last_name }} @endif </div>' });
+		members.push({ id: {{ $member->id }}, text: '<div> @if ($member->media_id)<img src="{{ asset('storage/'.$member->media->reference) }}" width="30px" height="30px">{{ $member->first_name }} {{ $member->last_name }} @else <div class="avatar" style="border-radius: 50%;">{{ substr($member->first_name, 0, 1).substr($member->last_name, 0, 1) }}</div>{{ $member->first_name }} {{ $member->last_name }} <small>({{$member->email}})</small> @endif </div>' });
 	@empty
 	@endforelse
 	@forelse($policies as $policy)

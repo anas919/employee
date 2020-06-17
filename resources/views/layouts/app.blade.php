@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <title>APP Name - @yield('title')</title>
+    <title>{{ ucfirst(Auth::user()->subdomain) }} - @yield('title')</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -976,7 +976,7 @@
 						</div>
 					</div>
         			@yield('content')
-        			
+
 				@include('layouts.alert')
 					<div class="floated-colors-btn second-floated-btn" onclick="switchMode({{ Auth::user()->pref_theme }})">
 						<div @if(Auth::user()->pref_theme == 0) class="os-toggler-w" @else class="os-toggler-w on" @endif>
