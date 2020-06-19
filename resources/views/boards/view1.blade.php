@@ -1070,7 +1070,7 @@
 
 	.dropbtn-list:hover,
 	.dropbtn-list:focus {
-		background-color: #98efbf;
+		background-color: #6c92e8;
 		border: none;
         border-radius: 3px;
         padding: 3px;

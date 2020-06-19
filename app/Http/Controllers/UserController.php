@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
@@ -335,4 +336,8 @@ class UserController extends Controller
 		return response()
 			->json(['denied' => 'users']);
 	}
+	public function getFriends()
+    {
+        return UserResource::collection(User::where('id', '!=', auth()->id())->get());
+    }
 }

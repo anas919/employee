@@ -90,6 +90,7 @@
 							<div class="activity-box">
 								<div class="col-md-2 col-sm-4 col-xs-6">
 									<div class="container">
+										<chat-component></chat-component>
 										<img src="new-res/screenshot1.png" alt="" class="screenshot-activity" />
 										<div class="row">
 											<div class="col-sm-6" style="padding-left: 0px;">

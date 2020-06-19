@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Chating Implementation
+Route::post('getFriends', 'UserController@getFriends');
+Route::post('/session/create', 'SessionController@create');
+Route::post('/session/{session}/chats', 'ChatController@chats');
+Route::post('/session/{session}/read', 'ChatController@read');
+Route::post('/session/{session}/clear', 'ChatController@clear');
+Route::post('/session/{session}/block', 'BlockController@block');
+Route::post('/session/{session}/unblock', 'BlockController@unblock');
+Route::post('/send/{session}', 'ChatController@send');
 //Checkout without subscriptions
 Route::get('paypal', 'PaypalController@index')->name('paypal');
 Route::post('create-payment', 'PaypalController@create')->name('create-payment');
