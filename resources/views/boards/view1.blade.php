@@ -183,7 +183,7 @@
 							<a aria-expanded="false" class="nav-link" data-toggle="tab" href="#details"><span class="tab-label">Details</span></a>
 						</li>
 						<li class="nav-item">
-							<a aria-expanded="false" class="nav-link" data-toggle="tab" href="#attached"><span class="tab-label">Files & resources</span><span class="badge badge-success"></i><span>1</span></span></a>
+							<a aria-expanded="false" class="nav-link" data-toggle="tab" href="#attached"><span class="tab-label">Files & resources</span><span class="badge badge-success"><span>1</span></span></a>
 						</li>
 					</ul>
                 </div>

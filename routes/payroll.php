@@ -16,6 +16,9 @@ Route::group(['middleware' => 'web'], function () {
 	        Route::get('/edit/{payslip_id}', 'PayrollController@editPayroll')
 	            ->name('edit-payslip');
 
+	        Route::post('/month', 'PayrollController@selectMonth')
+	        	->name('month-payroll');
+
 	        Route::post('/update', 'PayrollController@update')
 	        	->name('update-payroll');
 	    });

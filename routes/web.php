@@ -78,6 +78,8 @@ include 'clients.php';
 include 'teams.php';
 include 'projects.php';
 include 'schedules.php';
+include 'timesheets.php';
+include 'attendance.php';
 include 'invoices.php';
 include 'boards.php';
 include 'tasks.php';

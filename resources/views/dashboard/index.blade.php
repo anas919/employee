@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Dashboard
+	Dashboard
 @endsection
 @section('content')
 <div class="content-box">
@@ -25,7 +25,7 @@ Dashboard
 					</form>
 				</div>
 				<h6 class="element-header">
-					Support Service Dashboard
+					General
 				</h6>
 				<div class="element-content">
 					<div class="tablo-with-chart">
@@ -206,7 +206,7 @@ Dashboard
 		<!--END - Customers with most tickets-->
 	</div>
 	<div class="col-sm-5 col-xxl-6">
-		<!--START - Questions per Product-->
+		<!--START - Progress-->
 		<div class="element-wrapper">
 			<div class="element-actions">
 				<form class="form-inline justify-content-sm-end">
@@ -224,7 +224,7 @@ Dashboard
 				</form>
 			</div>
 			<h6 class="element-header">
-				Questions per Product
+				Progress
 			</h6>
 			<div class="element-box">
 				<div class="os-progress-bar primary">

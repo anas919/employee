@@ -647,6 +647,7 @@ class ComposerStaticInitdd081200fa635e3bb28311cc051d2712
         'App\\Http\\Controllers\\TasklistController' => __DIR__ . '/../..' . '/app/Http/Controllers/TasklistController.php',
         'App\\Http\\Controllers\\TeamController' => __DIR__ . '/../..' . '/app/Http/Controllers/TeamController.php',
         'App\\Http\\Controllers\\TimeoffController' => __DIR__ . '/../..' . '/app/Http/Controllers/TimeoffController.php',
+        'App\\Http\\Controllers\\TimesheetController' => __DIR__ . '/../..' . '/app/Http/Controllers/TimesheetController.php',
         'App\\Http\\Controllers\\UrlController' => __DIR__ . '/../..' . '/app/Http/Controllers/UrlController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsersController.php',

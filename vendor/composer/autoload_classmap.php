@@ -68,6 +68,7 @@ return array(
     'App\\Http\\Controllers\\TasklistController' => $baseDir . '/app/Http/Controllers/TasklistController.php',
     'App\\Http\\Controllers\\TeamController' => $baseDir . '/app/Http/Controllers/TeamController.php',
     'App\\Http\\Controllers\\TimeoffController' => $baseDir . '/app/Http/Controllers/TimeoffController.php',
+    'App\\Http\\Controllers\\TimesheetController' => $baseDir . '/app/Http/Controllers/TimesheetController.php',
     'App\\Http\\Controllers\\UrlController' => $baseDir . '/app/Http/Controllers/UrlController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Controllers\\UsersController' => $baseDir . '/app/Http/Controllers/UsersController.php',

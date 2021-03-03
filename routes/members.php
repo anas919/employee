@@ -39,6 +39,12 @@ Route::group(['middleware' => 'web'], function () {
 
 	        Route::post('/update', 'UserController@update')
 	        	->name('update');
+
+	        Route::get('/tracking/enable/{member_id}', 'UserController@enableTracking')
+	            ->name('enable-tracking');
+
+	        Route::get('/tracking/disable/{member_id}', 'UserController@disableTracking')
+	            ->name('disable-tracking');
     	});
 	});
 });

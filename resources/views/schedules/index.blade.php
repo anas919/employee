@@ -209,13 +209,13 @@
 				var start_date = '{{ $schedule->start_date }}'.split("-");
 				var end_date = '{{ $schedule->end_date }}'.split("-");
 				schedules.push({
-					title: '{{ $schedule->member->first_name }}{{ $schedule->member->last_name }}',
+					title: '<div> @if ($schedule->member->media_id)<img src="{{ asset('storage/'.$schedule->member->media->reference) }}" width="30px" height="30px">{{ $schedule->member->first_name }} {{ $schedule->member->last_name }} @else <div class="avatar" style="border-radius: 50%;">{{ substr($schedule->member->first_name, 0, 1).substr($schedule->member->last_name, 0, 1) }}</div>{{ $schedule->member->first_name }} {{ $schedule->member->last_name }} @endif </div>',
 					start: new Date(start_date[0], parseInt(start_date[1])-1, parseInt(start_date[2]), {{ $schedule->start_time }}, 0),
 					end: new Date(end_date[0], parseInt(end_date[1])-1, parseInt(end_date[2]), {{ $schedule->end_time }}, 0),
-					backgroundColor : @if($schedule->attendance == 'missed') '#F5424C' @elseif($schedule->attendance == 'coming') '#0064d5' @elseif($schedule->attendance == 'late') '#f59942' @elseif($schedule->attendance == 'attended') '#03bd9e' @else '#03bd9e' @endif,
+					backgroundColor : @if($schedule->attendance == 'coming') '#0064d5' @elseif($schedule->attendance == 'late') '#f59942' @elseif($schedule->attendance == 'attended') '#03bd9e' @elseif($schedule->attendance == 'working') '#99a9b9' @else '#ff3636' @endif,
 					extendedProps: {
-				        title: 'Title Event',
-				        description: 'Retard or something like that'
+				        title: 'Status',
+				        description: '@if($schedule->attendance == 'coming') Shift coming @elseif($schedule->attendance == 'late') Attended (late) @elseif($schedule->attendance == 'attended') Attended @elseif($schedule->attendance == 'working') Working now @else Shift missed @endif'
 				    }
 				});
 			@endforeach
@@ -230,7 +230,7 @@
 		      	selectHelper: true,
 				displayEventEnd: true,
     			weekends:true,
-    			hiddenDays: [6,0],
+    			// hiddenDays: [6,0],
 		      	select: function select(start, end, allDay) {
 			      	var d = new Date(end._i);
 	 				d.setDate(d.getDate()-1);
@@ -242,8 +242,9 @@
 		      	},
 		      	editable: false,
 		      	events: schedules,
-		      	eventRender: function(eventObj, $el) {
-					$el.popover({
+		      	eventRender: function(eventObj, element) {
+		      		element.find('.fc-title').html(element.find('.fc-title').text());
+					element.popover({
 						html: true,
 						toggle: 'popover',
 						placement: 'top',

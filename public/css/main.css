@@ -11405,7 +11405,6 @@ legend:before {
 }
 
 .popover-header {
-  text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 0.9rem;
   color: #fff;

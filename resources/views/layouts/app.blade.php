@@ -193,7 +193,7 @@
 						</div>
 						<div class="logged-user-info-w">
 							<div class="logged-user-name">
-								Maria Gomez
+								Ahmed Farid
 							</div>
 							<div class="logged-user-role">
 								Administrator
@@ -362,7 +362,7 @@
 						</div>
 						<div class="logged-user-info-w">
 							<div class="logged-user-name">
-								Maria Gomez
+								Ahmed Farid
 							</div>
 							<div class="logged-user-role">
 								Administrator
@@ -382,7 +382,7 @@
 								</div>
 								<div class="logged-user-info-w">
 									<div class="logged-user-name">
-									  Maria Gomez
+									  Ahmed Farid
 									</div>
 									<div class="logged-user-role">
 										  Administrator
@@ -393,9 +393,6 @@
 								<i class="os-icon os-icon-wallet-loaded"></i>
 							</div>
 							<ul>
-								<li>
-									<a href="apps_email.html"><i class="os-icon os-icon-mail-01"></i><span>Incoming Mail</span></a>
-								</li>
 								<li>
 									<a href="users_profile_big.html"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile Details</span></a>
 								</li>
@@ -670,7 +667,23 @@
 			                <div class="icon-w">
 			                  	<div class="os-icon os-icon-basic-2-259-calendar"></div>
 			                </div>
-			                <span>Scedules/Shifts</span>
+			                <span>Scedules/Shifts (Admin)</span>
+			            </a>
+		            </li>
+		            <li class="">
+			            <a href="{{ route('timesheets',Auth::user()->subdomain) }}">
+			                <div class="icon-w">
+			                  	<div class="os-icon os-icon-basic-2-259-calendar"></div>
+			                </div>
+			                <span>Timesheets</span>
+			            </a>
+		            </li>
+		            <li class="">
+			            <a href="{{ route('attendance',Auth::user()->subdomain) }}">
+			                <div class="icon-w">
+			                  	<div class="os-icon os-icon-basic-2-259-calendar"></div>
+			                </div>
+			                <span>Attendance</span>
 			            </a>
 		            </li>
 		            <li class="">
@@ -750,7 +763,8 @@
 			                <div class="icon-w">
 			                  	<div class="os-icon os-icon-users"></div>
 			                </div>
-			                <span>Whitlist</span>
+			                <span>Chat (Beta)</span>
+			                <strong class="text-right badge badge-danger">0</strong>
 			            </a>
 		            </li>
 		            <li class="">
@@ -789,7 +803,7 @@
 			                </div>
 			                <div class="fs-main-info">
 								<div class="fs-name">
-									Inbox
+									Duscussion
 								</div>
 								<div class="fs-sub">
 									<span>New Messages:</span><strong>12</strong>
@@ -936,7 +950,7 @@
 									  	</div>
 									  	<div class="logged-user-info-w">
 									    	<div class="logged-user-name">
-									      		Maria Gomez
+									      		Ahmed Farid
 									    	</div>
 									    	<div class="logged-user-role">
 									      		Administrator
@@ -947,9 +961,6 @@
 									  	<i class="os-icon os-icon-wallet-loaded"></i>
 									</div>
 									<ul>
-										<li>
-											<a href="apps_email.html"><i class="os-icon os-icon-mail-01"></i><span>Incoming Mail</span></a>
-										</li>
 										<li>
 											<a href="users_profile_big.html"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile Details</span></a>
 										</li>

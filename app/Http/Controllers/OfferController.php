@@ -187,6 +187,14 @@ class OfferController extends Controller
 
 		return response()->json(['success'=>'The Offer '.$offer->title.' Marked as opened']);
 	}
+	public function getCandidates(Request $req, $account, $offer_id)
+	{
+		$offer = Offer::find($offer_id);
+		foreach ($offer->candidates as $candidate) {
+			$candidate->resume = $candidate->resume->reference;
+		}
+		return response()->json(['candidates'=>$offer->candidates]);
+	}
 	public function deleteOffer(Request $req, $account, $offer_id) {
 		$offer = Offer::find($offer_id);
 

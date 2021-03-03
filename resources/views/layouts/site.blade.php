@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <head>
     <style type="text/css">
-.image-background.contain {
-    background-size: contain;
-    height: 100px !important;
-}
-.media-body > p{
-    font-size: 80%;
-}
+        .image-background.contain {
+            background-size: contain;
+            height: 100px !important;
+        }
+        .media-body > p{
+            font-size: 80%;
+        }
     </style>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">

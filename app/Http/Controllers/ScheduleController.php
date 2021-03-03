@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Schedule;
 use App\User;
@@ -14,7 +15,7 @@ class ScheduleController extends Controller
     public function index() {
     	$schedules = Schedule::all();
     	$members = User::all();
-
+    	
         return view('schedules/index', ['schedules'=>$schedules, 'members'=>$members]);
     }
     public function add(Request $req){
@@ -33,8 +34,6 @@ class ScheduleController extends Controller
 				$schedule->member_id = $member;
 				if(date("Y-m-d") < $start_date->format('Y-m-d'))
 					$schedule->attendance = 'coming';
-				if(date("Y-m-d") > $start_date->format('Y-m-d'))
-					$schedule->attendance = 'missed';
 				$schedule->save();
 				$start_date->modify('+1 day');
 			}

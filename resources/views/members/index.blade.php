@@ -116,14 +116,10 @@
 										@if(count($member->memberteams))
 										<div class="cell-image-list">
 											@foreach($member->memberteams as $team)
-											<div class="cell-img avatar" style=";border-radius: 50%;">
+											<div class="cell-img avatar" style=";border-radius: 50%;" title="Member in {{$team->name}}">
 												{{ substr($team->name, 0, 3) }}
 											</div>
 											@endforeach
-											{{-- <div class="cell-img-more">
-											+ 5 more
-											<a class="danger" href="#"><i class="os-icon os-icon-pencil-2"></i></a>
-											</div> --}}
 										</div>
 										@else
 										No Teams
@@ -131,7 +127,7 @@
 										@if(count($member->leaderteams))
 										<div class="cell-image-list">
 											@foreach($member->leaderteams as $team)
-											<div class="cell-img avatar" style=";border-radius: 50%;">
+											<div class="cell-img avatar" style=";border-radius: 50%;" title="Teamlead in {{$team->name}}">
 												{{ substr($team->name, 0, 3) }}
 											</div>
 											@endforeach
@@ -143,7 +139,11 @@
 										@endif
 									</td>
 									<td class="text-center">
-										<a class="badge badge-success-inverted" href="">Enabled</a>
+										@if($member->tracking == '0')
+											<a class="badge badge-danger-inverted member-status-{{ $member->id }}">Disabled</a>
+										@else
+											<a class="badge badge-success-inverted member-status-{{ $member->id }}">Enabled</a>
+										@endif
 									</td>
 									<td class="nowrap">
 										<span class="status-pill smaller green"></span><span>Active</span>
@@ -152,13 +152,55 @@
 										<div class="btn-group mr-1 mb-1">
 											<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton1" type="button">Actions</button>
 											<div aria-labelledby="dropdownMenuButton1" class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
-												<a class="dropdown-item" href="{{route('view-activities',['account'=>Auth::user()->subdomain,'member_id'=>$member->id])}}"><i class="os-icon os-icon-documents-03"></i> View Activities</a><a class="dropdown-item" href="#"><i class="os-icon os-icon-ui-15"></i> Another action</a><a class="dropdown-item" href="#"><i class="os-icon os-icon-ui-15"></i> Delete</a>
+												<a class="dropdown-item" href="{{route('view-activities',['account'=>Auth::user()->subdomain,'member_id'=>$member->id])}}"><i class="os-icon os-icon-documents-03"></i> View Activities</a>
+												@if($member->tracking == '0') 
+												<button class="dropdown-item" onclick="enableTracking({{ $member->id }});" id="member-status-{{ $member->id }}"><i class="os-icon os-icon-cv-2"></i> Enable Tracking</button> 
+												@else 
+												<button class="dropdown-item" onclick="disableTracking({{ $member->id }});" id="member-status-{{ $member->id }}"><i class="os-icon os-icon-cancel-square"></i> Disable Tracking</button> 
+												@endif
+												<button class="dropdown-item" onclick="deletemember({{ $member->id }});" id="member-delete-{{ $member->id }}"><i class="os-icon os-icon-ui-15"></i> Delete</button>
 											</div>
 										</div>
 									</td>
 								</tr>
 								@empty
 								@endforelse
+								@if(isset($invites))
+								@forelse($invites as $invite)
+								<tr>
+									<td class="text-center" style="display: inline-flex;">
+										<div class="form-check" style="margin-top: auto;">
+											<label>
+												<input type="checkbox" name="check"> <span class="label-text"></span>
+											</label>
+										</div>
+									</td>
+									<td>
+									  	<div class="smaller">
+									  		{{ $invite->email }}
+									  	</div>
+									</td>
+									<td>
+										-
+									</td>
+									<td class="text-center">
+										-
+									</td>
+									<td class="nowrap">
+										<span class="status-pill smaller yellow"></span><span>Invited</span>
+									</td>
+									<td class="row-actions">
+										<div class="btn-group mr-1 mb-1">
+											<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton1" type="button">Actions</button>
+											<div aria-labelledby="dropdownMenuButton1" class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
+												<a class="dropdown-item" href="#"><i class="os-icon os-icon-ui-15"></i> Delete Invitation</a>
+											</div>
+										</div>
+									</td>
+								</tr>
+								@empty
+								@endforelse
+								@endif
 							</tbody>
 						</table>
 					</div>
@@ -538,20 +580,9 @@
 						    </div>
 						</div>
 						<div class="col-sm-12">
-							<div class="form-group">
-						        <select class="form-control" name="role">
-									@foreach($roles as $role)
-										<option value="{{ $role->id }}">
-							            	{{ $role->name }}
-										</option>
-									@endforeach
-						        </select>
-                      		</div>
-						</div>
-						<div class="col-sm-12">
 				         	<div class="form-group">
-				                <label for=""> Projects</label>
-				              	<select class="form-control projects-select" multiple="true" name="projects[]"></select>
+				                <label for=""> Roles</label>
+				              	<select class="form-control roles-select" multiple="true" name="roles[]"></select>
 				            </div>
 				        </div>
 					</div>
@@ -615,18 +646,18 @@ jQuery(document).ready(function(){
 });
 </script>
 <script type="text/javascript">
-    var projects = [];
+    var roles = [];
 	$.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-	@forelse($projects as $project)
-		projects.push({id: {{$project->id}},text: '<div>{{$project->name}}</div>'});
+	@forelse($roles as $role)
+		roles.push({id: {{$role->id}},text: '<div>{{$role->name}}</div>'});
 	@empty
 	@endforelse
-	$(".projects-select").select2({
-		data: projects,
+	$(".roles-select").select2({
+		data: roles,
 		templateResult: function (d) { return $(d.text); },
 		templateSelection: function (d) { return $(d.text); },
 	});
@@ -653,6 +684,50 @@ jQuery(document).ready(function(){
                 },
             ]
 		});
+	}
+	//Dynamic Tooltip
+	$('.avatar[title]').tooltip();
+	//Actions
+	function enableTracking(member_id){
+		$('#loading').css('display','block');
+		$.ajax({
+			type:'GET',
+			url:'{{ url('/') }}/members/tracking/enable/'+member_id,
+			success:function(data){
+				$('#loading').css('display','none');
+				$('.member-status-'+member_id).addClass('badge-success-inverted').removeClass('badge-danger-inverted').text('Enabled');
+				$('#member-status-'+member_id).attr('onclick','disableTracking('+member_id+')');
+				$('#member-status-'+member_id).html('<i class="os-icon os-icon-cancel-square"></i> Disable tracking');
+				$('#message-success').text(data.success);
+				$("#alert-success").show();
+				setTimeout(function() { $("#alert-success").hide(); }, 3000);
+			},
+			error:function(error){
+				console.log(error);
+			}
+		});
+	}
+	function disableTracking(member_id){
+		$('#loading').css('display','block');
+		$.ajax({
+			type:'GET',
+			url:'{{ url('/') }}/members/tracking/disable/'+member_id,
+			success:function(data){
+				$('#loading').css('display','none');
+				$('.member-status-'+member_id).addClass('badge-danger-inverted').removeClass('badge-success-inverted').text('Disabled');
+				$('#member-status-'+member_id).attr('onclick','enableTracking('+member_id+')');
+				$('#member-status-'+member_id).html('<i class="os-icon os-icon-cv-2"></i> Enable tracking');
+				$('#message-success').text(data.success);
+				$("#alert-success").show();
+				setTimeout(function() { $("#alert-success").hide(); }, 3000);
+			},
+			error:function(error){
+				console.log(error);
+			}
+		});
+	}
+	function deletemember(member_id){
+
 	}
 </script>
 @endsection

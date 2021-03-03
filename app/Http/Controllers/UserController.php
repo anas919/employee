@@ -32,6 +32,7 @@ class UserController extends Controller
 	public function index(){
     	$user = new User();
     	$members = User::all();
+    	$invites = Invite::all();
     	$roles = Role::all();
     	$countries = Country::all();
     	$departments = Department::all();
@@ -42,7 +43,7 @@ class UserController extends Controller
     	$projects = Project::all();
     	$relationships = Relationship::all();
 
-        return view('members/index', ['user'=>$user,'members'=>$members,'roles'=>$roles,'countries'=>$countries,'departments'=>$departments,'jobs'=>$jobs,'paymentschedules'=>$paymentschedules,'paymentrates'=>$paymentrates,'paymentmethods'=>$paymentmethods,'projects'=>$projects,'relationships'=>$relationships]);
+        return view('members/index', ['user'=>$user,'members'=>$members,'invites'=>$invites,'roles'=>$roles,'countries'=>$countries,'departments'=>$departments,'jobs'=>$jobs,'paymentschedules'=>$paymentschedules,'paymentrates'=>$paymentrates,'paymentmethods'=>$paymentmethods,'projects'=>$projects,'relationships'=>$relationships]);
     }
 	public function add(Request $req){
     	$user = new User();
@@ -109,6 +110,7 @@ class UserController extends Controller
 		return redirect()->route('members', Auth::user()->subdomain);
     }
 	public function invite(Request $req) {
+		$roles = implode(',', $req->roles);
     	$emails = preg_split('/\r\n|[\r\n]/', $req->email);
 
     	foreach ($emails as $email) {
@@ -122,6 +124,7 @@ class UserController extends Controller
 		        'email' => $email,
 		        'token' => $token,
 		        'user_id' => Auth::user()->id,
+		        'roles' => $roles,
 		    ]);
 
 		    // send the email
@@ -212,8 +215,8 @@ class UserController extends Controller
     	$paymentmethods = Paymentmethod::all();
     	$projects = Project::all();
     	$relationships = Relationship::all();
-
-        return view('members/index', ['user'=>$user,'members'=>$members,'roles'=>$roles,'countries'=>$countries,'departments'=>$departments,'jobs'=>$jobs,'paymentschedules'=>$paymentschedules,'paymentrates'=>$paymentrates,'paymentmethods'=>$paymentmethods,'projects'=>$projects,'relationships'=>$relationships,'roleFilter'=>$req->role,'statusFilter'=>$req->status]);
+    	$invites = null;
+        return view('members/index', ['user'=>$user,'members'=>$members,'invites'=>$invites,'roles'=>$roles,'countries'=>$countries,'departments'=>$departments,'jobs'=>$jobs,'paymentschedules'=>$paymentschedules,'paymentrates'=>$paymentrates,'paymentmethods'=>$paymentmethods,'projects'=>$projects,'relationships'=>$relationships,'roleFilter'=>$req->role,'statusFilter'=>$req->status]);
 		// $name = $req->name;
 		// $members = User::where(function ($query) {
 		//     				$query->where('organization_id', '=', Auth::user()->organization_id);
@@ -308,6 +311,22 @@ class UserController extends Controller
 		$user->visa_id = $visa->id;
 		$user->save();
 		return redirect()->route('members', Auth::user()->subdomain);
+	}
+	public function enableTracking(Request $req, $account, $member_id) {
+		$member = User::find($member_id);
+
+		$member->tracking = '1';
+		$member->save();
+
+		return response()->json(['success'=>'Tracking enabled for '.$member->first_name.' '.$member->last_name]);
+	}
+	public function disableTracking(Request $req, $account, $member_id) {
+		$member = User::find($member_id);
+
+		$member->tracking = '0';
+		$member->save();
+
+		return response()->json(['success'=>'Tracking disabled for '.$member->first_name.' '.$member->last_name]);
 	}
 	//Api
 	public function tasks(Request $request){

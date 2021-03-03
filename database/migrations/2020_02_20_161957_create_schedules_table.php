@@ -22,7 +22,7 @@ class CreateSchedulesTable extends Migration
             $table->tinyInteger('start_time');
             $table->tinyInteger('end_time');
             $table->double('min_hours');
-            $table->enum('attendance', ['coming', 'missed', 'late', 'attended'])->nullable();
+            $table->enum('attendance', ['coming', 'missed', 'late', 'attended', 'working'])->nullable();
             $table->timestamps();
         });
     }

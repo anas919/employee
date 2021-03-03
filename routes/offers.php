@@ -30,6 +30,10 @@ Route::group(['middleware' => 'web'], function () {
 
 	        Route::get('/open/{offer_id}', 'OfferController@openOffer')
 	            ->name('open-offer');
+
+	        Route::get('/{offer_id}/candidates', 'OfferController@getCandidates')
+	            ->name('candidates-offer');
+
 	    });
 	});
 });

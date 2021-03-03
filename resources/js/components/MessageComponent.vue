@@ -1,18 +1,78 @@
 <template>
-    <div class="card card-default chat-box">
+      <div class="floated-chat-w">
+        <div class="floated-chat-i">
+          <div class="chat-close">
+            <div class="dropdown float-right mr-4">
+              <a href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i style="font-size: 10px;" class="os-icon os-icon-more-vertical" aria-hidden="true"></i>
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#" v-if="session.block && can" @click.prevent="unblock">UnBlock</a>
+                  <a class="dropdown-item" href="#" @click.prevent="block" v-if="!session.block">Block</a>
+
+                  <a class="dropdown-item" href="#" @click.prevent="clear"> Clear Chat</a>
+              </div>
+            </div>
+            <i @click.prevent="close" class="os-icon os-icon-close" style="margin-left: 20px;margin-right: 20px;"></i>
+          </div>
+          <div class="chat-head">
+             <div class="user-w with-status" :class="{'status-green':friend.online}">
+                <div class="user-avatar-w">
+                   <div class="user-avatar">
+                      <img alt="" src="img/avatar1.jpg">
+                   </div>
+                </div>
+                <div class="user-name">
+                   <h6 class="user-title">
+                      <b :class="{'text-danger':session.block}">
+                          {{friend.name}} <span v-if="isTyping">is Typing . . .</span>
+                          <span v-if="session.block">(Blocked)</span>
+                      </b>
+                   </h6>
+                   <div class="user-role">
+                      Account Manager
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="chat-messages" v-chat-scroll>
+             <div class="message" :class="{'text-right':chat.type == 0,'self':chat.read_at!=null}" v-for="chat in chats" :key="chat.id">
+                <div class="message-content">
+                   {{chat.message}}
+                </div>
+                <br>
+                <div class="date-break">
+                  {{chat.read_at}}
+                </div>
+             </div>
+          </div>
+          <div class="chat-controls">
+            <form @submit.prevent="send">
+             <input class="message-input" placeholder="Type your message here..." type="text" :disabled="session.block" v-model="message">
+             <div class="chat-extra">
+                <a href="#"><span class="extra-tooltip">Attach Document</span><i class="os-icon os-icon-documents-07"></i>
+                </a>
+                <a href="#"><span class="extra-tooltip">Insert Photo</span><i class="os-icon os-icon-others-29"></i>
+                </a>
+                <a href="#"><span class="extra-tooltip">Upload Video</span><i class="os-icon os-icon-ui-51"></i>
+                </a>
+             </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    <!-- <div class="card card-default chat-box">
         <div class="card-header">
             <b :class="{'text-danger':session.block}">
                 {{friend.name}} <span v-if="isTyping">is Typing . . .</span>
                 <span v-if="session.block">(Blocked)</span>
             </b>
 
-            <!-- Close Button -->
             <a href="" @click.prevent="close">
                 <i class="fa fa-times float-right" aria-hidden="true"></i>
             </a>
-            <!-- Close Button Ends -->
 
-            <!-- Options -->
             <div class="dropdown float-right mr-4">
                 <a href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
@@ -26,7 +86,7 @@
                 </div>
 
             </div>
-            <!-- Options Ends -->
+
         </div>
         <div class="card-body" v-chat-scroll>
             <p class="card-text" :class="{'text-right':chat.type == 0,'text-success':chat.read_at!=null}" v-for="chat in chats" :key="chat.id">
@@ -41,7 +101,7 @@
                 :disabled="session.block" v-model="message">
             </div>
         </form>
-    </div>
+    </div> -->
 </template>
 
 <script>

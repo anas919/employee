@@ -68,5 +68,10 @@ class PayrollController extends Controller
 
 		return view('payroll.edit',['payslip'=>$payslip, 'organization'=>$organization]);
 	}
+	public function selectMonth(Request $req, $account){
+		$payslips = Payslip::whereMonth('end_date', $req->month)->get();
+		$payroll = view('payroll/ajax/payroll-table', ['payslips'=>$payslips])->render();
+		return response()->json(['payroll'=>$payroll]);
+	}
 
 }

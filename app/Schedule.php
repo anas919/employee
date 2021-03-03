@@ -14,4 +14,8 @@ class Schedule extends Model
     {
         return $this->belongsToMany('App\Day', 'scheduledays', 'schedule_id', 'day_id');
     }
+	public function timesheets()
+    {
+        return $this->hasMany('App\Timesheet');
+    }
 }

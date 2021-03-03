@@ -75,6 +75,10 @@ class User extends Authenticatable implements MustVerifyEmail
 	    			return true;
 	    	}
 	    }
+	    public function timesheets()
+	    {
+	        return $this->hasMany('App\Timesheet');
+	    }
 	    public function activities()
 	    {
 	        return $this->hasMany('App\Activity');

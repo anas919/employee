@@ -86,13 +86,16 @@
 													{{ substr($candidate->first_name, 0, 1).substr($candidate->last_name, 0, 1)}}
 												</div>
 											@endif
+											<span class="ml-2">{{$candidate->first_name}} {{$candidate->last_name}}
+												<a class="danger small-edit" href="#"><i class="os-icon os-icon-ui-07"></i></a>
+											</span>
 										</div>
 									</td>
 									<td>
 										<span>{{ $candidate->offer->title }}</span>
 									</td>
 									<td>
-										<span>{{ $candidate->created_at }}</span>
+										<span>{{ (new DateTime($candidate->created_at))->format('M d,Y') }}</span>
 									</td>
 									<td>
 										<span class="badge badge-success-inverted">{{ $candidate->offer->status }}</span>

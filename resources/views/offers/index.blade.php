@@ -74,21 +74,35 @@
 									</td>
 									<td>
 										@if(count($offer->candidates))
-											@foreach($offer->candidates as $candidate)
 											<div class="cell-image-list">
+											@php
+												$i = 0;
+											@endphp
+											@foreach($offer->candidates as $candidate)
+												@if($i<2)
 													@if($candidate->media_id)
 														<div class="cell-img">
-															<div class="user-with-avatar">
+															<div class="user-with-avatar"  title="{{$candidate->first_name}} {{$candidate->last_name}} applied in {{(new DateTime($candidate->created_at))->format('M d,Y')}}">
 																<img alt="{{ $candidate->id }}" src="{{ asset('storage/'.$candidate->media->reference) }}">
 															</div>
 														</div>
 													@else
-														<div class="cell-img avatar">
+														<div class="cell-img avatar"  title="{{$candidate->first_name}} {{$candidate->last_name}} applied in {{(new DateTime($candidate->created_at))->format('M d,Y')}}">
 															{{ substr($candidate->first_name, 0, 1).substr($candidate->last_name, 0, 1)}}
 														</div>
 													@endif
-											</div>
+												@endif
+												@php
+													$i++;
+												@endphp
 											@endforeach
+											@if(count($offer->candidates)>2)
+											<div class="cell-img-more">
+										    	+ {{$i-2}} more
+										    	<button class="danger small-edit" onclick="viewCandidates({{ $offer->id }})"><i class="os-icon os-icon-ui-07"></i></button>
+										  	</div>
+										  	@endif
+											</div>
 										@else
 										No Candidates
 										@endif
@@ -458,6 +472,38 @@
 		</div>
 	</div>
 </div>
+<div aria-hidden="true" aria-labelledby="viewCandidatesModal" class="modal fade" id="viewCandidatesModal" role="dialog" tabindex="-1">
+   	<div class="modal-dialog" role="document">
+    	<div class="modal-content">
+     		<div class="modal-header">
+		      	<h5 class="modal-title" id="offerCandidates">
+		        	Candidates
+		      	</h5>
+      			<button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"> &times;</span></button>
+     		</div>
+     		<div class="modal-body">
+      			<table id="dataTable1" width="100%" class="table table-striped table-lightfont">
+					<thead>
+						<tr>
+							<th>
+								Name
+							</th>
+							<th>
+								CV
+							</th>
+							<th>
+								Actions
+							</th>
+						</tr>
+					</thead>
+					<tbody id="candidates">
+
+					</tbody>
+				</table>
+     		</div>
+	    </div>
+   	</div>
+</div>
 @endsection
 @section('scripts')
 <style>
@@ -588,6 +634,27 @@
 			},
 			error:function(error){
 				console.log(error);
+			}
+		});
+	}
+	//Dynamic Tooltip
+	$('.avatar[title]').tooltip();
+	function viewCandidates(offer_id){
+		$.ajax({
+			type:'GET',
+			url:'{{ url('/') }}/offers/'+offer_id+'/candidates',
+			success:function(data){
+				$('#candidates').html('');
+				console.log(data.candidates);
+				if(data.candidates.length > 0){
+					for(let i = 0; i < data.candidates.length; i++){
+						$('#candidates').append('<tr><td>'+data.candidates[i]['first_name']+' '+data.candidates[i]['last_name']+'</td><td><a class="attachment" href="{{ url('/') }}/storage/'+data.candidates[i]['resume']['reference']+'" download="'+data.candidates[i]['resume']['name']+'"><span> '+data.candidates[i]['resume']['name']+'</span></a></td><td><button class="btn btn-primary">f</button></td></tr>')
+					}
+				}
+				$('#viewCandidatesModal').modal('show');
+			},
+			error:function(error){
+
 			}
 		});
 	}

@@ -1,37 +1,63 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-3">
-                <div class="card card-default">
-                    <div class="card-header">
-                        Private Chat App
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item"
-                        @click.prevent="openChat(friend)"
-                        :key=friend.id
-                        v-for="friend in friends"> 
-                          <a href="">
-                            {{friend.first_name}}
-                            <span class="text-danger" v-if="friend.session && (friend.session.unreadCount > 0)">{{friend.session.unreadCount}}</span>
-                          </a>
-                          <i class="fa fa-circle float-right text-success" v-if="friend.online" aria-hidden="true"></i>
-                        </li>
-
-                    </ul>
-                </div>
+<div class="full-chat-w">
+   <div class="full-chat-i">
+      <div class="full-chat-left">
+         <div class="os-tabs-w">
+            <ul class="nav nav-tabs upper centered">
+               <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab"><i class="os-icon os-icon-mail-14"></i><span>Chats</span></a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" ><i class="os-icon os-icon-ui-02"></i><span>Favorites</span></a>
+               </li>
+            </ul>
+         </div>
+         <div class="chat-search">
+            <div class="element-search">
+               <input placeholder="Search users by name..." type="text">
             </div>
-            <div class="col-md-9">
-                <span v-for="friend in friends" :key="friend.id" v-if="friend.session">
-                    <message-component
-                    v-if="friend.session.open"
-                    @close="close(friend)"
-                    :friend=friend
-                    ></message-component>
-                </span>
+         </div>
+         <div class="user-list">
+            <div class="user-w" @click.prevent="openChat(friend)"
+               :key=friend.id
+               v-for="friend in friends">
+               <div class="avatar with-status status-green">
+                  <img alt="" src="img/avatar1.jpg">
+               </div>
+               <div class="user-info">
+                  <div class="user-date">
+                     2 days
+                  </div>
+                  <div class="user-name">
+                     {{friend.first_name}}
+                  </div>
+                  <div class="last-message">
+                     They have submitted users...
+                  </div>
+                  <i class="fa fa-circle float-right text-success" v-if="friend.online" aria-hidden="true"></i>
+                  <strong class="badge badge-danger" v-if="friend.session && (friend.session.unreadCount > 0)">{{friend.session.unreadCount}}</strong>
+               </div>
             </div>
-        </div>
-    </div>
+         </div>
+      </div>
+      <div class="full-chat-middle" v-for="friend in friends" :key="friend.id" v-if="friend.session">
+         <message-component
+            v-if="friend.session.open"
+            @close="close(friend)"
+            :friend=friend
+            ></message-component>
+      </div>
+   </div>
+  <!--  <div class="col-md-9">
+      <span v-for="friend in friends" :key="friend.id" v-if="friend.session">
+         <message-component
+            v-if="friend.session.open"
+            @close="close(friend)"
+            :friend=friend
+            ></message-component>
+      </span>
+   </div> -->
+</div>
 </template>
 
 <script>

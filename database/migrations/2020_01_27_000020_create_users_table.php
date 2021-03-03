@@ -40,7 +40,7 @@ class CreateUsersTable extends Migration
             $table->foreign('paymentmethod_id')->references('id')->on('paymentmethods');
             $table->date('hire_date')->nullable();
             $table->enum('status', ['full_time', 'part_time', 'contractor'])->nullable();
-            $table->enum('self_service_access', ['y', 'n'])->nullable();
+            $table->enum('tracking', [0, 1])->default(1);
             $table->longText('notes')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('twitter')->nullable();

@@ -76,7 +76,7 @@ class RegisterController extends Controller
     {
 		if($data['src'] == 'true'){
 			if (!$invite = Invite::where('email', $data['email'])->first()) {
-					abort(404);
+				abort(404);
 			}
 			//user who invite
             $inviter = User::find($invite->user_id);//Not implemented yet
@@ -89,8 +89,25 @@ class RegisterController extends Controller
                 'phone' => $data['phone'],
                 'password' => bcrypt($data['password']),
             ]);
+            $roles = explode(',', $invite->roles);
+            foreach ($roles as $role) {
+                $user->roles()->attach($role);
+            }
             Mail::to($data['email'])->send(new WelcomeMail($user));
             $invite->delete();
+            //Add invited user to main database
+            $tenant = Tenant::where('database','localhost')->first();
+            if($tenant)
+                $tenant->configure()->use();
+            $usmain = User::create([
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+                'subdomain' => $inviter->subdomain,
+                'phone' => $data['phone'],
+                'password' => Hash::make($data['password']),
+            ]);
+
             return $user;
 		}else{
 			//Create user in general database
